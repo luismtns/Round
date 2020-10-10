@@ -4,6 +4,7 @@
     "jsx": "react-native",
     "lib": ["dom", "esnext"],
     "moduleResolution": "node",
+    "module": "commonjs",
     "noEmit": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,

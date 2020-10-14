@@ -18,13 +18,14 @@ const styles = StyleSheet.create({
     flexDirection: "column",
   },
   inputBox: {
-    padding: 20,
+    padding: 40,
   },
 
   title: {
     fontSize: theme.FONT_SIZE_LARGE,
     fontFamily: "Assistant_700Bold",
-    marginBottom: 16,
+    color: theme.TERTIARY_TEXT_COLOR,
+    marginBottom: 20,
   },
 
   logo: {
@@ -42,21 +43,30 @@ const styles = StyleSheet.create({
     textAlign: "right",
     marginBottom: 16,
     fontFamily: "Assistant_400Regular",
-    color: theme.SECONDARY_TEXT_COLOR,
+    color: theme.TERTIARY_TEXT_COLOR,
     textDecorationLine: "underline",
+    letterSpacing: 0.5,
   },
-
+  contactBorder: {
+    textAlign: "center",
+    marginTop: 12,
+    marginBottom: 30,
+    color: theme.TERTIARY_TEXT_COLOR,
+  },
   contact: {
     textAlign: "center",
     fontFamily: "Assistant_400Regular",
     fontSize: theme.FONT_SIZE_SMALL,
-    color: theme.SECONDARY_TEXT_COLOR,
+    color: theme.TERTIARY_TEXT_COLOR,
     marginBottom: 16,
     lineHeight: 22,
   },
   contactAccount: {
-    color: theme.PRIMARY_COLOR,
+    color: theme.TERTIARY_TEXT_COLOR,
     fontFamily: "Assistant_700Bold",
+    marginTop: 10,
+    position: "relative",
+    zIndex: 1,
   },
 });
 

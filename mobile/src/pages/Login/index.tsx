@@ -5,9 +5,10 @@ import MainInput from "../../components/MainInput";
 import Button from "../../components/Button";
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { Entypo } from "@expo/vector-icons";
+
 import theme from "../../styles/theme.style";
-function Landing() {
+
+function Login() {
   const { navigate } = useNavigation();
   const [showPassword, setShowPassword] = useState(true);
   const [icon, setIcon] = useState("eye");
@@ -28,7 +29,7 @@ function Landing() {
   }
 
   function handlePassword() {
-    setIcon(icon === "eye" ? "eye-with-line" : "eye");
+    setIcon(icon === "eye" ? "eye-off" : "eye");
     setShowPassword(!showPassword);
   }
 
@@ -57,18 +58,13 @@ function Landing() {
             value={password}
             secureTextEntry={showPassword}
             label="Senha"
-            rightIcon={
-              <Entypo
-                name={icon}
-                size={24}
-                color={theme.SECONDARY_TEXT_COLOR}
-                onPress={handlePassword}
-              ></Entypo>
-            }
+            icon={icon}
+            showHide={handlePassword}
             onChangeText={(value: any) => {
               setPassword(value);
             }}
-          />
+          ></MainInput>
+
           <TouchableOpacity activeOpacity={0.6} onPress={goToForgotPassword}>
             <Text style={styles.forgotPass}>Esqueceu sua senha?</Text>
           </TouchableOpacity>
@@ -78,7 +74,9 @@ function Landing() {
             title="LOGIN"
             onPress={() => handleLogin(email, password)}
           />
-
+          <Text style={styles.contactBorder}>
+            <span>ou</span>
+          </Text>
           <Text onPress={goToContact} style={styles.contact}>
             Não tem uma conta?{"\n"}
             <Text style={styles.contactAccount}>Entrar em contato</Text>
@@ -89,4 +87,4 @@ function Landing() {
   );
 }
 
-export default Landing;
+export default Login;

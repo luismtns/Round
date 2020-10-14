@@ -2,24 +2,20 @@ import React, { useState } from "react";
 import { View } from "react-native";
 import { SearchBar } from "react-native-elements";
 import styles from "./styles";
+import { Searchbar } from "react-native-paper";
 
-const SearchBarComponent: React.FC<any> = ({}) => {
-  const [search, setSearch] = useState("");
+const MyComponent = () => {
+  const [searchQuery, setSearchQuery] = React.useState("");
+
+  const onChangeSearch = (query: any) => setSearchQuery(query);
+
   return (
-    <View>
-      <SearchBar
-        round
-        searchIcon={{ size: 24 }}
-        onChangeText={(text) => setSearch(text)}
-        placeholder="Pesquisar..."
-        value={search}
-        lightTheme={true}
-        showCancel={true}
-        showLoading={false}
-        cancelButtonTitle="Cancelar"
-      />
-    </View>
+    <Searchbar
+      placeholder="Search"
+      onChangeText={onChangeSearch}
+      value={searchQuery}
+    />
   );
 };
 
-export default SearchBarComponent;
+export default MyComponent;

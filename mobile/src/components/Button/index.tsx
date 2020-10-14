@@ -26,7 +26,7 @@ interface StyleProp extends TextStyle {
   textAlign: any;
 }
 
-const Button: React.FC<ButtonProps> = ({
+const ButtonPrimary: React.FC<ButtonProps> = ({
   title,
   onPress,
   bordered = false,
@@ -74,4 +74,4 @@ const Button: React.FC<ButtonProps> = ({
   );
 };
 
-export default Button;
+export default ButtonPrimary;

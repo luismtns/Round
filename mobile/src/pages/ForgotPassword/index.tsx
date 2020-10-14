@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { View, Text, Alert } from "react-native";
+import { View, Text, Alert, Image } from "react-native";
 import styles from "./styles";
+import { IconButton } from "react-native-paper";
 import MainInput from "../../components/MainInput";
-import Button from "../../components/Button";
+import ButtonPrimary from "../../components/Button";
 import { useNavigation } from "@react-navigation/native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 function ForgotPasswordPage() {
   const { navigate } = useNavigation();
@@ -16,29 +18,41 @@ function ForgotPasswordPage() {
       `Suas informações foram enviadas para o e-mail "${email}".`,
       [{ text: "OK" }]
     );
-    navigate("Landing");
+    navigate("Login");
+  }
+
+  function goToLoginPage() {
+    navigate("Login");
   }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Esqueci minha senha</Text>
-      <Text style={styles.subTitle}>
-        Podemos ajudá-lo a redefinir sua senha e suas informações de segurança.
-        Insira seu e-mail que entraremos em contato.
-      </Text>
-      <MainInput
-        label="E-mail"
-        keyboardType="email-address"
-        onChangeText={(email: string) => {
-          setEmail(email);
-        }}
-      />
-      <Button
-        type="filled"
-        size="large"
-        title="RESGATAR"
-        onPress={handleForgotPassword}
-      />
+      <View style={styles.containerLogo}>
+        <Image style={styles.logo} source={require("../../assets/logo.png")} />
+      </View>
+      <View style={styles.containerForgotPassword}>
+        <View style={styles.containerInput}>
+          <IconButton icon="arrow-left" size={20} onPress={goToLoginPage} />
+          <Text style={styles.title}>Esqueci minha senha</Text>
+          <Text style={styles.subTitle}>
+            Podemos ajudá-lo a redefinir sua senha e suas informações de
+            segurança. Insira seu e-mail que entraremos em contato.
+          </Text>
+          <MainInput
+            label="E-mail"
+            keyboardType="email-address"
+            onChangeText={(email: string) => {
+              setEmail(email);
+            }}
+          />
+          <ButtonPrimary
+            type="filled"
+            size="large"
+            title="RESGATAR"
+            onPress={handleForgotPassword}
+          />
+        </View>
+      </View>
     </View>
   );
 }

@@ -18,7 +18,7 @@ import theme from "../../styles/theme.style";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { FlatList } from "react-native-gesture-handler";
 
-function HomePage() {
+function Menu() {
   const { navigate } = useNavigation();
   const [isVisible, setIsVisible] = useState(false);
   function handleGoToPatients() {
@@ -26,11 +26,11 @@ function HomePage() {
     //   { text: "Cancel", style: "cancel" },
     //   { text: "Ok", style: "default" },
     // ]);
-    navigate("Patients");
+    navigate("Clinic");
   }
 
   function logout() {
-    navigate("Landing");
+    navigate("Login");
   }
 
   function showModal() {
@@ -39,6 +39,10 @@ function HomePage() {
 
   function hideModal() {
     setIsVisible(false);
+  }
+
+  function goToConfigPage() {
+    navigate("Configuration");
   }
 
   return (
@@ -153,7 +157,7 @@ function HomePage() {
               },
             ]}
             text={styles.boxText}
-            onPress={logout}
+            onPress={goToConfigPage}
           />
         </View>
       </View>
@@ -161,4 +165,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default Menu;

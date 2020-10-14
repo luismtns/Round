@@ -1,10 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import Landing from "../pages/Landing";
+import LandingBG from "../pages/Login";
 import ForgotPasswordPage from "../pages/ForgotPassword";
 import InAppStack from "./AppRoute";
 import { UserContext } from "../providers/UserProvider";
+import Login from "../pages/Login";
+import { View, Image } from "react-native";
+import styles from "../pages/Login/styles";
 const { Navigator, Screen } = createStackNavigator();
 
 function MainRoutes() {
@@ -12,26 +15,30 @@ function MainRoutes() {
   console.log("na routes", user);
 
   return (
-    <NavigationContainer>
-      <Navigator screenOptions={{ headerShown: false }}>
-        <Screen
-          name="Landing"
-          options={{
-            headerTitle: "Login",
+    <>
+      <NavigationContainer>
+        <Navigator
+          screenOptions={{
+            headerShown: false,
+            headerStyle: { backgroundColor: "transparent" },
+            headerTransparent: true,
+            headerTintColor: "white",
           }}
-          component={Landing}
-        />
-        <Screen
-          options={{
-            headerShown: true,
-            headerTitle: "Recuperar acesso",
-          }}
-          name="forgotPassword"
-          component={ForgotPasswordPage}
-        />
-        <Screen name="Home" component={InAppStack} />
-      </Navigator>
-    </NavigationContainer>
+        >
+          <Screen name="Login" component={Login} />
+          <Screen
+            options={{
+              headerTitle: "",
+              headerShown: true,
+            }}
+            name="forgotPassword"
+            component={ForgotPasswordPage}
+          />
+
+          <Screen name="Home" component={InAppStack} />
+        </Navigator>
+      </NavigationContainer>
+    </>
   );
 }
 

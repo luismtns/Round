@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { View, Text, Picker, FlatList } from "react-native";
 import styles from "./styles";
 import MainInput from "../../components/MainInput";
@@ -13,6 +13,7 @@ import { UserContext } from "../../providers/UserProvider";
 import Card from "../../components/Card";
 import MainModal from "../../components/Modal";
 import SearchBarComponent from "../../components/SearchBar";
+import { DATA, PROFESSIONAL } from "../../services/data/index";
 
 export interface PatientProps {
   patient: {
@@ -24,9 +25,16 @@ export interface PatientProps {
   };
 }
 
-function Patient({ route }: any) {
-  const { patient }: PatientProps = route.params;
+const Patient = (props: any) => {
+  const { patient }: PatientProps = props.route.params;
 
+  useEffect(() => {
+    props.navigation.setOptions({
+      title: PROFESSIONAL,
+    });
+  }, []);
+
+  console.log(props);
   return (
     <>
       <Text>ID: {patient.id}</Text>
@@ -36,6 +44,6 @@ function Patient({ route }: any) {
       <Text>Quarto: {patient.quarto}</Text>
     </>
   );
-}
+};
 
 export default Patient;

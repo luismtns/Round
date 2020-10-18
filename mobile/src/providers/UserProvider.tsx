@@ -1,18 +1,24 @@
 import React, { createContext } from "react";
-import { AuthService } from "../services/auth"; // Auth
+import AuthService from '../../src/services/auth/index';
+
 export const UserContext = createContext<any | null>({ user: null });
 
 class UserProvider extends React.Component {
   state = {
-    user: false,
+    user: null,
   };
 
-  // TODO auth get user pass to state
-  componentDidUpdate = async () => {
+  // TODO auth get user pass to state  
+  componentDidMount = async () => {
     // setTimeout(async () => {
     //   const user = await AuthService.check(true);
     //   this.setState({ user });
-    // }
+    // }    
+    AuthService.onAuthStateChanged((userState:firebase.User | null)=>{
+      this.setState({ userState });
+      console.log(userState);
+      
+    })
   };
 
   render() {

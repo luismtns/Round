@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import UserProvider from "./src/providers/UserProvider";
-import MainRoutes from "./src/routes/AuthRoute";
+import AuthRoute from "./src/routes/AuthRoute";
 import {
   Assistant_700Bold,
   Assistant_600SemiBold,
@@ -24,7 +24,7 @@ export default function App() {
   } else {
     return (
       <UserProvider>
-        <MainRoutes />
+        <AuthRoute />
         <StatusBar style="dark" />
       </UserProvider>
     );

@@ -4,6 +4,7 @@ import styles from "./styles";
 // import { Container } from './styles';
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import AuthService from './../../services/auth/index';
 
 const Configuration: React.FC = () => {
   const { navigate } = useNavigation();
@@ -20,8 +21,8 @@ const Configuration: React.FC = () => {
     navigate("Help");
   }
 
-  function goToLogin() {
-    navigate("Login");
+  function Logout() {
+    AuthService.logout();
   }
 
   return (
@@ -38,7 +39,7 @@ const Configuration: React.FC = () => {
         <Text>Help</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={goToLogin}>
+      <TouchableOpacity onPress={Logout}>
         <Text>Sair</Text>
       </TouchableOpacity>
     </>

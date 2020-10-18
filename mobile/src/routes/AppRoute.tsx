@@ -14,7 +14,7 @@ import { useNavigation } from "@react-navigation/native";
 
 const { Navigator, Screen } = createStackNavigator();
 
-function InAppStack() {
+function AppRoute() {
   const { navigate } = useNavigation();
 
   return (
@@ -55,4 +55,4 @@ function InAppStack() {
   );
 }
 
-export default InAppStack;
+export default AppRoute;

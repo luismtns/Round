@@ -7,6 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 import theme from "../../styles/theme.style";
+import AuthService from './../../services/auth/index';
 
 function Login() {
   const { navigate } = useNavigation();
@@ -17,7 +18,7 @@ function Login() {
 
   function handleLogin(email: any, password: any) {
     // email e pass OK
-    navigate("Home");
+    AuthService.signInWithEmailAndPassword(email,password);
   }
 
   function goToForgotPassword() {
@@ -31,6 +32,10 @@ function Login() {
   function handlePassword() {
     setIcon(icon === "eye" ? "eye-off" : "eye");
     setShowPassword(!showPassword);
+  }
+
+  function logout() {
+    AuthService.logout();
   }
 
   return (
@@ -81,6 +86,7 @@ function Login() {
             Não tem uma conta?{"\n"}
             <Text style={styles.contactAccount}>Entrar em contato</Text>
           </Text>
+          <Text onPress={logout}>Logout</Text>
         </View>
       </KeyboardAvoidingView>
     </View>

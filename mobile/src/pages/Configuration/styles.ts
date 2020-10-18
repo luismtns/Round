@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-import theme from "../../styles/theme.style";
 
 const styles = StyleSheet.create({
   containerLogout: {
@@ -9,6 +8,9 @@ const styles = StyleSheet.create({
   },
   textLogout: {
     color: "#B00020",
+  },
+  textLogoutContainer: {
+    width: "100%",
   },
 });
 

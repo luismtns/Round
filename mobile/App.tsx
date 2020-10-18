@@ -1,9 +1,12 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
-import UserProvider from "./src/providers/UserProvider";
-import MainRoutes from "./src/routes/AuthRoute";
-import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
+
+import { theme } from "./src/styles/theme.style";
+import { Provider as PaperProvider } from "react-native-paper";
+
 import AuthRoute from "./src/routes/AuthRoute";
+import UserProvider from "./src/providers/UserProvider";
+
+import { StatusBar } from "expo-status-bar";
 import {
   Assistant_700Bold,
   Assistant_600SemiBold,
@@ -12,21 +15,6 @@ import {
   useFonts,
 } from "@expo-google-fonts/assistant";
 import { AppLoading } from "expo";
-
-const theme = {
-  ...DefaultTheme,
-  roundness: 2,
-  colors: {
-    ...DefaultTheme.colors,
-    primary: "#376C71",
-    accent: "#FFCCBC",
-    background: "#F9F9F9",
-    onsurface: "#FFFFFF",
-    text: "#6F6F6F",
-    disabled: "#6F6F6F",
-    placeholder: "#014146",
-  },
-};
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -41,8 +29,10 @@ export default function App() {
   } else {
     return (
       <UserProvider>
-        <AuthRoute />
-        <StatusBar style="dark" />
+        <PaperProvider theme={theme}>
+          <AuthRoute />
+          <StatusBar style="dark" />
+        </PaperProvider>
       </UserProvider>
     );
   }

@@ -12,11 +12,13 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
   },
   name: {
-    fontFamily: "Assistant_700Bold",
+    fontFamily: "Assistant_600SemiBold",
     fontSize: theme.FONT_SIZE_MEDIUM,
+    color: "#F3F3F3",
   },
   ra: {
     fontSize: theme.FONT_SIZE_SMALL,
+    color: "#659A9F",
   },
 });
 

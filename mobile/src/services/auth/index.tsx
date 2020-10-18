@@ -1,16 +1,22 @@
-import { Firebase } from '../../integrations/firebase';
+import { Firebase } from "../../integrations/firebase";
+import "firebase/auth";
 
-export default class AuthService {
-  public static onAuthStateChanged(callback: (user: firebase.User | null) => void) {
-    Firebase.auth().onAuthStateChanged(callback);
-  }
-  public static signInWithEmailAndPassword(email:string, password:string) {
-    Firebase.auth().signInWithEmailAndPassword(email, password).catch((err)=>{
-      console.log(err)
+const auth = Firebase.auth();
+
+export const firebaseAuthService = {
+  onAuthStateChanged(callback: (user: firebase.User | null) => void) {
+    auth.onAuthStateChanged(callback);
+  },
+
+  signInWithEmailAndPassword(email: string, password: string) {
+    auth.signInWithEmailAndPassword(email, password).catch((err) => {
+      console.log(err);
     });
-  }
+  },
 
-  public static async logout () {
-    return Firebase.auth().signOut();
-  }
+  logout() {
+    return auth.signOut();
+  },
 };
+
+export default firebaseAuthService;

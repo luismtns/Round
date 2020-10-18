@@ -34,7 +34,7 @@ function AppRoute() {
             <Button
               onPress={() => navigate("Menu")}
               icon="logout"
-              color="#EDEDED"
+              color="#659A9F"
             >
               Sair
             </Button>
@@ -44,12 +44,12 @@ function AppRoute() {
       <Screen
         options={{
           headerTitle: (props) => <Header {...props} />,
-          headerLeft: (props) => null,
+
           headerRight: () => (
             <Button
               onPress={() => navigate("Menu")}
               icon="logout"
-              color="#EDEDED"
+              color="#659A9F"
             >
               Sair
             </Button>

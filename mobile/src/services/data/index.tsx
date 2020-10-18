@@ -30,7 +30,7 @@ export const DATA = [
 
 export const PROFESSIONAL = {
   name: "Maria Rodri",
-  ra: "56454546",
+  ra: "Residente Nutricionista",
   img:
     "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
 };

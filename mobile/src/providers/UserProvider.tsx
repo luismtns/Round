@@ -1,34 +1,31 @@
-import React, { createContext } from "react";
-import AuthService from '../../src/services/auth/index';
+import React, { createContext, useEffect, useState } from "react";
+import { firebaseAuthService } from "../services/auth";
 
 export const UserContext = createContext<any | null>({ user: null });
 
-class UserProvider extends React.Component {
-  state = {
-    user: null,
-  };
+function UserProvider(props: any) {
+  const [initializing, setInitializing] = useState(true);
+  const [user, setUser] = useState();
 
-  // TODO auth get user pass to state  
-  componentDidMount = async () => {
-    // setTimeout(async () => {
-    //   const user = await AuthService.check(true);
-    //   this.setState({ user });
-    // }    
-    AuthService.onAuthStateChanged((userState:firebase.User | null)=>{
-      this.setState({ userState });
-      console.log(userState);
-      
-    })
-  };
+  console.log(user);
 
-  render() {
-    const { user } = this.state;
-    return (
-      <UserContext.Provider value={user}>
-        {this.props.children}
-      </UserContext.Provider>
-    );
+  function onAuthStateChanged(user: any) {
+    setUser(user);
+    if (initializing) setInitializing(false);
   }
+
+  useEffect(() => {
+    const subscriber = firebaseAuthService.onAuthStateChanged(
+      onAuthStateChanged
+    );
+    return subscriber; // unsubscribe on unmount
+  }, []);
+
+  if (initializing) return null;
+
+  return (
+    <UserContext.Provider value={user}>{props.children}</UserContext.Provider>
+  );
 }
 
 export default UserProvider;

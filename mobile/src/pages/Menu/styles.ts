@@ -36,6 +36,25 @@ const styles = StyleSheet.create({
   },
 
   openButton: {},
+  modalContainer: {
+    flexDirection: "column",
+    justifyContent: "space-between",
+    width: "100%",
+    height: "100%",
+  },
+
+  modalIcon: {
+    maxWidth: 100,
+    maxHeight: 100,
+    height: "100%",
+    width: "100%",
+    alignSelf: "center",
+    margin: 40,
+  },
+
+  modalActions: {
+    width: "100%",
+  },
 });
 
 export default styles;

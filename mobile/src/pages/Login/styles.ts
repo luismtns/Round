@@ -1,6 +1,6 @@
-import { Assistant_700Bold } from "@expo-google-fonts/assistant";
 import { StyleSheet } from "react-native";
 import theme from "../../styles/theme.style";
+
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
   },
   inputBox: {
-    padding: 40,
+    padding: 80,
   },
 
   title: {
@@ -41,7 +41,8 @@ const styles = StyleSheet.create({
 
   forgotPass: {
     textAlign: "right",
-    marginBottom: 16,
+    marginTop: 12,
+    marginBottom: 32,
     fontFamily: "Assistant_400Regular",
     color: theme.TERTIARY_TEXT_COLOR,
     textDecorationLine: "underline",
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
   },
   contactBorder: {
     textAlign: "center",
-    marginTop: 12,
+    marginTop: 30,
     marginBottom: 30,
     color: theme.TERTIARY_TEXT_COLOR,
   },

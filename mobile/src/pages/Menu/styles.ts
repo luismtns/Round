@@ -9,7 +9,16 @@ const styles = StyleSheet.create({
     fontFamily: "Assistant_400Regular",
     fontSize: theme.FONT_SIZE_MEDIUM,
   },
-
+  container: {
+    flex: 1,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignItems: "flex-start",
+    padding: 20,
+  },
+  card: {
+    width: "100%",
+  },
   boxText: {
     fontFamily: "Assistant_400Regular",
     fontSize: theme.FONT_SIZE_MEDIUM,

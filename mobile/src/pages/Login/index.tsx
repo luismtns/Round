@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import { View, Text, Image, KeyboardAvoidingView } from "react-native";
 import styles from "./styles";
 import MainInput from "../../components/MainInput";
-import Button from "../../components/Button";
+import { TextInput } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-
-import theme from "../../styles/theme.style";
+import { Button } from "react-native-paper";
 
 function Login() {
   const { navigate } = useNavigation();
@@ -16,8 +15,7 @@ function Login() {
   const [password, setPassword] = useState("");
 
   function handleLogin(email: any, password: any) {
-    // email e pass OK
-    navigate("Home");
+    navigate("Menu");
   }
 
   function goToForgotPassword() {
@@ -38,51 +36,51 @@ function Login() {
       <View style={styles.containerLogo}>
         <Image style={styles.logo} source={require("../../assets/logo.png")} />
       </View>
-      <KeyboardAvoidingView
-        style={styles.containerInput}
-        behavior="padding"
-        enabled
-      >
+
+      <View style={styles.containerInput}>
         <View style={styles.inputBox}>
           <Text style={styles.title}>Bem vindo!</Text>
-          <MainInput
+
+          <TextInput
             value={email}
             label="E-mail"
             keyboardType="email-address"
             returnKeyType="go"
-            onChangeText={(value: any) => {
-              setEmail(value);
-            }}
-          />
-          <MainInput
+            style={{ height: 50, marginBottom: 12 }}
+            onChangeText={setEmail}
+          ></TextInput>
+
+          <TextInput
             value={password}
             secureTextEntry={showPassword}
             label="Senha"
-            icon={icon}
-            showHide={handlePassword}
-            onChangeText={(value: any) => {
-              setPassword(value);
-            }}
-          ></MainInput>
+            right={<TextInput.Icon name={icon} onPress={handlePassword} />}
+            style={{ height: 50 }}
+            onChangeText={setPassword}
+          ></TextInput>
 
-          <TouchableOpacity activeOpacity={0.6} onPress={goToForgotPassword}>
-            <Text style={styles.forgotPass}>Esqueceu sua senha?</Text>
-          </TouchableOpacity>
+          <Text onPress={goToForgotPassword} style={styles.forgotPass}>
+            Esqueceu sua senha?
+          </Text>
+
           <Button
-            type="filled"
-            size="large"
-            title="LOGIN"
+            mode="contained"
+            contentStyle={{ height: 50 }}
             onPress={() => handleLogin(email, password)}
-          />
+          >
+            LOGIN
+          </Button>
+
           <Text style={styles.contactBorder}>
             <span>ou</span>
           </Text>
+
           <Text onPress={goToContact} style={styles.contact}>
             Não tem uma conta?{"\n"}
             <Text style={styles.contactAccount}>Entrar em contato</Text>
           </Text>
         </View>
-      </KeyboardAvoidingView>
+      </View>
     </View>
   );
 }

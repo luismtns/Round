@@ -1,44 +1,25 @@
-import React, { useState, useContext } from "react";
-import { View, Text, Modal, Alert } from "react-native";
+import React from "react";
+import { View, Text } from "react-native";
 import styles from "./styles";
-import MainInput from "../../components/MainInput";
-import { StatusBar } from "expo-status-bar";
 import { useNavigation } from "@react-navigation/native";
 import {
-  AntDesign,
   FontAwesome5,
   MaterialCommunityIcons,
   Entypo,
 } from "@expo/vector-icons";
-import { UserContext } from "../../providers/UserProvider";
 import Card from "../../components/Card";
-import MainModal from "../../components/Modal";
-import SearchBarComponent from "../../components/SearchBar";
 import theme from "../../styles/theme.style";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { FlatList } from "react-native-gesture-handler";
 
 function Menu() {
   const { navigate } = useNavigation();
-  const [isVisible, setIsVisible] = useState(false);
+
   function handleGoToPatients() {
-    // Alert.alert("Código de acesso", "Insira o código de acesso", [
-    //   { text: "Cancel", style: "cancel" },
-    //   { text: "Ok", style: "default" },
-    // ]);
     navigate("Clinic");
   }
 
-  function logout() {
+  function handleLogout() {
     navigate("Login");
-  }
-
-  function showModal() {
-    setIsVisible(true);
-  }
-
-  function hideModal() {
-    setIsVisible(false);
   }
 
   function goToConfigPage() {
@@ -51,20 +32,8 @@ function Menu() {
         <Text style={styles.title}>Área de acesso</Text>
         <Text style={styles.subTitle}>Escolha abaixo sua respectiva área.</Text>
       </SafeAreaView>
-      <View
-        style={{
-          flex: 1,
-          flexDirection: "row",
-          flexWrap: "wrap",
-          alignItems: "flex-start",
-          padding: 20,
-        }}
-      >
-        <View
-          style={{
-            width: "50%",
-          }}
-        >
+      <View style={styles.container}>
+        <View style={styles.card}>
           <Card
             title="Clínica"
             icon={
@@ -78,18 +47,13 @@ function Menu() {
             style={[
               {
                 backgroundColor: "#1C383D",
-                marginRight: 10,
               },
             ]}
             text={styles.boxText}
             onPress={handleGoToPatients}
           />
         </View>
-        <View
-          style={{
-            width: "50%",
-          }}
-        >
+        <View style={styles.card}>
           <Card
             title="Cozinha"
             icon={
@@ -102,19 +66,14 @@ function Menu() {
             }
             style={[
               {
-                marginLeft: 10,
                 backgroundColor: "#1C383D",
               },
             ]}
             text={styles.boxText}
-            onPress={logout}
+            onPress={handleLogout}
           />
         </View>
-        <View
-          style={{
-            width: "50%",
-          }}
-        >
+        <View style={styles.card}>
           <Card
             title="Administração"
             icon={
@@ -128,18 +87,13 @@ function Menu() {
             style={[
               {
                 backgroundColor: "#1C383D",
-                marginRight: 10,
               },
             ]}
             text={styles.boxText}
-            onPress={logout}
+            onPress={handleLogout}
           />
         </View>
-        <View
-          style={{
-            width: "50%",
-          }}
-        >
+        <View style={styles.card}>
           <Card
             title="Configurações"
             icon={
@@ -152,7 +106,6 @@ function Menu() {
             }
             style={[
               {
-                marginLeft: 10,
                 backgroundColor: "#1C383D",
               },
             ]}

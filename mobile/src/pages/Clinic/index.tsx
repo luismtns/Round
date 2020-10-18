@@ -23,29 +23,6 @@ const Clinic = (props: any) => {
     });
   }, []);
 
-  // const Item = ({ name, ra, andar, quarto, id }: any) => (
-  //   <View>
-  //     <TouchableOpacity onPress={id}>
-  //       <Text>
-  //         {name} | {ra}
-  //       </Text>
-  //       <Text>
-  //         {andar} | {quarto}
-  //       </Text>
-  //     </TouchableOpacity>
-  //   </View>
-  // );
-
-  // const renderItem = ({ item }: any) => (
-  //   <Item
-  //     name={item.name}
-  //     ra={item.ra}
-  //     andar={item.andar}
-  //     quarto={item.quarto}
-  //     id={() => goToPatient(item)}
-  //   />
-  // );
-
   return (
     <>
       <SearchBarComponent />

@@ -1,7 +1,6 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { Button } from "react-native-paper";
-import HomePage from "../pages/Menu";
+import { Button, IconButton } from "react-native-paper";
 import Patient from "../pages/Patient";
 import About from "../pages/About";
 import Configuration from "../pages/Configuration";
@@ -18,8 +17,13 @@ function InAppStack() {
   const { navigate } = useNavigation();
 
   return (
-    <Navigator>
-      <Screen options={{ headerShown: false }} name="Menu" component={Menu} />
+    <Navigator
+      screenOptions={{
+        headerStyle: { backgroundColor: "#014146" },
+        headerTintColor: "#EDEDED",
+      }}
+    >
+      <Screen name="Menu" component={Menu} options={{ headerShown: false }} />
       <Screen
         name="Clinic"
         component={Clinic}
@@ -27,7 +31,11 @@ function InAppStack() {
           headerTitle: (props) => <Header {...props} />,
           headerLeft: (props) => null,
           headerRight: () => (
-            <Button onPress={() => navigate("Menu")} icon="logout" color="#010">
+            <Button
+              onPress={() => navigate("Menu")}
+              icon="logout"
+              color="#EDEDED"
+            >
               Sair
             </Button>
           ),
@@ -38,7 +46,11 @@ function InAppStack() {
           headerTitle: (props) => <Header {...props} />,
           headerLeft: (props) => null,
           headerRight: () => (
-            <Button onPress={() => navigate("Menu")} icon="logout" color="#010">
+            <Button
+              onPress={() => navigate("Menu")}
+              icon="logout"
+              color="#EDEDED"
+            >
               Sair
             </Button>
           ),
@@ -47,10 +59,31 @@ function InAppStack() {
         component={Patient}
       />
 
-      <Screen name="Configuration" component={Configuration} />
-      <Screen name="About" component={About} />
-      <Screen name="Help" component={Help} />
-      <Screen name="Account" component={Account} />
+      <Screen
+        name="Configuration"
+        options={{ headerTitle: "Configurações" }}
+        component={Configuration}
+      />
+      <Screen
+        name="About"
+        component={About}
+        options={{ headerTitle: "Sobre" }}
+      />
+      <Screen name="Help" component={Help} options={{ headerTitle: "Ajuda" }} />
+      <Screen
+        name="Account"
+        component={Account}
+        options={{
+          headerTitle: "Conta",
+          headerRight: () => (
+            <IconButton
+              onPress={() => navigate("Menu")}
+              icon="pencil"
+              color="#EDEDED"
+            />
+          ),
+        }}
+      />
     </Navigator>
   );
 }

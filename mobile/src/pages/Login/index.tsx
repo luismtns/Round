@@ -7,6 +7,9 @@ import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Button } from "react-native-paper";
 
+import theme from "../../styles/theme.style";
+import AuthService from "./../../services/auth/index";
+
 function Login() {
   const { navigate } = useNavigation();
   const [showPassword, setShowPassword] = useState(true);
@@ -15,7 +18,8 @@ function Login() {
   const [password, setPassword] = useState("");
 
   function handleLogin(email: any, password: any) {
-    navigate("Menu");
+    // email e pass OK
+    AuthService.signInWithEmailAndPassword(email, password);
   }
 
   function goToForgotPassword() {

@@ -6,6 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { List } from "react-native-paper";
 import { color } from "react-native-reanimated";
+import AuthService from "./../../services/auth/index";
 
 const Configuration: React.FC = () => {
   const { navigate } = useNavigation();
@@ -22,8 +23,8 @@ const Configuration: React.FC = () => {
     navigate("Help");
   }
 
-  function goToLogin() {
-    navigate("Login");
+  function Logout() {
+    AuthService.logout();
   }
 
   return (

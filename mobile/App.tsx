@@ -3,6 +3,7 @@ import React from "react";
 import UserProvider from "./src/providers/UserProvider";
 import MainRoutes from "./src/routes/AuthRoute";
 import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
+import AuthRoute from "./src/routes/AuthRoute";
 import {
   Assistant_700Bold,
   Assistant_600SemiBold,
@@ -39,12 +40,10 @@ export default function App() {
     return <AppLoading />;
   } else {
     return (
-      <PaperProvider theme={theme}>
-        <UserProvider>
-          <MainRoutes />
-          <StatusBar style="dark" />
-        </UserProvider>
-      </PaperProvider>
+      <UserProvider>
+        <AuthRoute />
+        <StatusBar style="dark" />
+      </UserProvider>
     );
   }
 }

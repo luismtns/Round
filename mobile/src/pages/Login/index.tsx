@@ -34,10 +34,6 @@ function Login() {
     setShowPassword(!showPassword);
   }
 
-  function logout() {
-    AuthService.logout();
-  }
-
   return (
     <View style={styles.container}>
       <View style={styles.containerLogo}>
@@ -86,7 +82,6 @@ function Login() {
             Não tem uma conta?{"\n"}
             <Text style={styles.contactAccount}>Entrar em contato</Text>
           </Text>
-          <Text onPress={logout}>Logout</Text>
         </View>
       </KeyboardAvoidingView>
     </View>

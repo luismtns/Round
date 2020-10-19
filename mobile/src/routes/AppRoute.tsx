@@ -10,6 +10,8 @@ import Clinic from "../pages/Clinic";
 import Menu from "../pages/Menu";
 import Header from "../components/Header/index";
 import { useNavigation } from "@react-navigation/native";
+import AdminMenu from "../pages/AdminMenu";
+import AdminAddPatient from "../pages/AdminAddPatient";
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -81,6 +83,40 @@ function AppRoute() {
               icon="pencil"
               color="#EDEDED"
             />
+          ),
+        }}
+      />
+
+      <Screen
+        name="AdminMenu"
+        component={AdminMenu}
+        options={{
+          headerTitle: (props) => <Header {...props} />,
+          headerLeft: (props) => null,
+          headerRight: () => (
+            <Button
+              onPress={() => navigate("Menu")}
+              icon="logout"
+              color="#659A9F"
+            >
+              Sair
+            </Button>
+          ),
+        }}
+      />
+      <Screen
+        name="AdminAddPatient"
+        component={AdminAddPatient}
+        options={{
+          headerTitle: (props) => <Header {...props} />,
+          headerRight: () => (
+            <Button
+              onPress={() => navigate("Menu")}
+              icon="logout"
+              color="#659A9F"
+            >
+              Sair
+            </Button>
           ),
         }}
       />

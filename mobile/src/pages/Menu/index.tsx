@@ -27,6 +27,10 @@ function Menu() {
     navigate("Clinic");
   }
 
+  function handleGoToAdmin() {
+    navigate("AdminMenu");
+  }
+
   function handleLogout() {
     navigate("Login");
   }
@@ -149,7 +153,7 @@ function Menu() {
                 },
               ]}
               text={styles.boxText}
-              onPress={handleLogout}
+              onPress={handleGoToAdmin}
             />
           </View>
           <View style={styles.card}>

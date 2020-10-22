@@ -13,6 +13,14 @@ const AdminMenu: React.FC = () => {
     navigate("AdminAddPatient");
   }
 
+  function goToAdminCoordMedic() {
+    navigate("AdminCoordMedic");
+  }
+
+  function goToAdminCoordGeneral() {
+    navigate("AdminCoordGeneral");
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.optionsRow}>
@@ -56,7 +64,10 @@ const AdminMenu: React.FC = () => {
           </TouchableOpacity>
         </View>
         <View style={{ width: "49%" }}>
-          <TouchableOpacity style={{ flex: 1, width: "100%" }}>
+          <TouchableOpacity
+            style={{ flex: 1, width: "100%" }}
+            onPress={goToAdminCoordMedic}
+          >
             <Surface style={styles.optionsContainer}>
               <Text>Coordenação Médica</Text>
               <Text>
@@ -70,7 +81,10 @@ const AdminMenu: React.FC = () => {
 
       <View style={styles.optionsRow}>
         <View style={{ width: "49%" }}>
-          <TouchableOpacity style={{ flex: 1, width: "100%" }}>
+          <TouchableOpacity
+            style={{ flex: 1, width: "100%" }}
+            onPress={goToAdminCoordGeneral}
+          >
             <Surface style={styles.optionsContainer}>
               <Text>Coordenação Geral</Text>
               <Text>

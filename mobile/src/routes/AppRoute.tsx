@@ -1,17 +1,24 @@
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+
 import { Button, IconButton } from "react-native-paper";
-import Patient from "../pages/Patient";
-import About from "../pages/About";
-import Configuration from "../pages/Configuration";
+
+import Header from "../components/Header/index";
+
+import AdminMenu from "../pages/AdminMenu";
+import AdminAddPatient from "../pages/AdminAddPatient";
+import AdminCoordMedic from "../pages/AdminCoordMedic";
+import AdminCoordGeneral from "../pages/AdminCoordGeneral";
+import Kitchen from "../pages/Kitchen";
+import KitchenTag from "../pages/KitchenTag";
 import Help from "../pages/Help";
 import Account from "../pages/Account";
 import Clinic from "../pages/Clinic";
 import Menu from "../pages/Menu";
-import Header from "../components/Header/index";
-import { useNavigation } from "@react-navigation/native";
-import AdminMenu from "../pages/AdminMenu";
-import AdminAddPatient from "../pages/AdminAddPatient";
+import Patient from "../pages/Patient";
+import About from "../pages/About";
+import Configuration from "../pages/Configuration";
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -107,6 +114,75 @@ function AppRoute() {
       <Screen
         name="AdminAddPatient"
         component={AdminAddPatient}
+        options={{
+          headerTitle: (props) => <Header {...props} />,
+          headerRight: () => (
+            <Button
+              onPress={() => navigate("Menu")}
+              icon="logout"
+              color="#659A9F"
+            >
+              Sair
+            </Button>
+          ),
+        }}
+      />
+
+      <Screen
+        name="AdminCoordMedic"
+        component={AdminCoordMedic}
+        options={{
+          headerTitle: (props) => <Header {...props} />,
+          headerRight: () => (
+            <Button
+              onPress={() => navigate("Menu")}
+              icon="logout"
+              color="#659A9F"
+            >
+              Sair
+            </Button>
+          ),
+        }}
+      />
+
+      <Screen
+        name="AdminCoordGeneral"
+        component={AdminCoordGeneral}
+        options={{
+          headerTitle: (props) => <Header {...props} />,
+          headerRight: () => (
+            <Button
+              onPress={() => navigate("Menu")}
+              icon="logout"
+              color="#659A9F"
+            >
+              Sair
+            </Button>
+          ),
+        }}
+      />
+
+      <Screen
+        name="Kitchen"
+        component={Kitchen}
+        options={{
+          headerTitle: (props) => <Header {...props} />,
+          headerLeft: (props) => null,
+          headerRight: () => (
+            <Button
+              onPress={() => navigate("Menu")}
+              icon="logout"
+              color="#659A9F"
+            >
+              Sair
+            </Button>
+          ),
+        }}
+      />
+
+      <Screen
+        name="KitchenTag"
+        component={KitchenTag}
         options={{
           headerTitle: (props) => <Header {...props} />,
           headerRight: () => (

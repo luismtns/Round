@@ -39,6 +39,10 @@ function Menu() {
     navigate("Configuration");
   }
 
+  function goToKitchen() {
+    navigate("Kitchen");
+  }
+
   return (
     <>
       <Provider>
@@ -133,7 +137,7 @@ function Menu() {
                 },
               ]}
               text={styles.boxText}
-              onPress={handleLogout}
+              onPress={goToKitchen}
             />
           </View>
           <View style={styles.card}>

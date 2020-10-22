@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { View, Text } from "react-native";
-import { Button, DataTable, Menu, Provider } from "react-native-paper";
+import {
+  Button,
+  DataTable,
+  Menu,
+  Provider,
+  Searchbar,
+} from "react-native-paper";
 import styles from "./styles";
 import { useNavigation } from "@react-navigation/native";
 
 import { DATA, PROFESSIONAL } from "../../services/data/index";
-import { Searchbar } from "react-native-paper";
 
 const Clinic = (props: any) => {
   const [selectedValue, setSelectedValue] = useState("alfabética");

@@ -61,18 +61,25 @@ const Account: React.FC = () => {
                 label="Instituição"
                 style={styles.input}
                 onChangeText={setEmail}
+                mode="outlined"
               ></TextInput>
               <TextInput
                 value={email}
                 label="E-mail"
                 style={styles.input}
                 onChangeText={setEmail}
+                mode="outlined"
               ></TextInput>
             </View>
-            <Button mode="contained" style={styles.saveButton}>
+            <Button
+              mode="contained"
+              style={styles.saveButton}
+              onPress={() => {
+                console.log("press");
+              }}
+            >
               Salvar
             </Button>
-
             <Text style={[styles.titles, { marginTop: 24 }]}>Acesso</Text>
             <Divider />
             <List.Item

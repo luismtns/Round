@@ -15,6 +15,7 @@ import {
   useFonts,
 } from "@expo-google-fonts/assistant";
 import { AppLoading } from "expo";
+import "./src/styles/global.css";
 
 export default function App() {
   let [fontsLoaded] = useFonts({

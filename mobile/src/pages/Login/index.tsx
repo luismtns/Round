@@ -18,7 +18,23 @@ function Login() {
   const [password, setPassword] = useState("");
 
   function handleLogin(email: any, password: any) {
-    AuthService.signInWithEmailAndPassword(email, password);
+    // email e pass OK
+    AuthService.signInWithEmailAndPassword(email, password).catch((error) => {
+      if (error.code === "auth/email-already-in-use") {
+        console.log("That email address is already in use!");
+      }
+
+      if (error.code === "auth/invalid-email") {
+        console.log("That email address is invalid!");
+        Alert.alert(
+          "Erro.",
+          `O e-mail informado ("${email}") é inválido ou não existe.`,
+          [{ text: "OK" }]
+        );
+      }
+
+      console.error(error);
+    });
   }
 
   function goToForgotPassword() {

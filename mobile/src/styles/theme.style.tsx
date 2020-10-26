@@ -10,15 +10,62 @@ export default {
   SECONDARY_TEXT_COLOR: "#898989",
   TERTIARY_TEXT_COLOR: "#FBFBFB",
   PRIMARY_BACKGROUND: "#f9f9f9",
-  SECONDARY_BACKGROUND: "#659a9f",
+  SECONDARY_BACKGROUND: "#014146",
   TERTIARY_BACKGROUND: "#f9f9f9",
   BORDER: 10,
   PADDING_MEDIUM: 16,
 };
 
+export const text = {
+  text1: {
+    fontFamily: "Assistant_700Bold",
+    fontSize: 48,
+  },
+  text2: {
+    fontFamily: "Assistant_400Regular",
+    fontSize: 32,
+  },
+  text3: {
+    fontFamily: "Assistant_400Regular",
+    fontSize: 28,
+  },
+  text4: {
+    fontFamily: "Assistant_400Regular",
+    fontSize: 24,
+  },
+  text5: {
+    fontFamily: "Assistant_400Regular",
+    fontSize: 16,
+  },
+  text6: {
+    fontFamily: "Assistant_400Regular",
+    fontSize: 12,
+  },
+};
+
+export const colors = {
+  p_dark: "#014146",
+
+  primary: "#376C71",
+
+  p_light: "#659A9F",
+
+  gray: "#676767",
+
+  gray_light: "#AEAEAE",
+
+  yellow: "#EEEAD1",
+
+  white: "#FFFFFF",
+
+  secondary: "#FFB4A3",
+
+  black: "#2F2F2F",
+};
+
 export const theme = {
   ...DefaultTheme,
-  roundness: 2,
+  roundness: 3.5,
   colors: {
     ...DefaultTheme.colors,
     primary: "#376C71",
@@ -27,6 +74,6 @@ export const theme = {
     onsurface: "#FFFFFF",
     text: "#6F6F6F",
     disabled: "#6F6F6F",
-    placeholder: "#014146",
+    placeholder: "#6A6A6A",
   },
 };

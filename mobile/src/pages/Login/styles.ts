@@ -1,30 +1,31 @@
 import { StyleSheet } from "react-native";
-import theme from "../../styles/theme.style";
+import theme, { colors, text } from "../../styles/theme.style";
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     flex: 1,
-    backgroundColor: theme.PRIMARY_BACKGROUND,
+    backgroundColor: "#F9F9F9",
   },
   containerLogo: {
     flex: 1,
+    justifyContent: "center",
   },
   containerInput: {
     flex: 1,
-    backgroundColor: theme.SECONDARY_BACKGROUND,
+    backgroundColor: colors.p_dark,
     height: "100%",
     justifyContent: "center",
     flexDirection: "column",
   },
   inputBox: {
-    padding: 80,
+    padding: 72,
   },
 
   title: {
     fontSize: theme.FONT_SIZE_LARGE,
     fontFamily: "Assistant_700Bold",
-    color: theme.TERTIARY_TEXT_COLOR,
+    color: colors.white,
     marginBottom: 20,
   },
 
@@ -41,33 +42,31 @@ const styles = StyleSheet.create({
 
   forgotPass: {
     textAlign: "right",
-    marginTop: 12,
+    marginTop: 8,
     marginBottom: 32,
     fontFamily: "Assistant_400Regular",
-    color: theme.TERTIARY_TEXT_COLOR,
+    color: "#F8F8F8",
     textDecorationLine: "underline",
     letterSpacing: 0.5,
   },
   contactBorder: {
     textAlign: "center",
-    marginTop: 30,
-    marginBottom: 30,
-    color: theme.TERTIARY_TEXT_COLOR,
+    marginTop: 32,
+    marginBottom: 32,
+    color: "#F8F8F8",
   },
   contact: {
     textAlign: "center",
-    fontFamily: "Assistant_400Regular",
-    fontSize: theme.FONT_SIZE_SMALL,
-    color: theme.TERTIARY_TEXT_COLOR,
+    // font: text.text5,
+    // fontFamily: "Assistant_400Regular",
+    // fontSize: theme.FONT_SIZE_SMALL,
+    color: "#F8F8F8",
     marginBottom: 16,
-    lineHeight: 22,
+    lineHeight: 24,
   },
   contactAccount: {
-    color: theme.TERTIARY_TEXT_COLOR,
-    fontFamily: "Assistant_700Bold",
-    marginTop: 10,
-    position: "relative",
-    zIndex: 1,
+    color: "#F8F8F8",
+    fontFamily: "Assistant_600SemiBold",
   },
 });
 

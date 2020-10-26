@@ -25,8 +25,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   title: {
-    fontSize: 26,
-    marginBottom: 12,
+    marginBottom: 16,
   },
   containerPatientHistory: {
     flex: 1,

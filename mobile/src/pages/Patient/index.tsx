@@ -12,6 +12,7 @@ import {
   Chip,
   Menu,
 } from "react-native-paper";
+import { colors, text, theme } from "../../styles/theme.style";
 
 export interface PatientProps {
   patient: {
@@ -62,7 +63,9 @@ const Patient = (props: any) => {
         </Surface>
         <View style={styles.containerDataAndHistory}>
           <Surface style={styles.containerChangePatientData}>
-            <Text style={styles.title}>Alimentação</Text>
+            <Text style={[styles.title, text.text3, colors.gray]}>
+              Alimentação
+            </Text>
             <Text style={styles.subtitles}>Dieta</Text>
             <Picker
               selectedValue={selectedValue}
@@ -138,7 +141,9 @@ const Patient = (props: any) => {
             </Button>
           </Surface>
           <Surface style={styles.containerPatientHistory}>
-            <Text style={styles.title}>Histórico</Text>
+            <Text style={[styles.title, text.text3, colors.gray]}>
+              Histórico
+            </Text>
             <Text>Andar: {patient.andar}</Text>
           </Surface>
         </View>

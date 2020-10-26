@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { View, Text, Image, KeyboardAvoidingView, Alert } from "react-native";
+import { View, Text, Image, ImageBackground } from "react-native";
 import styles from "./styles";
-import MainInput from "../../components/MainInput";
 import { TextInput } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import { Button } from "react-native-paper";
 
-import theme from "../../styles/theme.style";
+import { text } from "../../styles/theme.style";
 import AuthService from "./../../services/auth/index";
+
+const imgBackground = require("../../assets/background.png");
 
 function Login() {
   const { navigate } = useNavigation();
@@ -52,9 +52,14 @@ function Login() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.containerLogo}>
-        <Image style={styles.logo} source={require("../../assets/logo.png")} />
-      </View>
+      <ImageBackground style={styles.containerLogo} source={imgBackground}>
+        <View>
+          <Image
+            style={styles.logo}
+            source={require("../../assets/logo.png")}
+          />
+        </View>
+      </ImageBackground>
 
       <View style={styles.containerInput}>
         <View style={styles.inputBox}>
@@ -63,23 +68,27 @@ function Login() {
           <TextInput
             value={email}
             label="E-mail"
+            mode="outlined"
             keyboardType="email-address"
             returnKeyType="go"
-            style={{ height: 50, marginBottom: 12 }}
+            style={{ marginBottom: 12 }}
             onChangeText={setEmail}
           ></TextInput>
 
           <TextInput
             value={password}
+            mode="outlined"
             secureTextEntry={showPassword}
             label="Senha"
             right={<TextInput.Icon name={icon} onPress={handlePassword} />}
-            style={{ height: 50 }}
             onChangeText={setPassword}
           ></TextInput>
 
-          <Text onPress={goToForgotPassword} style={styles.forgotPass}>
-            Esqueceu sua senha?
+          <Text
+            onPress={goToForgotPassword}
+            style={[styles.forgotPass, text.text5]}
+          >
+            recuperar acesso
           </Text>
 
           <Button
@@ -87,14 +96,14 @@ function Login() {
             contentStyle={{ height: 50 }}
             onPress={() => handleLogin(email, password)}
           >
-            LOGIN
+            ENTRAR
           </Button>
 
-          <Text style={styles.contactBorder}>
+          <Text style={[styles.contactBorder, text.text5]}>
             <span>ou</span>
           </Text>
 
-          <Text onPress={goToContact} style={styles.contact}>
+          <Text onPress={goToContact} style={[styles.contact, text.text5]}>
             Não tem uma conta?{"\n"}
             <Text style={styles.contactAccount}>Entrar em contato</Text>
           </Text>

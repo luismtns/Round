@@ -158,7 +158,7 @@ function Menu() {
                   <IconButton
                     icon="hospital-building"
                     size={70}
-                    onPress={() => console.log("Pressed")}
+                    onPress={handleGoToPatients}
                     color="#376C71"
                     style={{
                       borderColor: "#376C71",
@@ -230,7 +230,7 @@ function Menu() {
                   <IconButton
                     icon="settings"
                     size={70}
-                    onPress={() => console.log("Pressed")}
+                    onPress={goToConfigPage}
                     color="#376C71"
                     style={{
                       borderColor: "#376C71",

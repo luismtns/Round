@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
   },
   containerInput: {
-    padding: 40,
+    padding: 72,
   },
   title: {
     fontSize: theme.FONT_SIZE_LARGE,

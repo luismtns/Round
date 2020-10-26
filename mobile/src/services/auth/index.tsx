@@ -14,6 +14,17 @@ export const firebaseAuthService = {
     });
   },
 
+  sendPasswordResetEmail(email: string) {
+    auth
+      .sendPasswordResetEmail(email)
+      .then((res) => {
+        alert(res);
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  },
+
   logout() {
     return auth.signOut();
   },

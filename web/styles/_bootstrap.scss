@@ -1,0 +1,47 @@
+//Your customizations must come before bootstrap import
+
+$enable-shadows: true;
+$primary: $primary_color;
+
+$body-color: $black;
+$body-bg: $white;
+
+$theme-colors: (
+  "primary": $primary_color,
+  "secondary": $secondary_color,
+  "success": $p_light_color,
+  "Danger": $s_light_color,
+  "Warning": $yellow,
+);
+
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+// Customize Bootstrap
+.text-bold {
+  font-weight: bold;
+}
+.text-regular {
+  font-weight: normal;
+}
+.text-w300 {
+  font-weight: 300;
+}
+.bg- {
+  &p-dark {
+    background-color: $p_dark_color;
+  }
+  &p-light {
+    background-color: $p_light_color;
+  }
+  &y-light {
+    background-color: $y_light;
+  }
+}
+.text- {
+  &p-dark {
+    color: $p_dark_color;
+  }
+  &p-light {
+    color: $p_light_color;
+  }
+}

@@ -1,0 +1,41 @@
+.backgroundImg {
+  background: $y_light url("/images/background.png") no-repeat;
+  background-size: 100% auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -15;
+  overflow: hidden;
+}
+.illustration {
+  position: relative;
+  display: block;
+  margin: -6% auto 0;
+  z-index: -10;
+  width: 80%;
+  -webkit-user-select: none; /* Chrome all / Safari all */
+  -moz-user-select: none; /* Firefox all */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none; /* Likely future */
+  &__container {
+    position: relative;
+    margin-bottom: -1%;
+    margin-top: -14%;
+  }
+  &__footer {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    height: 15em;
+    width: 100%;
+    background-color: $p_dark_color;
+    z-index: -11;
+    border-radius: 25% 25% 0 0;
+    @media screen and (max-width: 575px) {
+      height: 5em;
+    }
+  }
+}

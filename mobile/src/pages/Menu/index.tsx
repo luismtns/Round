@@ -31,12 +31,12 @@ function Menu() {
 
   const hideModal = () => setVisible(false);
 
-  function handleGoToPatients() {
+  function goToClinic() {
     setVisible(false);
     navigate("Clinic");
   }
 
-  function handleGoToAdmin() {
+  function goToAdmin() {
     navigate("AdminMenu");
   }
 
@@ -84,7 +84,7 @@ function Menu() {
                   mode="contained"
                   theme={{ colors: { primary: "#376C71" } }}
                   style={[styles.modalActions, { marginVertical: 12 }]}
-                  onPress={handleGoToPatients}
+                  onPress={() => {}}
                 >
                   Acessar
                 </Button>
@@ -158,7 +158,7 @@ function Menu() {
                   <IconButton
                     icon="hospital-building"
                     size={70}
-                    onPress={() => console.log("Pressed")}
+                    onPress={goToClinic}
                     color="#376C71"
                     style={{
                       borderColor: "#376C71",
@@ -182,7 +182,7 @@ function Menu() {
                   <IconButton
                     icon="silverware-fork-knife"
                     size={70}
-                    onPress={() => console.log("Pressed")}
+                    onPress={goToKitchen}
                     color="#376C71"
                     style={{
                       borderColor: "#376C71",
@@ -206,7 +206,7 @@ function Menu() {
                   <IconButton
                     icon="wrench"
                     size={70}
-                    onPress={() => console.log("Pressed")}
+                    onPress={goToAdmin}
                     color="#376C71"
                     style={{
                       borderColor: "#376C71",
@@ -230,7 +230,7 @@ function Menu() {
                   <IconButton
                     icon="settings"
                     size={70}
-                    onPress={() => console.log("Pressed")}
+                    onPress={goToConfigPage}
                     color="#376C71"
                     style={{
                       borderColor: "#376C71",

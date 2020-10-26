@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, Image, KeyboardAvoidingView } from "react-native";
+import { View, Text, Image, KeyboardAvoidingView, Alert } from "react-native";
 import styles from "./styles";
 import MainInput from "../../components/MainInput";
 import { TextInput } from "react-native-paper";
@@ -19,7 +19,22 @@ function Login() {
 
   function handleLogin(email: any, password: any) {
     // email e pass OK
-    AuthService.signInWithEmailAndPassword(email, password);
+    AuthService.signInWithEmailAndPassword(email, password).catch((error) => {
+      if (error.code === "auth/email-already-in-use") {
+        console.log("That email address is already in use!");
+      }
+
+      if (error.code === "auth/invalid-email") {
+        console.log("That email address is invalid!");
+        Alert.alert(
+          "Erro.",
+          `O e-mail informado ("${email}") é inválido ou não existe.`,
+          [{ text: "OK" }]
+        );
+      }
+
+      console.error(error);
+    });
   }
 
   function goToForgotPassword() {

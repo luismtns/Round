@@ -8,11 +8,8 @@ export const firebaseAuthService = {
     auth.onAuthStateChanged(callback);
   },
 
-  signInWithEmailAndPassword(email: string, password: string) {
-    auth.signInWithEmailAndPassword(email, password).catch((err) => {
-      console.log(err);
-    });
-  },
+  signInWithEmailAndPassword: (email: string, password: string) =>
+    auth.signInWithEmailAndPassword(email, password),
 
   logout() {
     return auth.signOut();

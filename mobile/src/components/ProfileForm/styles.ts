@@ -1,41 +1,34 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-  },
-  filter: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
   containerPatientData: {
     padding: 20,
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  containerDataAndHistory: {
     flex: 1,
     flexDirection: "row",
-    paddingVertical: 20,
+    alignItems: "center",
+    elevation: 2,
+  },
+  imgCompany: {
+    flex: 1,
+    height: 100,
   },
   containerChangePatientData: {
     flex: 3,
     marginRight: 20,
     padding: 20,
+    elevation: 2,
   },
   title: {
     marginBottom: 16,
   },
-  containerPatientHistory: {
-    flex: 1,
-    padding: 20,
-  },
-  restrictions: {
-    marginVertical: 12,
+  inputBlock: {
+    marginBottom: 32,
   },
   subtitles: {
     marginBottom: 12,
+  },
+  restrictions: {
+    marginBottom: 32,
   },
 });
 

@@ -1,7 +1,14 @@
 import React, { useState } from "react";
-import { View, Text, Image, ImageBackground } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  ImageBackground,
+  Alert,
+  Platform,
+} from "react-native";
 import styles from "./styles";
-import { TextInput } from "react-native-paper";
+import { Dialog, Paragraph, Portal, TextInput } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import { Button } from "react-native-paper";
 
@@ -17,24 +24,20 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [visible, setVisible] = useState(false);
+
   function handleLogin(email: any, password: any) {
-    // email e pass OK
-    AuthService.signInWithEmailAndPassword(email, password).catch((error) => {
-      if (error.code === "auth/email-already-in-use") {
-        console.log("That email address is already in use!");
-      }
-
-      if (error.code === "auth/invalid-email") {
-        console.log("That email address is invalid!");
-        Alert.alert(
-          "Erro.",
-          `O e-mail informado ("${email}") é inválido ou não existe.`,
-          [{ text: "OK" }]
-        );
-      }
-
-      console.error(error);
-    });
+    AuthService.signInWithEmailAndPassword(email, password)
+      .then((res) => {})
+      .catch((err) => {
+        if (Platform.OS === "web") {
+          alert("Falha ao efetuar o login.");
+        } else {
+          Alert.alert("Login", "Falha ao efetuar o login.", [
+            { text: "OK", onPress: () => {} },
+          ]);
+        }
+      });
   }
 
   function goToForgotPassword() {
@@ -52,6 +55,23 @@ function Login() {
 
   return (
     <View style={styles.container}>
+      <Portal>
+        <Dialog
+          style={{ maxWidth: 300, marginLeft: "auto", marginRight: "auto" }}
+          visible={visible}
+          onDismiss={() => setVisible(false)}
+        >
+          <Dialog.Title>Erro</Dialog.Title>
+          <Dialog.Content>
+            <Paragraph>
+              O e-mail informado "{email}" é inválido ou não existe.
+            </Paragraph>
+          </Dialog.Content>
+          <Dialog.Actions>
+            <Button onPress={() => setVisible(false)}>OK</Button>
+          </Dialog.Actions>
+        </Dialog>
+      </Portal>
       <ImageBackground style={styles.containerLogo} source={imgBackground}>
         <View>
           <Image

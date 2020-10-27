@@ -17,30 +17,12 @@ export default {
 };
 
 export const text = {
-  text1: {
-    fontFamily: "Assistant_700Bold",
-    fontSize: 48,
-  },
-  text2: {
-    fontFamily: "Assistant_400Regular",
-    fontSize: 32,
-  },
-  text3: {
-    fontFamily: "Assistant_400Regular",
-    fontSize: 28,
-  },
-  text4: {
-    fontFamily: "Assistant_400Regular",
-    fontSize: 24,
-  },
-  text5: {
-    fontFamily: "Assistant_400Regular",
-    fontSize: 16,
-  },
-  text6: {
-    fontFamily: "Assistant_400Regular",
-    fontSize: 12,
-  },
+  text1: 48,
+  text2: 32,
+  text3: 28,
+  text4: 24,
+  text5: 16,
+  text6: 12,
 };
 
 export const colors = {
@@ -69,9 +51,12 @@ export const theme = {
   colors: {
     ...DefaultTheme.colors,
     primary: "#376C71",
-    accent: "#FFCCBC",
-    background: "#F9F9F9",
-    onsurface: "#FFFFFF",
+    accent: "#376C71",
+    // background: "#FFFFFF",
+    // onBackground: "#FFFFFF",
+    // surface: "#fff",
+    // onSurface: "#FFFFFF",
+    // backdrop: "#fff",
     text: "#6F6F6F",
     disabled: "#6F6F6F",
     placeholder: "#6A6A6A",

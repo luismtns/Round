@@ -1,10 +1,9 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { SafeAreaView, View, Text } from "react-native";
-import { RectButton, TouchableOpacity } from "react-native-gesture-handler";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import { Surface } from "react-native-paper";
 import styles from "./styles";
-// import { Container } from './styles';
 
 const AdminMenu: React.FC = () => {
   const { navigate } = useNavigation();
@@ -30,8 +29,8 @@ const AdminMenu: React.FC = () => {
             onPress={goToAddPatient}
           >
             <Surface style={styles.optionsContainer}>
-              <Text>Novo paciente</Text>
-              <Text>
+              <Text style={styles.title}>Novo paciente</Text>
+              <Text style={styles.subtitle}>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
                 convallis.
               </Text>
@@ -41,8 +40,8 @@ const AdminMenu: React.FC = () => {
         <View style={{ width: "49%" }}>
           <TouchableOpacity style={{ flex: 1, width: "100%" }}>
             <Surface style={styles.optionsContainer}>
-              <Text>Triagem</Text>
-              <Text>
+              <Text style={styles.title}>Triagem</Text>
+              <Text style={styles.subtitle}>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
                 convallis.
               </Text>
@@ -55,8 +54,8 @@ const AdminMenu: React.FC = () => {
         <View style={{ width: "49%" }}>
           <TouchableOpacity style={{ flex: 1, width: "100%" }}>
             <Surface style={styles.optionsContainer}>
-              <Text>Alta paciente</Text>
-              <Text>
+              <Text style={styles.title}>Alta paciente</Text>
+              <Text style={styles.subtitle}>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
                 convallis.
               </Text>
@@ -69,8 +68,8 @@ const AdminMenu: React.FC = () => {
             onPress={goToAdminCoordMedic}
           >
             <Surface style={styles.optionsContainer}>
-              <Text>Coordenação Médica</Text>
-              <Text>
+              <Text style={styles.title}>Coordenação Médica</Text>
+              <Text style={styles.subtitle}>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
                 convallis.
               </Text>
@@ -86,8 +85,8 @@ const AdminMenu: React.FC = () => {
             onPress={goToAdminCoordGeneral}
           >
             <Surface style={styles.optionsContainer}>
-              <Text>Coordenação Geral</Text>
-              <Text>
+              <Text style={styles.title}>Coordenação Geral</Text>
+              <Text style={styles.subtitle}>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
                 convallis.
               </Text>
@@ -97,8 +96,8 @@ const AdminMenu: React.FC = () => {
         <View style={{ width: "49%" }}>
           <TouchableOpacity style={{ flex: 1, width: "100%" }}>
             <Surface style={styles.optionsContainer}>
-              <Text>Desperdício de Alimentos</Text>
-              <Text>
+              <Text style={styles.title}>Desperdício de Alimentos</Text>
+              <Text style={styles.subtitle}>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
                 convallis.
               </Text>

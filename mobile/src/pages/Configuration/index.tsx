@@ -30,35 +30,37 @@ const Configuration: React.FC = () => {
 
   return (
     <>
-      <List.Item
-        title="Conta"
-        description="Dados cadastrais, alterar senha e deletar conta"
-        onPress={goToAccountPage}
-        left={() => <List.Icon color="#376C71" icon="account-multiple" />}
-      />
-
-      <List.Item
-        title="Sobre"
-        description="Projeto e iniciativa"
-        onPress={goToAboutPage}
-        left={() => <List.Icon color="#376C71" icon={img} />}
-      />
-
-      <List.Item
-        title="Suporte"
-        description="Reportar problema"
-        onPress={goToHelpPage}
-        left={() => <List.Icon color="#376C71" icon="help-circle" />}
-      />
-
-      <View style={styles.containerLogout}>
+      <View style={{ backgroundColor: "#fff", height: "100%" }}>
         <List.Item
-          title="Sair"
-          titleStyle={styles.textLogout}
-          onPress={logoutUser}
-          style={styles.textLogoutContainer}
-          left={() => <List.Icon color="#B00020" icon="logout" />}
+          title="Conta"
+          description="Dados cadastrais, alterar senha e deletar conta"
+          onPress={goToAccountPage}
+          left={() => <List.Icon color="#376C71" icon="account-multiple" />}
         />
+
+        <List.Item
+          title="Sobre"
+          description="Projeto e iniciativa"
+          onPress={goToAboutPage}
+          left={() => <List.Icon color="#376C71" icon={img} />}
+        />
+
+        <List.Item
+          title="Suporte"
+          description="Reportar problema"
+          onPress={goToHelpPage}
+          left={() => <List.Icon color="#376C71" icon="help-circle" />}
+        />
+
+        <View style={styles.containerLogout}>
+          <List.Item
+            title="Sair"
+            titleStyle={styles.textLogout}
+            onPress={logoutUser}
+            style={styles.textLogoutContainer}
+            left={() => <List.Icon color="#B00020" icon="logout" />}
+          />
+        </View>
       </View>
     </>
   );

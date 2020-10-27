@@ -16,9 +16,11 @@ import Help from "../pages/Help";
 import Account from "../pages/Account";
 import Clinic from "../pages/Clinic";
 import Menu from "../pages/Menu";
-import Patient from "../pages/Patient";
+import ClinicPatient from "../pages/ClinicPatient";
 import About from "../pages/About";
 import Configuration from "../pages/Configuration";
+import AdminCoordProfileMedic from "../pages/AdminCoordProfileMedic";
+import MyTabs from "./MedicRoute";
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -30,6 +32,9 @@ function AppRoute() {
       screenOptions={{
         headerStyle: { backgroundColor: "#014146" },
         headerTintColor: "#EDEDED",
+        cardStyle: {
+          backgroundColor: "#ffffff",
+        },
       }}
     >
       <Screen name="Menu" component={Menu} options={{ headerShown: false }} />
@@ -64,8 +69,8 @@ function AppRoute() {
             </Button>
           ),
         }}
-        name="Patient"
-        component={Patient}
+        name="ClinicPatient"
+        component={ClinicPatient}
       />
 
       <Screen
@@ -84,13 +89,6 @@ function AppRoute() {
         component={Account}
         options={{
           headerTitle: "Conta",
-          headerRight: () => (
-            <IconButton
-              onPress={() => navigate("Menu")}
-              icon="pencil"
-              color="#EDEDED"
-            />
-          ),
         }}
       />
 
@@ -114,6 +112,23 @@ function AppRoute() {
       <Screen
         name="AdminAddPatient"
         component={AdminAddPatient}
+        options={{
+          headerTitle: (props) => <Header {...props} />,
+          headerRight: () => (
+            <Button
+              onPress={() => navigate("Menu")}
+              icon="logout"
+              color="#659A9F"
+            >
+              Sair
+            </Button>
+          ),
+        }}
+      />
+
+      <Screen
+        name="AdminCoordProfileMedic"
+        component={MyTabs}
         options={{
           headerTitle: (props) => <Header {...props} />,
           headerRight: () => (

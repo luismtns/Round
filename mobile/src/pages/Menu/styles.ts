@@ -1,13 +1,13 @@
 import { StyleSheet } from "react-native";
-import theme from "../../styles/theme.style";
+
 const styles = StyleSheet.create({
   title: {
     fontFamily: "Assistant_700Bold",
-    fontSize: theme.FONT_SIZE_LARGE,
+    fontSize: 32,
   },
   subTitle: {
     fontFamily: "Assistant_400Regular",
-    fontSize: theme.FONT_SIZE_MEDIUM,
+    fontSize: 20,
   },
   container: {
     flex: 1,
@@ -21,8 +21,8 @@ const styles = StyleSheet.create({
   },
   boxText: {
     fontFamily: "Assistant_400Regular",
-    fontSize: theme.FONT_SIZE_MEDIUM,
-    color: theme.TERTIARY_COLOR,
+    fontSize: 20,
+    color: "#F1F1ED",
 
     paddingLeft: 20,
   },

@@ -10,6 +10,7 @@ import {
   Portal,
   Dialog,
   Paragraph,
+  IconButton,
 } from "react-native-paper";
 import { ScrollView } from "react-native-gesture-handler";
 
@@ -45,11 +46,18 @@ const Account: React.FC = () => {
       </Portal>
       <View style={styles.containerLogout}>
         <View style={styles.imgCompany}>
-          <Avatar.Image
-            size={120}
-            source={require("../../assets/logo-minimized.png")}
+          <IconButton
+            icon="pencil"
+            color="#EDEDED"
+            size={20}
+            style={{ zIndex: 50 }}
+            onPress={() => console.log("Pressed")}
           />
-          <Button style={styles.changePhoto}>Alterar foto</Button>
+          <Avatar.Icon
+            size={120}
+            icon="account"
+            style={{ borderRadius: 4, position: "absolute" }}
+          />
         </View>
         <ScrollView>
           <View style={styles.infoCompany}>
@@ -72,7 +80,7 @@ const Account: React.FC = () => {
               ></TextInput>
             </View>
             <Button
-              mode="contained"
+              mode="outlined"
               style={styles.saveButton}
               onPress={() => {
                 console.log("press");

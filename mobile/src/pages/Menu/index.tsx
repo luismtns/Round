@@ -1,15 +1,10 @@
 import React, { useState } from "react";
 import { View, Text, Image, ImageBackground } from "react-native";
+
 import styles from "./styles";
+import { colors, text } from "../../styles/theme.style";
+
 import { useNavigation } from "@react-navigation/native";
-import {
-  FontAwesome5,
-  MaterialCommunityIcons,
-  Entypo,
-} from "@expo/vector-icons";
-import Card from "../../components/Card";
-import theme from "../../styles/theme.style";
-import { SafeAreaView } from "react-native-safe-area-context";
 import {
   Button,
   IconButton,
@@ -18,7 +13,6 @@ import {
   Provider,
   TextInput,
 } from "react-native-paper";
-import { colors } from "react-native-elements";
 
 function Menu() {
   const { navigate } = useNavigation();
@@ -27,7 +21,6 @@ function Menu() {
   const img = require("../../assets/key.png");
   const bkImg = require("../../assets/illustration.png");
   const logo = require("../../assets/logo.png");
-  const showModal = () => setVisible(true);
 
   const hideModal = () => setVisible(false);
 
@@ -38,10 +31,6 @@ function Menu() {
 
   function goToAdmin() {
     navigate("AdminMenu");
-  }
-
-  function handleLogout() {
-    navigate("Login");
   }
 
   function goToConfigPage() {
@@ -101,13 +90,6 @@ function Menu() {
           </Modal>
         </Portal>
 
-        {/* <SafeAreaView style={{ paddingLeft: 20, paddingTop: 20 }}>
-          <Text style={styles.title}>Área de acesso</Text>
-          <Text style={styles.subTitle}>
-            Escolha abaixo sua respectiva área.
-          </Text>
-        </SafeAreaView> */}
-
         <View
           style={{
             flex: 1,
@@ -115,6 +97,7 @@ function Menu() {
             height: "100%",
             flexDirection: "column",
             justifyContent: "space-evenly",
+            // backgroundColor: "#ffffff",
           }}
         >
           <ImageBackground
@@ -156,13 +139,13 @@ function Menu() {
               <View style={{ flexDirection: "row", justifyContent: "center" }}>
                 <View style={{ alignItems: "center", marginHorizontal: 10 }}>
                   <IconButton
-                    icon="hospital-building"
-                    size={70}
+                    icon="hospital-box"
+                    size={60}
                     onPress={goToClinic}
-                    color="#376C71"
+                    color={colors.p_light}
                     style={{
-                      borderColor: "#376C71",
-                      borderWidth: 2,
+                      borderColor: colors.p_light,
+                      borderWidth: 4,
                       width: 160,
                       height: 160,
                       borderRadius: 100,
@@ -170,9 +153,10 @@ function Menu() {
                   />
                   <Text
                     style={{
-                      fontSize: 20,
+                      fontSize: text.text4,
                       fontFamily: "Assistant_600SemiBold",
-                      color: "#376C71",
+                      color: colors.black,
+                      marginTop: 10,
                     }}
                   >
                     Clínica
@@ -181,12 +165,12 @@ function Menu() {
                 <View style={{ alignItems: "center", marginHorizontal: 10 }}>
                   <IconButton
                     icon="silverware-fork-knife"
-                    size={70}
+                    size={60}
                     onPress={goToKitchen}
-                    color="#376C71"
+                    color={colors.p_light}
                     style={{
-                      borderColor: "#376C71",
-                      borderWidth: 2,
+                      borderColor: colors.p_light,
+                      borderWidth: 4,
                       width: 160,
                       height: 160,
                       borderRadius: 100,
@@ -194,9 +178,10 @@ function Menu() {
                   />
                   <Text
                     style={{
-                      fontSize: 20,
+                      fontSize: text.text4,
                       fontFamily: "Assistant_600SemiBold",
-                      color: "#376C71",
+                      color: colors.black,
+                      marginTop: 10,
                     }}
                   >
                     Cozinha
@@ -205,12 +190,12 @@ function Menu() {
                 <View style={{ alignItems: "center", marginHorizontal: 10 }}>
                   <IconButton
                     icon="wrench"
-                    size={70}
+                    size={60}
                     onPress={goToAdmin}
-                    color="#376C71"
+                    color={colors.p_light}
                     style={{
-                      borderColor: "#376C71",
-                      borderWidth: 2,
+                      borderColor: colors.p_light,
+                      borderWidth: 4,
                       width: 160,
                       height: 160,
                       borderRadius: 100,
@@ -218,9 +203,10 @@ function Menu() {
                   />
                   <Text
                     style={{
-                      fontSize: 20,
+                      fontSize: text.text4,
                       fontFamily: "Assistant_600SemiBold",
-                      color: "#376C71",
+                      color: colors.black,
+                      marginTop: 10,
                     }}
                   >
                     Administração
@@ -229,12 +215,12 @@ function Menu() {
                 <View style={{ alignItems: "center", marginHorizontal: 10 }}>
                   <IconButton
                     icon="settings"
-                    size={70}
+                    size={60}
                     onPress={goToConfigPage}
-                    color="#376C71"
+                    color={colors.p_light}
                     style={{
-                      borderColor: "#376C71",
-                      borderWidth: 2,
+                      borderColor: colors.p_light,
+                      borderWidth: 4,
                       width: 160,
                       height: 160,
                       borderRadius: 100,
@@ -242,9 +228,10 @@ function Menu() {
                   />
                   <Text
                     style={{
-                      fontSize: 20,
+                      fontSize: text.text4,
                       fontFamily: "Assistant_600SemiBold",
-                      color: "#376C71",
+                      color: colors.black,
+                      marginTop: 10,
                     }}
                   >
                     Configurações

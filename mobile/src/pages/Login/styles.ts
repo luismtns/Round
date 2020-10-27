@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import theme, { colors, text } from "../../styles/theme.style";
+import { colors } from "../../styles/theme.style";
 
 const styles = StyleSheet.create({
   container: {
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: theme.FONT_SIZE_LARGE,
+    fontSize: 32,
     fontFamily: "Assistant_700Bold",
     color: colors.white,
     marginBottom: 20,
@@ -57,9 +57,6 @@ const styles = StyleSheet.create({
   },
   contact: {
     textAlign: "center",
-    // font: text.text5,
-    // fontFamily: "Assistant_400Regular",
-    // fontSize: theme.FONT_SIZE_SMALL,
     color: "#F8F8F8",
     marginBottom: 16,
     lineHeight: 24,

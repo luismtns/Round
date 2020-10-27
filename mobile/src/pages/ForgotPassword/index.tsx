@@ -1,28 +1,54 @@
 import React, { useState } from "react";
-import { View, Text, Alert, Image, ImageBackground } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  ImageBackground,
+  Platform,
+  Alert,
+} from "react-native";
 import styles from "./styles";
 import { Button, IconButton, TextInput } from "react-native-paper";
-import MainInput from "../../components/MainInput";
-import ButtonPrimary from "../../components/Button";
 import { useNavigation } from "@react-navigation/native";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import AuthService from "../../services/auth/index";
 
 const imgBackground = require("../../assets/background.png");
+
 function ForgotPasswordPage() {
   const { navigate } = useNavigation();
   const [email, setEmail] = useState("");
 
   async function handleForgotPassword() {
-    // email OK
-    AuthService.sendPasswordResetEmail(email);
+    await AuthService.sendPasswordResetEmail(email)
+      .then((res: any) => {
+        if (Platform.OS === "web") {
+          alert(
+            "Acesse seu e-mail e siga as instruções para recuperação de senha."
+          );
+        } else {
+          Alert.alert(
+            "Recuperação de senha",
+            "Acesse seu e-mail e siga as instruções para recuperação de senha.",
+            [{ text: "OK", onPress: () => {} }]
+          );
+        }
 
-    // Alert.alert(
-    //   "Pronto!",
-    //   `Suas informações foram enviadas para o e-mail "${email}".`,
-    //   [{ text: "OK" }]
-    // );
-    navigate("Login");
+        navigate("Login");
+      })
+      .catch((err: any) => {
+        if (Platform.OS === "web") {
+          alert(
+            "Ocorreu um problema ao tentar enviar o e-mail de recuperação, confira seu e-mail e tente novamente mais tarde."
+          );
+        } else {
+          Alert.alert(
+            "Recuperação de senha",
+            "Ocorreu um problema ao tentar enviar o e-mail de recuperação, confira seu e-mail e tente novamente mais tarde.",
+            [{ text: "OK", onPress: () => {} }]
+          );
+        }
+      })
+      .finally(() => {});
   }
 
   function goToLoginPage() {
@@ -31,10 +57,7 @@ function ForgotPasswordPage() {
 
   return (
     <View style={styles.container}>
-      <ImageBackground
-        style={[styles.containerLogo, { justifyContent: "center" }]}
-        source={imgBackground}
-      >
+      <ImageBackground style={styles.containerLogo} source={imgBackground}>
         <View>
           <Image
             style={styles.logo}
@@ -62,6 +85,7 @@ function ForgotPasswordPage() {
 
           <TextInput
             label="E-mail"
+            value={email}
             mode="outlined"
             keyboardType="email-address"
             onChangeText={setEmail}
@@ -71,7 +95,7 @@ function ForgotPasswordPage() {
           <Button
             mode="contained"
             contentStyle={{ height: 50 }}
-            onPress={handleForgotPassword}
+            onPress={() => handleForgotPassword()}
           >
             RESETAR
           </Button>

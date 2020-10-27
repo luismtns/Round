@@ -8,18 +8,12 @@ export const firebaseAuthService = {
     auth.onAuthStateChanged(callback);
   },
 
-  signInWithEmailAndPassword: (email: string, password: string) =>
-    auth.signInWithEmailAndPassword(email, password),
+  signInWithEmailAndPassword(email: string, password: string) {
+    return auth.signInWithEmailAndPassword(email, password);
+  },
 
   sendPasswordResetEmail(email: string) {
-    auth
-      .sendPasswordResetEmail(email)
-      .then((res) => {
-        alert(res);
-      })
-      .catch((err) => {
-        alert(err);
-      });
+    return auth.sendPasswordResetEmail(email);
   },
 
   logout() {

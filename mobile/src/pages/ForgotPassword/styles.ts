@@ -1,14 +1,15 @@
 import { StyleSheet } from "react-native";
-import theme from "../../styles/theme.style";
+import { colors } from "../../styles/theme.style";
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     flex: 1,
-    backgroundColor: theme.PRIMARY_BACKGROUND,
+    backgroundColor: "#f9f9f9",
   },
   containerLogo: {
     flex: 1,
+    justifyContent: "center",
   },
   logo: {
     width: "70%",
@@ -22,7 +23,7 @@ const styles = StyleSheet.create({
   },
   containerForgotPassword: {
     flex: 1,
-    backgroundColor: theme.SECONDARY_BACKGROUND,
+    backgroundColor: colors.p_dark,
     height: "100%",
     justifyContent: "center",
     flexDirection: "column",
@@ -31,16 +32,16 @@ const styles = StyleSheet.create({
     padding: 72,
   },
   title: {
-    fontSize: theme.FONT_SIZE_LARGE,
+    fontSize: 32,
     fontFamily: "Assistant_700Bold",
-    color: theme.TERTIARY_TEXT_COLOR,
+    color: "#fbfbfb",
   },
   subTitle: {
-    fontSize: theme.FONT_SIZE_MEDIUM,
+    fontSize: 20,
     fontFamily: "Assistant_400Regular",
     marginTop: 12,
     marginBottom: 16,
-    color: theme.TERTIARY_TEXT_COLOR,
+    color: "#fbfbfb",
   },
 });
 

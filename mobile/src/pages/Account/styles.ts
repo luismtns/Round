@@ -5,15 +5,17 @@ const styles = StyleSheet.create({
   containerLogout: {
     flex: 1,
     flexDirection: "row",
-    padding: 40,
+    padding: 32,
+    maxWidth: 900,
+    width: "100%",
+    margin: "auto",
   },
   textLogout: {
     color: "#B00020",
   },
   imgCompany: {
     flex: 1,
-    alignItems: "center",
-    flexDirection: "column",
+    position: "relative",
   },
   infoCompany: {
     flex: 3,

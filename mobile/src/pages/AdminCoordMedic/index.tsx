@@ -5,12 +5,15 @@ import { View, Text } from "react-native";
 import {
   Button,
   DataTable,
+  FAB,
   Menu,
   Provider,
   Searchbar,
 } from "react-native-paper";
 import { DATA } from "../../services/data/index";
 import { useNavigation } from "@react-navigation/native";
+import Table from "../../components/Table";
+import SearchSection from "../../components/SearchSection";
 
 const AdminCoordMedic: React.FC = () => {
   const { navigate } = useNavigation();
@@ -26,84 +29,100 @@ const AdminCoordMedic: React.FC = () => {
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Equipe médica</Text>
+    <>
+      <FAB
+        style={styles.fab}
+        small
+        label="Adicionar"
+        icon="plus"
+        onPress={() => console.log("Pressed")}
+      />
+      <View style={styles.container}>
+        <Text style={styles.title}>Equipe médica</Text>
 
-      <View style={styles.filter}>
-        <Searchbar
-          placeholder="Pesquisar"
-          onChangeText={setSearch}
-          value={search}
-          style={styles.searchBar}
-        />
-        <Provider>
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "center",
-            }}
-          >
-            <Menu
-              visible={visible}
-              style={{ top: 50, zIndex: 15 }}
-              onDismiss={closeMenu}
-              anchor={
-                <Button
-                  onPress={openMenu}
-                  color="#AEAEAE"
-                  icon="filter-variant"
-                >
-                  Recentes
-                </Button>
-              }
-            >
-              <View>
-                <Menu.Item onPress={() => {}} title="Item 1" />
-                <Menu.Item onPress={() => {}} title="Item 2" />
-                <Menu.Item onPress={() => {}} title="Item 3" />
-              </View>
-            </Menu>
-          </View>
-        </Provider>
-        <Button mode="outlined" style={styles.searchButton}>
-          Pesquisar
-        </Button>
-      </View>
-
-      <DataTable style={{ zIndex: -10 }}>
-        <DataTable.Header>
-          <DataTable.Title>Nome</DataTable.Title>
-          <DataTable.Title>RH</DataTable.Title>
-          <DataTable.Title>Data de nascimento</DataTable.Title>
-          <DataTable.Title>Localização</DataTable.Title>
-        </DataTable.Header>
-
-        {DATA.map((item) => {
-          return (
-            <DataTable.Row
-              key={item.id}
-              onPress={() => {
-                goToPatient(item);
+        <SearchSection />
+        <Table data={DATA} medic />
+        {/* <View style={styles.filter}>
+          <Searchbar
+            placeholder="Pesquisar"
+            onChangeText={setSearch}
+            value={search}
+            style={[styles.searchBar, { backgroundColor: "#EEEEEE" }]}
+            inputStyle={{ color: "#AEAEAE" }}
+          />
+          <Provider>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "center",
               }}
             >
-              <DataTable.Cell>{item.name}</DataTable.Cell>
-              <DataTable.Cell>{item.ra}</DataTable.Cell>
-              <DataTable.Cell>{item.nascimento}</DataTable.Cell>
-              <DataTable.Cell>{item.quarto}</DataTable.Cell>
-            </DataTable.Row>
-          );
-        })}
+              <Menu
+                visible={visible}
+                style={{ top: 50, zIndex: 15 }}
+                onDismiss={closeMenu}
+                anchor={
+                  <Button
+                    onPress={openMenu}
+                    color="#AEAEAE"
+                    icon="filter-variant"
+                  >
+                    Recentes
+                  </Button>
+                }
+              >
+                <View>
+                  <Menu.Item onPress={() => {}} title="Item 1" />
+                  <Menu.Item onPress={() => {}} title="Item 2" />
+                  <Menu.Item onPress={() => {}} title="Item 3" />
+                </View>
+              </Menu>
+            </View>
+          </Provider>
+          <Button
+            mode="outlined"
+            style={styles.searchButton}
+            onPress={() => {}}
+          >
+            Pesquisar
+          </Button>
+        </View>
 
-        <DataTable.Pagination
-          page={1}
-          numberOfPages={3}
-          onPageChange={(page) => {
-            console.log(page);
-          }}
-          label="1-2 of 6"
-        />
-      </DataTable>
-    </View>
+        <DataTable style={{ zIndex: -10 }}>
+          <DataTable.Header>
+            <DataTable.Title>Nome</DataTable.Title>
+            <DataTable.Title>RH</DataTable.Title>
+            <DataTable.Title>Data de nascimento</DataTable.Title>
+            <DataTable.Title>Localização</DataTable.Title>
+          </DataTable.Header>
+
+          {DATA.map((item) => {
+            return (
+              <DataTable.Row
+                key={item.id}
+                onPress={() => {
+                  goToPatient(item);
+                }}
+              >
+                <DataTable.Cell>{item.name}</DataTable.Cell>
+                <DataTable.Cell>{item.ra}</DataTable.Cell>
+                <DataTable.Cell>{item.nascimento}</DataTable.Cell>
+                <DataTable.Cell>{item.quarto}</DataTable.Cell>
+              </DataTable.Row>
+            );
+          })}
+
+          <DataTable.Pagination
+            page={1}
+            numberOfPages={3}
+            onPageChange={(page) => {
+              console.log(page);
+            }}
+            label="1-2 of 6"
+          />
+        </DataTable> */}
+      </View>
+    </>
   );
 };
 

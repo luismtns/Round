@@ -3,13 +3,15 @@
   background-size: cover;
 }
 .illustration {
-  margin-bottom: -2.5em;
-
-  @include media-breakpoint-down(md) {
-    margin-bottom: -1.5em;
-  }
-  @include media-breakpoint-down(sm) {
-    margin-bottom: -2.5em;
+  // margin-bottom: -2.5em;
+  &__first {
+    margin-bottom: -2.5rem;
+    @include media-breakpoint-up(sm) {
+    }
+    @include media-breakpoint-up(md) {
+    }
+    @include media-breakpoint-up(lg) {
+    }
   }
 
   &--width {

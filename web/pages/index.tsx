@@ -1,16 +1,16 @@
 export default function Home() {
   return (
     <main>
-      <div className="container mt-5 pt-5">
-        <div className="row">
-          <div className="col-12 col-md-6 order-2 order-md-1">
+      <div className="container pt-5">
+        <div className="row align-items-end">
+          <div className="col-12 col-md-6 order-2 order-md-1 illustration">
             <img
               src="images/Girl_world_Illustration.png"
-              className="img-fluid illustration"
+              className="img-fluid illustration illustration__first"
               alt="Girl and World Illustration"
             />
           </div>
-          <div className="col-12 col-md-6 text-right order-1 order-md-2">
+          <div className="col-12 col-md-6 text-right order-1 order-md-2 py-5">
             <h2 className="title font-weight-bold">#CadaGrãoConta</h2>
             <h3 className="font-weight-normal">
               Eficiência e sustentabilidade

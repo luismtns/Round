@@ -1,17 +1,21 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: "Assistant", sans-serif;
-  font-weight: "regular";
-  min-height: 100%;
+html {
+  scroll-behavior: smooth;
 }
-
 * {
   box-sizing: border-box;
 }
 
 @import "variables";
 @import "bootstrap";
-@import "general";
+@import "landing";
 @import "components";
+
+// Font Setup
+
+:root {
+  --font-family-sans-serif: "Assistant", Roboto, "Helvetica Neue", Arial,
+    sans-serif;
+}
+body {
+  font-family: var(--font-family-sans-serif);
+}

@@ -1,0 +1,21 @@
+.backgroundImg {
+  background: url("/images/background.jpg") no-repeat top;
+  background-size: cover;
+}
+.illustration {
+  margin-bottom: -2.5em;
+
+  @include media-breakpoint-down(md) {
+    margin-bottom: -1.5em;
+  }
+  @include media-breakpoint-down(sm) {
+    margin-bottom: -2.5em;
+  }
+
+  &--width {
+    width: 40%;
+    @include media-breakpoint-down(md) {
+      width: auto;
+    }
+  }
+}

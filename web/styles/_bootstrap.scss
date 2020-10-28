@@ -1,11 +1,39 @@
-//Your customizations must come before bootstrap import
+// Bootstrap Customize Theme
 
+// Font Customize
+$font-size-base: 1rem !default;
+$headings-line-height: 1.4 !default;
+// grid modular rem*1.5
+$h1-font-size: $font-size-base * 5.0625 !default; // 16*5,0625=80px(5,0625rem)
+$h2-font-size: $font-size-base * 3.375 !default; // 16*3,375=54px(3.375rem)
+$h3-font-size: $font-size-base * 2.25 !default; // 16*2,25=36px(2.25rem)
+$h4-font-size: $font-size-base * 1.5 !default; // 16*1,5=24px(1.5rem)
+$h5-font-size: $font-size-base * 1.25 !default;
+$h6-font-size: $font-size-base !default;
+
+// Shadows
 $enable-shadows: true;
+
+// Color
 $primary: $primary_color;
 
 $body-color: $black;
 $body-bg: $white;
-
+// $colors: (
+//   "blue": $blue,
+//   "indigo": $indigo,
+//   "purple": $purple,
+//   "pink": $pink,
+//   "red": $red,
+//   "orange": $orange,
+//   "yellow": $yellow,
+//   "green": $green,
+//   "teal": $teal,
+//   "cyan": $cyan,
+//   "white": $white,
+//   "gray": $gray-600,
+//   "gray-dark": $gray-800
+// ) !default;
 $theme-colors: (
   "primary": $primary_color,
   "secondary": $secondary_color,
@@ -17,15 +45,6 @@ $theme-colors: (
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 
 // Customize Bootstrap
-.text-bold {
-  font-weight: bold;
-}
-.text-regular {
-  font-weight: normal;
-}
-.text-w300 {
-  font-weight: 300;
-}
 .bg- {
   &p-dark {
     background-color: $p_dark_color;
@@ -43,5 +62,24 @@ $theme-colors: (
   }
   &p-light {
     color: $p_light_color;
+  }
+}
+// Responsive Fonts
+@include media-breakpoint-down(md) {
+  h1,
+  .h1 {
+    font-size: floor($h1-font-size / 1.5);
+  }
+  h2,
+  .h2 {
+    font-size: floor($h2-font-size / 1.5);
+  }
+  h3,
+  .h3 {
+    font-size: floor($h3-font-size / 1.5);
+  }
+  h4,
+  .h4 {
+    font-size: floor($h4-font-size / 1.5);
   }
 }

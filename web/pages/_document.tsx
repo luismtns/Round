@@ -17,7 +17,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head />
-        <body>
+        <body className="backgroundImg">
           <Main />
           <NextScript />
         </body>

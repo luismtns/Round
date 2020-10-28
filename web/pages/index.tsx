@@ -5,9 +5,9 @@ export default function Home() {
         <div className="row">
           <div className="col-12 col-md-6 order-2 order-md-1">
             <img
-              src="images/illustration_girl_world.png"
+              src="images/Girl_world_Illustration.png"
               className="img-fluid illustration"
-              alt="Girl and World"
+              alt="Girl and World Illustration"
             />
           </div>
           <div className="col-12 col-md-6 text-right order-1 order-md-2">

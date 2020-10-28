@@ -39,7 +39,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="bg-p-dark text-light py-5">
+      <div className="bg-p-dark text-light py-5" id="Problematica">
         <div className="container">
           <div className="row">
             <div className="col-12 text-center">
@@ -51,7 +51,7 @@ export default function Home() {
               />
             </div>
           </div>
-          <div className="row" id="Problematica">
+          <div className="row">
             <div className="col-12">
               <h2 className="font-weight-light mt-5">
                 “É melhor sobrar do que faltar.”
@@ -89,7 +89,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="clearfix pt-5">
+      <div className="clearfix pt-5" id="Projeto">
         <div className=" illustration--width float-md-right">
           <img
             src="images/TrashGuy_Illustration.png"
@@ -102,7 +102,7 @@ export default function Home() {
             <div className="col-12">
               <h2 className="font-weight-bold ">Nossa solução</h2>
 
-              <h4 className="mt-5">
+              <h5 className="mt-5">
                 Propomos então a criação de{" "}
                 <strong>
                   um aplicativo que facilitaria a comunicação entre setores de
@@ -115,8 +115,17 @@ export default function Home() {
                   reduzir o desperdício de alimentos
                 </strong>
                 .
-              </h4>
+              </h5>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="container">
+        <div className="row">
+          <div className="col-12">
+            <h3></h3>
+            <h5></h5>
           </div>
         </div>
       </div>

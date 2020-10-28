@@ -28,12 +28,12 @@ export default function Navbar() {
               </a>
             </li>
             <li className="nav-item mr-md-3">
-              <a className="nav-link" href="#">
+              <a className="nav-link" href="#Projeto">
                 PROJETO
               </a>
             </li>
             <li className="nav-item mr-md-3">
-              <a className="nav-link" href="#">
+              <a className="nav-link" href="#ComoFunciona">
                 COMO FUNCIONA?
               </a>
             </li>

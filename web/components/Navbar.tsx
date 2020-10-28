@@ -38,11 +38,7 @@ export default function Navbar() {
               </a>
             </li>
             <li className="nav-item">
-              <button className="btn btn-primary btn-sm">
-                <a className="nav-link text-white" href="#">
-                  APOIE O PROJETO
-                </a>
-              </button>
+              <button className="btn btn-primary">APOIE O PROJETO</button>
             </li>
           </ul>
         </div>

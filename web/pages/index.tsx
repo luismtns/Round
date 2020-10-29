@@ -5,18 +5,18 @@ export default function Home() {
         <div className="row align-items-end">
           <div className="col-12 col-md-7 order-2 order-md-1 illustration">
             <img
-              src="images/Girl_world_Illustration.png"
+              src="/images/Girl_world_Illustration.png"
               className="img-fluid illustration illustration__first"
               alt="Girl and World Illustration"
             />
           </div>
           <div className="col-12 col-md-5 text-right order-1 order-md-2 pb-4">
             <h2 className="title font-weight-bold">#CadaGrãoConta</h2>
-            <h3 className="font-weight-normal">
+            <h4 className="font-weight-normal">
               Eficiência e sustentabilidade
               <br />
               para mudarmos o mundo
-            </h3>
+            </h4>
             <form className="w-100 mt-1">
               <div className="input-group mb-3">
                 <input
@@ -43,10 +43,11 @@ export default function Home() {
             <div className="col-12 text-center">
               <small className="">Conheça o Projeto</small>
               <br />
+
               <img
+                sizes=""
                 className="img-fluid"
-                src="images/keyboard_arrow_down.svg"
-                alt="arrow-down-svg"
+                src="/images/keyboard_arrow_down.svg"
               />
             </div>
           </div>
@@ -91,7 +92,7 @@ export default function Home() {
       <div className="clearfix py-4" id="Projeto">
         <div className=" illustration--width float-md-right">
           <img
-            src="images/TrashGuy_Illustration.png"
+            src="/images/Guy_Trash_Ilu.png"
             alt="Trash and Guy Illustration"
             className="img-fluid"
           />

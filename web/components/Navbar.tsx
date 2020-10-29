@@ -6,7 +6,7 @@ export default function Navbar() {
       <div className="container py-1">
         <Link href="/">
           <a className="navbar-brand navbar-brand--size">
-            <img src="images/Logo.png" alt="Round Logo" />
+            <img src="/images/Logo.png" alt="Round Logo" />
           </a>
         </Link>
         <button

@@ -139,11 +139,14 @@ export default function Home() {
                 O Round visa impactar a sociedade.{" "}
               </h2>
 
-              <h5 className="mt-3">
+              <h5 className="py-3">
                 Além do benefício financeiro, o projeto espera ter resultados
                 também no âmbito sociocultural, reduzindo o pensamento da
-                cultura da fartura (“melhor sobrar do que faltar”) e alcançar um
-                desenvolvimento mais sustentável.
+                cultura da fartura{" "}
+                <strong className="text-primary">
+                  (“melhor sobrar do que faltar”)
+                </strong>{" "}
+                e alcançar um desenvolvimento mais sustentável.
               </h5>
             </div>
           </div>
@@ -164,11 +167,11 @@ export default function Home() {
       <div className="container">
         <div className="row align-items-end">
           <div className="col-12 col-md-6">
-            <h5 className="mt-3">
-              Além do benefício financeiro, o projeto espera ter resultados
-              também no âmbito sociocultural, reduzindo o pensamento da cultura
-              da fartura (“melhor sobrar do que faltar”) e alcançar um
-              desenvolvimento mais sustentável.
+            <h5 className="pb-4">
+              Além de ser uma instituição com uma{" "}
+              <strong className="text-primary">causa nobre</strong>, uma
+              estrutura única, eles são um instituto social sem fins lucrativos,{" "}
+              <strong>morada perfeita para nossa proposta</strong>.
             </h5>
           </div>
           <div className="col-12 col-md-6">

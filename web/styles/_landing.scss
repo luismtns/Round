@@ -15,9 +15,17 @@
   }
 
   &--width {
-    width: 41.66%;
-    @include media-breakpoint-down(md) {
-      width: auto;
+    &-41 {
+      width: 41.66%;
+      @include media-breakpoint-down(md) {
+        width: auto;
+      }
+    }
+    &-33 {
+      width: 33.33%;
+      @include media-breakpoint-down(md) {
+        width: auto;
+      }
     }
   }
 }

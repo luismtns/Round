@@ -23,22 +23,24 @@ export default function Navbar() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ml-auto">
             <li className="nav-item mr-md-3">
-              <a className="nav-link" href="#Problematica">
-                PROBLEMÁTICA
-              </a>
+              <Link href="#Problematica">
+                <a className="nav-link">PROBLEMÁTICA</a>
+              </Link>
             </li>
             <li className="nav-item mr-md-3">
-              <a className="nav-link" href="#Projeto">
-                PROJETO
-              </a>
+              <Link href="#Projeto">
+                <a className="nav-link">PROJETO</a>
+              </Link>
             </li>
             <li className="nav-item mr-md-3">
-              <a className="nav-link" href="#ComoFunciona">
-                COMO FUNCIONA?
-              </a>
+              <Link href="#ComoFunciona">
+                <a className="nav-link">COMO FUNCIONA?</a>
+              </Link>
             </li>
             <li className="nav-item">
-              <button className="btn btn-primary">APOIE O PROJETO</button>
+              <Link href="#Apoie">
+                <button className="btn btn-primary">APOIE O PROJETO</button>
+              </Link>
             </li>
           </ul>
         </div>

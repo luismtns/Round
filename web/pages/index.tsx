@@ -1,37 +1,35 @@
 export default function Home() {
   return (
     <main>
-      <div className="container pt-5">
+      <div className="container pt-4">
         <div className="row align-items-end">
-          <div className="col-12 col-md-6 order-2 order-md-1 illustration">
+          <div className="col-12 col-md-7 order-2 order-md-1 illustration">
             <img
               src="images/Girl_world_Illustration.png"
               className="img-fluid illustration illustration__first"
               alt="Girl and World Illustration"
             />
           </div>
-          <div className="col-12 col-md-6 text-right order-1 order-md-2 py-5">
+          <div className="col-12 col-md-5 text-right order-1 order-md-2 pb-4">
             <h2 className="title font-weight-bold">#CadaGrãoConta</h2>
             <h3 className="font-weight-normal">
               Eficiência e sustentabilidade
               <br />
               para mudarmos o mundo
             </h3>
-            <form className="row mt-5">
-              <div className="col-12 col-md-8 offset-md-4">
-                <div className="input-group mb-3">
-                  <input
-                    type="text"
-                    className="form-control form-control-lg"
-                    placeholder="Seu e-mail"
-                    aria-label="Seu e-mail"
-                    aria-describedby="basic-addon2"
-                  />
-                  <div className="input-group-append">
-                    <button className="btn btn-primary btn-lg" type="button">
-                      APOIAR
-                    </button>
-                  </div>
+            <form className="w-100 mt-1">
+              <div className="input-group mb-3">
+                <input
+                  type="text"
+                  className="form-control form-control-lg"
+                  placeholder="Seu e-mail"
+                  aria-label="Seu e-mail"
+                  aria-describedby="basic-addon2"
+                />
+                <div className="input-group-append">
+                  <button className="btn btn-primary btn-lg" type="button">
+                    APOIAR
+                  </button>
                 </div>
               </div>
             </form>
@@ -39,26 +37,27 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="bg-p-dark text-light py-5" id="Problematica">
+      <div className="bg-p-dark text-light py-3 mb-5" id="Problematica">
         <div className="container">
           <div className="row">
             <div className="col-12 text-center">
               <small className="">Conheça o Projeto</small>
               <br />
               <img
-                src="images/keyboard_arrow_down-24px.svg"
+                className="img-fluid"
+                src="images/keyboard_arrow_down.svg"
                 alt="arrow-down-svg"
               />
             </div>
           </div>
           <div className="row">
             <div className="col-12">
-              <h2 className="font-weight-light mt-5">
+              <h2 className="font-weight-light mt-3">
                 “É melhor sobrar do que faltar.”
               </h2>
             </div>
           </div>
-          <div className="row mt-5">
+          <div className="row mt-3">
             <div className="col-12 col-md-6 text-center">
               <h1 className="text-secondary font-weight-bold">1,3</h1>
               <h3 className="font-weight-bold">
@@ -76,7 +75,7 @@ export default function Home() {
               </h3>
             </div>
           </div>
-          <div className="row mt-5">
+          <div className="row mt-3">
             <div className="col-12">
               <h3 className="font-weight-light">
                 Hoje, <strong className="text-secondary">821 milhões</strong>{" "}
@@ -89,7 +88,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="clearfix pt-5" id="Projeto">
+      <div className="clearfix py-4" id="Projeto">
         <div className=" illustration--width float-md-right">
           <img
             src="images/TrashGuy_Illustration.png"
@@ -97,12 +96,12 @@ export default function Home() {
             className="img-fluid"
           />
         </div>
-        <div className="container mt-5">
+        <div className="container">
           <div className="row">
-            <div className="col-12">
+            <div className="col-12 mt-3">
               <h2 className="font-weight-bold ">Nossa solução</h2>
 
-              <h5 className="mt-5">
+              <h5 className="mt-3">
                 Propomos então a criação de{" "}
                 <strong>
                   um aplicativo que facilitaria a comunicação entre setores de

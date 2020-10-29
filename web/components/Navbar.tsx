@@ -3,10 +3,10 @@ import Link from "next/link";
 export default function Navbar() {
   return (
     <nav className="navbar sticky-top navbar-expand-lg bg-translucid">
-      <div className="container py-3">
+      <div className="container py-1">
         <Link href="/">
           <a className="navbar-brand navbar-brand--size">
-            <img src="/images/Logo.png" alt="Round Logo" />
+            <img src="images/Logo.png" alt="Round Logo" />
           </a>
         </Link>
         <button
@@ -18,7 +18,7 @@ export default function Navbar() {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span className="navbar-toggler-icon"></span>
+          <img src="images/menu.svg" alt="menu-svg" />
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ml-auto">

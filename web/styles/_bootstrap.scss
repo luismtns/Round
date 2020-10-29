@@ -11,6 +11,33 @@ $h4-font-size: $font-size-base * 1.5 !default; // 16*1,5=24px(1.5rem)
 $h5-font-size: $font-size-base * 1.25 !default;
 $h6-font-size: $font-size-base !default;
 
+// Spacer Customize
+$spacer: 1rem !default;
+$spacers: () !default;
+$spacers: map-merge(
+  (
+    0: 0,
+    1: $spacer,
+    2: (
+      $spacer * 1.5,
+      //24
+    ),
+    3: (
+      $spacer * 2.25,
+      //36
+    ),
+    4: (
+      $spacer * 3.375,
+      //54
+    ),
+    5: (
+      $spacer * 5.0625,
+      //81
+    ),
+  ),
+  $spacers
+);
+
 // Shadows
 $enable-shadows: true;
 

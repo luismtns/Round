@@ -20,6 +20,13 @@
       height: 2px;
       background-color: $primary_color;
     }
+
+    @include media-breakpoint-down(md) {
+      &::after {
+        content: none;
+        display: none;
+      }
+    }
   }
   &:hover {
     background-color: rgba(255, 255, 255, 0.95);
@@ -41,4 +48,8 @@
       }
     }
   }
+}
+.navbar-toggler {
+  background-color: $primary_color;
+  border: 1px solid $primary_color;
 }

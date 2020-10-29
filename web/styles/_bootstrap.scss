@@ -99,14 +99,14 @@ $theme-colors: (
   }
   h2,
   .h2 {
-    font-size: floor($h2-font-size / 1.5);
+    font-size: floor($h2-font-size / 1.25);
   }
   h3,
   .h3 {
-    font-size: floor($h3-font-size / 1.5);
+    font-size: floor($h3-font-size / 1.25);
   }
   h4,
   .h4 {
-    font-size: floor($h4-font-size / 1.5);
+    font-size: floor($h4-font-size / 1.25);
   }
 }

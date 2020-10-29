@@ -195,7 +195,7 @@ export default function Home() {
                 className="w-50 img-fluid"
                 alt="Earth Icon Illustrate"
               />
-              <h4 className="font-weight-bold my-1">Sustentabilidade</h4>
+              <h3 className="font-weight-bold my-1">Sustentabilidade</h3>
               <p className="h5">
                 Se é importante para você, é importante para o meio ambiente.
                 ROUND te ajuda a diminuir o gasto de papel, reduz o desperdício
@@ -208,7 +208,7 @@ export default function Home() {
                 className="w-50 img-fluid"
                 alt="Efficiency Illustrate"
               />
-              <h4 className="font-weight-bold my-1">Eficiência</h4>
+              <h3 className="font-weight-bold my-1">Eficiência</h3>
               <p className="h5">
                 Reaproximar setores e facilitar a comunicação?
                 <br />
@@ -223,7 +223,7 @@ export default function Home() {
                 className="w-50 img-fluid"
                 alt="Smartphone Illustrate"
               />
-              <h4 className="font-weight-bold my-1">Inteligência artificial</h4>
+              <h3 className="font-weight-bold my-1">Inteligência artificial</h3>
               <p className="h5">
                 Se é importante para você, é importante para o meio ambiente.
                 ROUND te ajuda a diminuir o gasto de papel, reduz o desperdício
@@ -265,7 +265,7 @@ export default function Home() {
               </div>
             </form>
           </div>
-          <div className="col-12 col-md-3 offset-md-1">
+          <div className="col-8 col-md-3 offset-md-1">
             <img
               src="/images/Persons_Hospital_Ilu.png"
               className="w-100 img-fluid"
@@ -278,14 +278,14 @@ export default function Home() {
       <footer className="container-fluid text-primary text-right bg-p-dark py-4 ">
         <div className="container">
           <div className="row align-items-end">
-            <div className="col-6 col-md-2">
+            <div className="col-3 col-md-2">
               <img
                 src="/images/Icon_white.svg"
                 className="w-100 img-fluid"
                 alt="Icon White"
               />
             </div>
-            <div className="col-6 col-md-10 text-right">
+            <div className="col-9 col-md-10 text-right">
               <p>Round - Todos os direitos reservados ©</p>
             </div>
           </div>

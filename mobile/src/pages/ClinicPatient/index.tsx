@@ -1,43 +1,31 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Picker } from "react-native";
+import { View } from "react-native";
 import styles from "./styles";
-
-import { PROFESSIONAL } from "../../services/data/index";
-import {
-  Avatar,
-  Surface,
-  TextInput,
-  Switch,
-  Button,
-  Chip,
-  Menu,
-  IconButton,
-} from "react-native-paper";
-import { colors, text, theme } from "../../styles/theme.style";
 import Profile from "../../components/Profile";
 import Historic from "../../components/Historic";
 import ProfileForm from "../../components/ProfileForm";
-import { useFocusEffect } from "@react-navigation/native";
 import { firebaseDataService } from "./../../services/data/index";
 
 const ClinicPatient = (props: any) => {
   const patient_uuid = props.route.params.patient;
+  const [isFetching, setIsFetching] = useState(false);
+  const [patient_data, setPatientData] = useState({});
+
   useEffect(() => {
-    props.navigation.setOptions({
-      title: PROFESSIONAL,
+    // props.navigation.setOptions({
+    //   title: PROFESSIONAL,
+    // });
+
+    firebaseDataService.getPatient(patient_uuid).then(async (data: any) => {
+      await setPatientData(data.data());
+      setIsFetching(true);
     });
   }, []);
-  useFocusEffect(() => {
-    firebaseDataService.getPatient(patient_uuid).then((data: any) => {
-      console.log(data.data());
-    });
-  });
 
   return (
     <>
       <View style={styles.container}>
-        <Profile />
-
+        {isFetching && <Profile patient_data={patient_data} />}
         <View style={styles.containerDataAndHistory}>
           <ProfileForm />
           <Historic />

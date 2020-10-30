@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { Avatar, IconButton, Surface, Text } from "react-native-paper";
 import styles from "./styles";
 
-const Profile = () => {
+const Profile = ({ patient_data }: any) => {
   return (
     <Surface style={styles.containerPatientData}>
       <View style={styles.imgCompany}>
@@ -37,8 +37,8 @@ const Profile = () => {
             borderBottomColor: "#000",
           }}
         >
-          <Text>Nome: Nome do paciente</Text>
-          <Text>RA: 234234423</Text>
+          <Text>Nome: {patient_data.personal.name}</Text>
+          <Text>RA: {patient_data.hospitalization.rh}</Text>
         </View>
         <View
           style={{
@@ -47,9 +47,9 @@ const Profile = () => {
             justifyContent: "space-between",
           }}
         >
-          <Text>Convênio: Privado | SUS</Text>
-          <Text>Data de nascimento: 12/03/2014</Text>
-          <Text>Data de nascimento: 12/03/2014</Text>
+          <Text>Convênio: {patient_data.hospitalization.healthInsurance}</Text>
+          <Text>Data de nascimento: {patient_data.personal.birthday}</Text>
+          <Text>CPF: {patient_data.personal.cpf}</Text>
         </View>
       </View>
     </Surface>

@@ -21,17 +21,16 @@ const Table = ({ data, medic }: any) => {
         <DataTable.Title>Localização</DataTable.Title>
       </DataTable.Header>
 
-      {data.map((item: any) => {
+      {data.map((item: any, index: any) => {
         return (
           <DataTable.Row
-            key={item.id}
+            key={index}
             onPress={() => {
               if (medic) {
                 goToMedic(item.id);
               } else {
                 goToPatient(item.id);
               }
-              console.log(medic);
             }}
           >
             <DataTable.Cell>{item.name}</DataTable.Cell>

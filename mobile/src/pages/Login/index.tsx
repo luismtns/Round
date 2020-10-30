@@ -6,11 +6,13 @@ import {
   ImageBackground,
   Alert,
   Platform,
+  Linking,
 } from "react-native";
 import styles from "./styles";
 import { Dialog, Paragraph, Portal, TextInput } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import { Button } from "react-native-paper";
+import * as WebBrowser from "expo-web-browser";
 
 import { text } from "../../styles/theme.style";
 import AuthService from "./../../services/auth/index";
@@ -23,13 +25,19 @@ function Login() {
   const [icon, setIcon] = useState("eye");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loader, setLoader] = useState(false);
 
   const [visible, setVisible] = useState(false);
 
   function handleLogin(email: any, password: any) {
+    setLoader(true);
     AuthService.signInWithEmailAndPassword(email, password)
-      .then((res) => {})
+      .then((res) => {
+        setLoader(false);
+      })
       .catch((err) => {
+        setLoader(false);
+
         if (Platform.OS === "web") {
           alert("Falha ao efetuar o login.");
         } else {
@@ -45,7 +53,11 @@ function Login() {
   }
 
   function goToContact() {
-    alert("Tela contato");
+    if (Platform.OS !== "web") {
+      WebBrowser.openBrowserAsync("https://round-landing-page.vercel.app/");
+    } else {
+      Linking.openURL("https://round-landing-page.vercel.app/");
+    }
   }
 
   function handlePassword() {
@@ -106,7 +118,7 @@ function Login() {
 
           <Text
             onPress={goToForgotPassword}
-            style={[styles.forgotPass, text.text5]}
+            style={[styles.forgotPass, { fontSize: text.text5 }]}
           >
             recuperar acesso
           </Text>
@@ -114,16 +126,20 @@ function Login() {
           <Button
             mode="contained"
             contentStyle={{ height: 50 }}
+            loading={loader}
             onPress={() => handleLogin(email, password)}
           >
             ENTRAR
           </Button>
 
-          <Text style={[styles.contactBorder, text.text5]}>
+          <Text style={[styles.contactBorder, { fontSize: text.text5 }]}>
             <span>ou</span>
           </Text>
 
-          <Text onPress={goToContact} style={[styles.contact, text.text5]}>
+          <Text
+            onPress={goToContact}
+            style={[styles.contact, { fontSize: text.text5 }]}
+          >
             Não tem uma conta?{"\n"}
             <Text style={styles.contactAccount}>Entrar em contato</Text>
           </Text>

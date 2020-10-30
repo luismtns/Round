@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     marginTop: 32,
   },
   inputBlock: {
-    marginTop: 32,
+    marginTop: 16,
     flexDirection: "row",
     justifyContent: "space-between",
   },
@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: 100,
     height: "initial",
+    marginLeft: "auto",
   },
   input: {
     height: 50,

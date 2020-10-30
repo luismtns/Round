@@ -5,10 +5,11 @@ import AdminCoordProfileMedicDocs from "../pages/AdminCoordProfileMedicDocs";
 import AdminCoordProfileMedicTerms from "../pages/AdminCoordProfileMedicTerms";
 import AdminCoordProfileMedicFiles from "../pages/AdminCoordProfileMedicFiles";
 import { colors } from "../styles/theme.style";
+import AdminAddPatient from "../pages/AdminAddPatient";
 
 const Tab = createMaterialTopTabNavigator();
 
-function MedicRoute() {
+function NewPatientRoute() {
   return (
     <Tab.Navigator
       tabBarOptions={{
@@ -18,21 +19,13 @@ function MedicRoute() {
         indicatorStyle: { backgroundColor: colors.white },
       }}
     >
+      <Tab.Screen name="Cadastro" component={AdminAddPatient} />
       <Tab.Screen
-        name="Informações Gerais"
-        component={AdminCoordProfileMedic}
-      />
-      <Tab.Screen
-        name="DOCUMENTOS PESSOAIS"
+        name="Upload de Arquivos"
         component={AdminCoordProfileMedicDocs}
       />
-      <Tab.Screen
-        name="TERMOS E CONTRATOS"
-        component={AdminCoordProfileMedicTerms}
-      />
-      <Tab.Screen name="ARQUIVOS" component={AdminCoordProfileMedicFiles} />
     </Tab.Navigator>
   );
 }
 
-export default MedicRoute;
+export default NewPatientRoute;

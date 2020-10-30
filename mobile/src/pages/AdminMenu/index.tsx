@@ -20,6 +20,10 @@ const AdminMenu: React.FC = () => {
     navigate("AdminCoordGeneral");
   }
 
+  function goToFoodWaste() {
+    navigate("AdminFoodWaste");
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.optionsRow}>
@@ -94,7 +98,10 @@ const AdminMenu: React.FC = () => {
           </TouchableOpacity>
         </View>
         <View style={{ width: "49%" }}>
-          <TouchableOpacity style={{ flex: 1, width: "100%" }}>
+          <TouchableOpacity
+            style={{ flex: 1, width: "100%" }}
+            onPress={goToFoodWaste}
+          >
             <Surface style={styles.optionsContainer}>
               <Text style={styles.title}>Desperdício de Alimentos</Text>
               <Text style={styles.subtitle}>

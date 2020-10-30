@@ -1,51 +1,74 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, Image, ImageBackground } from "react-native";
 import styles from "./styles";
+
+const bkImg = require("../../assets/background_2.png");
 
 const About: React.FC = () => {
   return (
     <>
-      <View style={styles.container}>
-        <Text style={styles.title}>Título Sobre</Text>
-        <Text style={styles.text}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
-          nulla felis, finibus molestie ante sit amet, laoreet congue sapien.
-          Duis vehicula erat in lectus mattis, vitae aliquet sapien tempor.
-          Fusce neque justo, sodales id magna finibus, consequat commodo quam.
-          Quisque tempus ullamcorper rutrum. Etiam consequat eros et felis
-          auctor, id interdum tortor efficitur. Phasellus convallis libero elit,
-          fermentum efficitur diam dignissim in. Donec mollis lorem quis dolor
-          varius, sed porta nisl blandit. In pulvinar risus ac mi ullamcorper,
-          ac fringilla magna luctus.
-        </Text>
-        <Text style={styles.text}>
-          Aliquam tempor felis tellus, et rutrum magna auctor ac. Aenean
-          malesuada porta massa. Praesent eget mi quam. Proin egestas imperdiet
-          arcu, sed viverra nisl commodo non. Quisque venenatis tristique mi, id
-          maximus turpis ullamcorper quis. Quisque porttitor elit metus, sed
-          placerat lorem venenatis vel. Curabitur ut magna non nulla tincidunt
-          condimentum. Mauris tincidunt laoreet est quis varius. Nam malesuada
-          libero vitae erat porttitor vestibulum. Phasellus nec magna nec ante
-          interdum volutpat accumsan non est. Nulla non sollicitudin dui. Aenean
-          ut vestibulum libero.
-        </Text>
-        <Text style={styles.text}>
-          Donec et luctus odio. Nam volutpat fermentum accumsan. Ut mattis erat
-          a ex vehicula lacinia. Fusce sed risus neque. Sed congue orci eu
-          rutrum gravida. Sed feugiat quam diam, eu ullamcorper justo commodo
-          sed. Proin molestie ex bibendum lorem luctus, non efficitur velit
-          fringilla. Duis sed orci ultricies, convallis orci et, cursus neque.
-          Duis ultricies venenatis sapien. Etiam lacinia congue odio, at posuere
-          eros sagittis nec. Maecenas aliquam augue dapibus dignissim tincidunt.
-          Vivamus rhoncus at diam a rhoncus. Cras est felis, blandit eget urna
-          vel, volutpat faucibus urna. Pellentesque aliquam egestas turpis non
-          luctus. Proin at orci ipsum. Nulla molestie rutrum mi, sed
-          pellentesque felis sodales sed. Ut vel luctus neque. Duis sit amet ex
-          a purus luctus venenatis. Fusce ultricies nisl non lectus dictum
-          ornare. Curabitur posuere purus ac risus viverra scelerisque. Etiam
-          non elit risus.
-        </Text>
-      </View>
+      <ImageBackground source={bkImg}>
+        <View style={styles.container}>
+          <Image
+            style={styles.logo}
+            source={require("../../assets/logo.png")}
+          />
+          <Text style={styles.title}>Sobre nós</Text>
+          <Text style={styles.text}>
+            O Round visa{" "}
+            <Text style={{ fontFamily: "Assistant_700Bold" }}>
+              impactar a sociedade
+            </Text>{" "}
+            de diversas formas.
+          </Text>
+          <Text>{"     "}</Text>
+          <Text style={styles.text}>
+            Além do{" "}
+            <Text style={{ fontFamily: "Assistant_700Bold" }}>
+              benefício financeiro
+            </Text>
+            , o projeto espera ter resultados também no âmbito{" "}
+            <Text style={{ fontFamily: "Assistant_700Bold" }}>
+              sociocultural
+            </Text>
+            , reduzindo o pensamento da{" "}
+            <Text style={{ fontFamily: "Assistant_700Bold" }}>
+              cultura da fartura
+            </Text>
+            (“melhor sobrar do que faltar”) e alcançar um desenvolvimento mais
+            sustentável.
+          </Text>
+          <Text>{"     "}</Text>
+          <Text style={styles.text}>
+            Propomos então a criação de um aplicativo que facilitaria a{" "}
+            <Text style={{ fontFamily: "Assistant_700Bold" }}>comunicação</Text>{" "}
+            entre setores de um hospital. Possibilitando o controle e a
+            manutenção das informações por meio da{" "}
+            <Text style={{ fontFamily: "Assistant_700Bold" }}>
+              inteligência artificial
+            </Text>
+            , que aprende com o tempo e ajuda a{" "}
+            <Text style={{ fontFamily: "Assistant_700Bold" }}>
+              reduzir o desperdício de alimentos.
+            </Text>
+          </Text>
+
+          <Text style={styles.title}>Cláusula de Reserva</Text>
+          <Text style={styles.text}>
+            CLÁUSULA DE RESERVA (Lei 9.610/98 -LEI DE DIREITOS AUTORAIS): Este
+            site foi publicado e é mantido pelos discentes do 8º semestre, do
+            Curso de Graduação em Design Digital, da Universidade Anhembi
+            Morumbi, visando a atender às exigências do Projeto Final em Design
+            Digital. Trata-se de uma publicação temporária para propósitos
+            estritamente acadêmicos e sem fins lucrativos. Em atendimento às
+            exigênciasda Lei 9.610/98, do parágrafo 4°, do Artigo 184, do Código
+            Penal, os discentes responsáveis por esta publicação colocam-se à
+            disposição, por intermédio do e-mail round@gmail.com, para dirimir
+            quaisquer dúvidas referentes à eventual violação de direitos
+            autorais,
+          </Text>
+        </View>
+      </ImageBackground>
     </>
   );
 };

@@ -5,7 +5,7 @@ import styles from "./styles";
 
 const SearchSection = () => {
   const [search, setSearch] = useState("");
-  const [visible, setVisible] = React.useState(false);
+  const [visible, setVisible] = useState(false);
 
   const openMenu = () => setVisible(true);
   const closeMenu = () => setVisible(false);
@@ -18,7 +18,10 @@ const SearchSection = () => {
         placeholder="Pesquisar"
         onChangeText={setSearch}
         value={search}
-        style={[styles.searchBar, { backgroundColor: "#EEEEEE" }]}
+        style={[
+          styles.searchBar,
+          { backgroundColor: "#EEEEEE", shadowColor: "transparent" },
+        ]}
         inputStyle={{ color: "#AEAEAE" }}
       />
       <Provider>

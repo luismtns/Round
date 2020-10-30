@@ -1,10 +1,9 @@
 import { StyleSheet } from "react-native";
-import theme, { colors, text } from "../../styles/theme.style";
+import { colors, text } from "../../styles/theme.style";
 
 const styles = StyleSheet.create({
   fab: {
     position: "absolute",
-    margin: 16,
     right: 0,
     bottom: 0,
   },
@@ -27,6 +26,7 @@ const styles = StyleSheet.create({
   contentDetail: {
     flex: 1,
   },
+  fixedView: {},
 });
 
 export default styles;

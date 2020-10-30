@@ -13,22 +13,38 @@ import {
   IconButton,
 } from "react-native-paper";
 import { ScrollView } from "react-native-gesture-handler";
+import AuthService from "./../../services/auth/index";
 
 const Account: React.FC = () => {
-  const [account, setAccount] = useState();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [number, setNumber] = useState("");
+  const [address, setAddress] = useState("");
 
-  const [visible, setVisible] = React.useState(false);
+  const [visible, setVisible] = useState(false);
 
   const showDialog = () => setVisible(true);
 
   const hideDialog = () => setVisible(false);
 
   function goToLogin() {}
+
+  function saveData() {
+    const data = { name, email, number, address };
+
+    console.log(data);
+  }
   function changePassword() {}
 
-  function deleteUserAccount() {}
+  function deleteUserAccount() {
+    AuthService.delete()
+      ?.then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   return (
     <>
@@ -67,24 +83,42 @@ const Account: React.FC = () => {
               <TextInput
                 value={name}
                 label="Instituição"
+                placeholder="GRAACC"
                 style={styles.input}
-                onChangeText={setEmail}
+                onChangeText={setName}
                 mode="outlined"
               ></TextInput>
               <TextInput
                 value={email}
                 label="E-mail"
+                placeholder="example@email.com"
                 style={styles.input}
                 onChangeText={setEmail}
+                mode="outlined"
+              ></TextInput>
+            </View>
+            <View style={styles.inputBlock}>
+              <TextInput
+                value={number}
+                label="Telefone"
+                placeholder="Rua do Sabiá, 21"
+                style={styles.input}
+                onChangeText={setNumber}
+                mode="outlined"
+              ></TextInput>
+              <TextInput
+                value={address}
+                label="Endereço"
+                placeholder="(XX) XXXXX-XXXX"
+                style={styles.input}
+                onChangeText={setAddress}
                 mode="outlined"
               ></TextInput>
             </View>
             <Button
               mode="outlined"
               style={styles.saveButton}
-              onPress={() => {
-                console.log("press");
-              }}
+              onPress={() => saveData()}
             >
               Salvar
             </Button>

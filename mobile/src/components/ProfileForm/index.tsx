@@ -21,10 +21,30 @@ const ProfileForm = () => {
   const [kosherDiet, setKosherDiet] = useState(false);
   const [halalDiet, setHalalDiet] = useState(false);
 
-  const [isSwitchOn, setIsSwitchOn] = React.useState(false);
+  const [isSwitchOn, setIsSwitchOn] = useState(false);
   const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
 
   const [observations, setObservations] = useState("");
+
+  function savePatientForm() {
+    const diet = {
+      geral: generalDiet,
+      vegetariano: vegetarianDiet,
+      vegan: veganDiet,
+      kosher: kosherDiet,
+      halal: halalDiet,
+    };
+
+    const data = {
+      diet: selectedValue,
+      restrictions: diet,
+      acompanhante: isSwitchOn,
+      observations,
+    };
+
+    // data OK
+    console.log(data);
+  }
 
   return (
     <Surface style={styles.containerChangePatientData}>
@@ -112,7 +132,9 @@ const ProfileForm = () => {
         ></TextInput>
       </View>
 
-      <Button mode="contained">Salvar alterações</Button>
+      <Button mode="contained" onPress={() => savePatientForm()}>
+        Salvar alterações
+      </Button>
     </Surface>
   );
 };

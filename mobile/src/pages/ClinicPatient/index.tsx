@@ -31,10 +31,6 @@ export interface PatientProps {
 const ClinicPatient = (props: any) => {
   const { patient }: PatientProps = props.route.params;
 
-  const [visible, setVisible] = React.useState(false);
-  const closeMenu = () => setVisible(false);
-  const openMenu = () => setVisible(true);
-
   useEffect(() => {
     props.navigation.setOptions({
       title: PROFESSIONAL,

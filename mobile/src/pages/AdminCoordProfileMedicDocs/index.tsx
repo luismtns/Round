@@ -9,13 +9,6 @@ const AdminCoordProfileMedicDocs: React.FC = () => {
   return (
     <>
       <Profile />
-      <FAB
-        style={styles.fab}
-        label="Editar"
-        small
-        icon="pencil"
-        onPress={() => console.log("Pressed")}
-      />
     </>
   );
 };

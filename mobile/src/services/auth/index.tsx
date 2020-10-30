@@ -16,6 +16,10 @@ export const firebaseAuthService = {
     return auth.sendPasswordResetEmail(email);
   },
 
+  delete() {
+    return auth.currentUser?.delete();
+  },
+
   logout() {
     return auth.signOut();
   },

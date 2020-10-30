@@ -1,18 +1,23 @@
 import React from "react";
-import { View, Text } from "react-native";
-import { FAB, Surface } from "react-native-paper";
+import { View, Text, ScrollView } from "react-native";
+import { FAB, Portal, Surface } from "react-native-paper";
 import Profile from "../../components/Profile";
 import styles from "./styles";
 // import { Container } from './styles';
 
 const AdminCoordProfileMedic: React.FC = () => {
   return (
-    <>
-      <View style={styles.container}>
+    <View>
+      <ScrollView style={styles.container}>
         <Profile />
 
         <Surface
-          style={{ flex: 1, flexDirection: "row", padding: 16, marginTop: 16 }}
+          style={{
+            flex: 1,
+            flexDirection: "row",
+            padding: 16,
+            marginTop: 16,
+          }}
         >
           <View style={{ flex: 1 }}>
             <View>
@@ -158,7 +163,7 @@ const AdminCoordProfileMedic: React.FC = () => {
             </View>
           </View>
         </Surface>
-      </View>
+      </ScrollView>
 
       <FAB
         style={styles.fab}
@@ -167,7 +172,7 @@ const AdminCoordProfileMedic: React.FC = () => {
         icon="pencil"
         onPress={() => console.log("Pressed")}
       />
-    </>
+    </View>
   );
 };
 

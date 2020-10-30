@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity, Platform } from "react-native";
 import styles from "./styles";
 
 import {
@@ -12,6 +12,7 @@ import {
 } from "react-native-paper";
 // import { Container } from './styles';
 import { FAB } from "react-native-paper";
+import { ImagePicker } from "expo";
 
 interface Intern {
   type: string;
@@ -19,8 +20,7 @@ interface Intern {
   rh: string;
 }
 
-const AdminAddPatient: React.FC = () => {
-  const [selectIndex, setSelectedIndex] = useState(0);
+const AdminAddProfessional: React.FC = () => {
   const [name, setName] = useState("");
   const [birthday, setBirthday] = useState("");
   const [marital, setMarital] = useState("");
@@ -30,17 +30,13 @@ const AdminAddPatient: React.FC = () => {
   const [cpf, setCpf] = useState("");
   const [rg, setRg] = useState("");
 
-  const [hospitalization, setHospitalization] = useState("");
-  const [entryDate, setEntryDate] = useState("");
-  const [rh, setRh] = useState("");
-  const [healthInsurance, setHealthInsurance] = useState("");
-  const [sector, setSector] = useState("");
-  const [floor, setFloor] = useState("");
-  const [room, setRoom] = useState("");
-  const [bed, setBed] = useState("");
-  const [companion, setCompanion] = useState("");
+  const [specialty, setSpecialty] = useState("");
+  const [crm, setCrm] = useState("");
+  const [code, setCode] = useState("");
+  const [admission, setAdmission] = useState("");
+  const [manager, setManager] = useState("");
 
-  const [observation, setObservation] = useState("");
+  const [documents, setDocuments] = useState<string[]>([]);
 
   function saveData() {
     const personalData = {
@@ -54,19 +50,40 @@ const AdminAddPatient: React.FC = () => {
       rg,
     };
 
-    const hospitalizationData = {
-      hospitalization,
-      entryDate,
-      rh,
-      healthInsurance,
-      sector,
-      floor,
-      room,
-      bed,
-      companion,
+    const professionalData = {
+      specialty,
+      crm,
+      code,
+      admission,
+      manager,
     };
 
-    console.log(personalData, hospitalizationData);
+    console.log(personalData, professionalData);
+  }
+
+  async function handleSelectDocuments() {
+    if (Platform.OS !== "web") {
+      const { status } = await ImagePicker.requestCameraRollPermissionsAsync();
+
+      if (status !== "granted") {
+        alert("Eita, precisamos de acesso às suas fotos...");
+        return;
+      }
+
+      const result = await ImagePicker.launchImageLibraryAsync({
+        allowsEditing: true,
+        quality: 1,
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      });
+
+      if (result.cancelled) {
+        return;
+      }
+
+      const { uri: image } = result;
+
+      setDocuments([...documents, image]);
+    }
   }
 
   return (
@@ -187,107 +204,71 @@ const AdminAddPatient: React.FC = () => {
               <View style={styles.item}>
                 <TextInput
                   mode="outlined"
-                  value={hospitalization}
+                  value={specialty}
                   onChangeText={(e) => {
                     console.log(e);
-                    setHospitalization(e);
+                    setSpecialty(e);
                   }}
-                  label="Tipo da internação"
+                  label="Especialidade"
                 />
               </View>
               <View style={styles.item}>
                 <TextInput
                   mode="outlined"
-                  value={entryDate}
-                  onChangeText={setEntryDate}
-                  label="Data de Entrada"
+                  value={crm}
+                  onChangeText={setCrm}
+                  label="CRM"
                 />
               </View>
               <View style={styles.item}>
                 <TextInput
                   mode="outlined"
-                  value={rh}
-                  onChangeText={setRh}
-                  label="RH"
+                  value={code}
+                  onChangeText={setCode}
+                  label="Código"
                 />
               </View>
               <View style={styles.item}>
                 <TextInput
                   mode="outlined"
-                  value={healthInsurance}
-                  onChangeText={setHealthInsurance}
-                  label="Convênio"
+                  value={admission}
+                  onChangeText={setAdmission}
+                  label="Data de admissão"
                 />
               </View>
 
               <View style={styles.item}>
                 <TextInput
                   mode="outlined"
-                  value={sector}
-                  onChangeText={setSector}
-                  label="Setor"
-                />
-              </View>
-              <View style={[styles.item, { width: "12.5%" }]}>
-                <TextInput
-                  mode="outlined"
-                  value={floor}
-                  onChangeText={setFloor}
-                  label="Andar"
-                />
-              </View>
-              <View style={[styles.item, { width: "12.5%" }]}>
-                <TextInput
-                  mode="outlined"
-                  value={room}
-                  onChangeText={setRoom}
-                  label="Quarto"
-                />
-              </View>
-              <View style={styles.item}>
-                <TextInput
-                  mode="outlined"
-                  value={bed}
-                  onChangeText={setBed}
-                  label="Leito"
-                />
-              </View>
-              <View style={styles.item}>
-                <TextInput
-                  mode="outlined"
-                  value={companion}
-                  onChangeText={setCompanion}
-                  label="Acompanhamento"
+                  value={manager}
+                  onChangeText={setManager}
+                  label="Gestor"
                 />
               </View>
             </View>
           </View>
         </Surface>
 
-        <Surface style={{ marginTop: 40 }}>
-          <Text style={styles.title}>Observações</Text>
-          <View style={{ padding: 8, flex: 1 }}>
-            <View style={styles.container}>
-              <View style={[styles.item, { width: "100%" }]}>
-                <TextInput
-                  mode="outlined"
-                  value={observation}
-                  multiline={true}
-                  numberOfLines={5}
-                  onChangeText={setObservation}
-                  label="Observações"
-                />
+        {Platform.OS !== "web" && (
+          <Surface style={{ marginTop: 40 }}>
+            <Text style={styles.title}>Documentos</Text>
+            <View style={{ padding: 8, flex: 1 }}>
+              <View style={styles.container}>
+                <View style={[styles.item, { width: "100%" }]}>
+                  {documents.map((document: any) => {
+                    return <Text key={document.id}>{document.name}</Text>;
+                  })}
+
+                  <TouchableOpacity onPress={handleSelectDocuments}>
+                    <Text>Adicionar documentos</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
             </View>
-          </View>
-        </Surface>
+          </Surface>
+        )}
 
-        <Surface style={{ marginTop: 40 }}>
-          <Text style={styles.title}>Documentos</Text>
-          <View style={{ padding: 8, flex: 1 }}>
-            <View style={styles.container}>
-              <View style={[styles.item, { width: "100%" }]}>
-                <List.Item
+        {/* <List.Item
                   title="First Item"
                   right={(props) => (
                     <>
@@ -305,14 +286,10 @@ const AdminAddPatient: React.FC = () => {
                       />
                     </>
                   )}
-                />
-              </View>
-            </View>
-          </View>
-        </Surface>
+                /> */}
       </View>
     </>
   );
 };
 
-export default AdminAddPatient;
+export default AdminAddProfessional;

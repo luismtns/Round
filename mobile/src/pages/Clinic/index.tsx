@@ -1,12 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text } from "react-native";
 import styles from "./styles";
 import { DATA, PROFESSIONAL } from "../../services/data/index";
 import SearchSection from "../../components/SearchSection";
 import Table from "../../components/Table";
+import { useFocusEffect } from "@react-navigation/native";
+import { firebaseDataService } from "./../../services/data/index";
 
 const Clinic = ({ navigation }: any) => {
-  const data = DATA;
+  // var data_table: any[] = [];
+  const [dataTable, setDataTable] = useState([{}]);
 
   useEffect(() => {
     navigation.setOptions({
@@ -14,13 +17,19 @@ const Clinic = ({ navigation }: any) => {
     });
   }, []);
 
+  useFocusEffect(() => {
+    firebaseDataService.getPatientsList(30).then((data: any) => {
+      setDataTable(data);
+      console.log(dataTable);
+    });
+  });
   return (
     <>
       <View style={styles.container}>
         <Text style={styles.title}>Pacientes</Text>
 
         <SearchSection />
-        <Table data={data} />
+        <Table data={dataTable} />
       </View>
     </>
   );

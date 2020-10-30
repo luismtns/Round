@@ -12,6 +12,7 @@ import {
 } from "react-native-paper";
 // import { Container } from './styles';
 import { FAB } from "react-native-paper";
+import { firebaseDataService } from "./../../services/data/index";
 
 interface Intern {
   type: string;
@@ -66,7 +67,22 @@ const AdminAddPatient: React.FC = () => {
       companion,
     };
 
-    console.log(personalData, hospitalizationData);
+    const PatientData = {
+      hospitalization: hospitalizationData,
+      personal: personalData,
+      timestamp: firebaseDataService.timestamp,
+    };
+    firebaseDataService
+      .addPatient(PatientData)
+      .then((value) => {
+        alert("Dados Salvos");
+
+        console.log(value);
+      })
+      .catch((err) => {
+        alert("Falha ao salvar dados");
+        console.log(err);
+      });
   }
 
   return (

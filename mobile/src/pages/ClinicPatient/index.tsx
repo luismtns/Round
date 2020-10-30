@@ -17,6 +17,8 @@ import { colors, text, theme } from "../../styles/theme.style";
 import Profile from "../../components/Profile";
 import Historic from "../../components/Historic";
 import ProfileForm from "../../components/ProfileForm";
+import { useFocusEffect } from "@react-navigation/native";
+import { firebaseDataService } from "./../../services/data/index";
 
 export interface PatientProps {
   patient: {

@@ -20,7 +20,6 @@ const Clinic = ({ navigation }: any) => {
   useFocusEffect(() => {
     firebaseDataService.getPatientsList(30).then((data: any) => {
       setDataTable(data);
-      console.log(dataTable);
     });
   });
   return (

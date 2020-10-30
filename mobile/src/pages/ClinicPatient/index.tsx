@@ -20,24 +20,18 @@ import ProfileForm from "../../components/ProfileForm";
 import { useFocusEffect } from "@react-navigation/native";
 import { firebaseDataService } from "./../../services/data/index";
 
-export interface PatientProps {
-  patient: {
-    id: string;
-    name: string;
-    ra: string;
-    andar: string;
-    quarto: string;
-  };
-}
-
 const ClinicPatient = (props: any) => {
-  const { patient }: PatientProps = props.route.params;
-
+  const patient_uuid = props.route.params.patient;
   useEffect(() => {
     props.navigation.setOptions({
       title: PROFESSIONAL,
     });
   }, []);
+  useFocusEffect(() => {
+    firebaseDataService.getPatient(patient_uuid).then((data: any) => {
+      console.log(data.data());
+    });
+  });
 
   return (
     <>

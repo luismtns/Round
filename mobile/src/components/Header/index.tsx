@@ -10,7 +10,6 @@ interface ProfessionalProps {
 }
 
 const Header: React.FC<ProfessionalProps> = (props: any) => {
-  console.log(props);
   return (
     <>
       <View style={styles.container}>

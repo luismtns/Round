@@ -2,14 +2,17 @@ import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { DataTable } from "react-native-paper";
 
-const Table = ({ data, medic }: any) => {
+const Table = ({ data, professional }: any) => {
   const { navigate } = useNavigation();
   function goToPatient(id: any) {
     navigate(`ClinicPatient`, { patient: id });
   }
 
   function goToMedic(id: any) {
-    navigate(`AdminCoordProfileMedic`, { medic: id });
+    navigate(`AdminCoordProfileMedic`, {
+      screen: `Informações Gerais`,
+      params: { professional: id },
+    });
   }
 
   return (
@@ -18,7 +21,11 @@ const Table = ({ data, medic }: any) => {
         <DataTable.Title>Nome</DataTable.Title>
         <DataTable.Title>RH</DataTable.Title>
         <DataTable.Title>Data de nascimento</DataTable.Title>
-        <DataTable.Title>Localização</DataTable.Title>
+        {professional ? (
+          <DataTable.Title>Área</DataTable.Title>
+        ) : (
+          <DataTable.Title>Localização</DataTable.Title>
+        )}
       </DataTable.Header>
 
       {data.map((item: any, index: any) => {
@@ -26,7 +33,7 @@ const Table = ({ data, medic }: any) => {
           <DataTable.Row
             key={index}
             onPress={() => {
-              if (medic) {
+              if (professional) {
                 goToMedic(item.id);
               } else {
                 goToPatient(item.id);

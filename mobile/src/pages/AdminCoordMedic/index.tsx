@@ -37,7 +37,7 @@ const AdminCoordMedic: React.FC = () => {
         <Text style={styles.title}>Equipe médica</Text>
 
         <SearchSection />
-        <Table data={dataTable} medic />
+        <Table data={dataTable} professional />
       </View>
     </>
   );

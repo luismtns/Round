@@ -72,14 +72,6 @@ const ProfileForm = ({ uuid, alimentation }: any) => {
       });
   }
 
-  // if (alimentation) {
-  //   setSelectedValue(alimentation.diet ? alimentation.diet : "");
-  //   setIsSwitchOn(
-  //     alimentation.acompanhante ? alimentation.acompanhante : false
-  //   );
-  //   setObservations(alimentation.observations ? alimentation.observations : "");
-  // }
-
   return (
     <Surface style={styles.containerChangePatientData}>
       <Text

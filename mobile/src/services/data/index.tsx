@@ -92,9 +92,20 @@ export const firebaseDataService = {
     return ref.get();
   },
   async updatePatientAlimentation(uuid: string, new_alimentation: any) {
-    return this.collection_patient.doc(uuid).update({
+    this.collection_patient.doc(uuid).update({
       alimentation: new_alimentation,
     });
+    return this.collection_patient.doc(uuid).collection("historic").add({
+      timestamp: this.timestamp,
+      observations: new_alimentation.observations,
+    });
+  },
+  async getHistoric(uuid: string) {
+    const snapshot = await this.collection_patient
+      .doc(uuid)
+      .collection("historic")
+      .get();
+    return snapshot.docs.map((doc) => doc.data());
   },
 
   // PROFESSIONAL COLLECTIONS
@@ -145,7 +156,6 @@ export const firebaseDataService = {
   async updateUser(uuid: string, userData: any) {
     return this.collection_users.doc(uuid).set(userData);
   },
-
   // Helpers
   get collection_patient() {
     return Firebase.firestore().collection(collectionPatients);

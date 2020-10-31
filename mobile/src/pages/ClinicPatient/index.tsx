@@ -29,9 +29,11 @@ const ClinicPatient = (props: any) => {
         {isFetching && <Profile patient_data={patient_data} />}
         <View style={styles.containerDataAndHistory}>
           {isFetching && (
-            <ProfileForm uuid={patient_uuid} alimentation={patient_data} />
+            <>
+              <ProfileForm uuid={patient_uuid} alimentation={patient_data} />
+              <Historic uuid={patient_uuid} patientData={patient_data} />
+            </>
           )}
-          <Historic />
         </View>
       </View>
     </>

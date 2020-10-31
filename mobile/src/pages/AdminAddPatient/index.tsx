@@ -53,6 +53,7 @@ const AdminAddPatient: React.FC = () => {
       gender,
       cpf,
       rg,
+      observation,
     };
 
     const hospitalizationData = {
@@ -205,7 +206,6 @@ const AdminAddPatient: React.FC = () => {
                   mode="outlined"
                   value={hospitalization}
                   onChangeText={(e) => {
-                    console.log(e);
                     setHospitalization(e);
                   }}
                   label="Tipo da internação"

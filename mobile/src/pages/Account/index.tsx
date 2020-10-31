@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text } from "react-native";
 import styles from "./styles";
 import {
@@ -14,10 +14,13 @@ import {
 } from "react-native-paper";
 import { ScrollView } from "react-native-gesture-handler";
 import AuthService from "./../../services/auth/index";
+import { firebaseDataService } from "./../../services/data/index";
 
 const Account: React.FC = () => {
+  const uuid = firebaseDataService.uid;
+
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(firebaseDataService.email);
   const [number, setNumber] = useState("");
   const [address, setAddress] = useState("");
 
@@ -27,12 +30,32 @@ const Account: React.FC = () => {
 
   const hideDialog = () => setVisible(false);
 
+  useEffect(() => {
+    firebaseDataService.getUser(uuid).then(async (data: any) => {
+      if (data.data()) {
+        var _user_data = data.data();
+        setName(_user_data.name ? _user_data.name : "");
+        setNumber(_user_data.number ? _user_data.number : "");
+        setAddress(_user_data.address ? _user_data.address : "");
+      }
+    });
+  }, []);
   function goToLogin() {}
 
   function saveData() {
-    const data = { name, email, number, address };
+    const data = { name, number, address };
 
-    console.log(data);
+    firebaseDataService
+      .updateUser(uuid, data)
+      .then((value) => {
+        alert("Dados Salvos");
+
+        console.log(value);
+      })
+      .catch((err) => {
+        alert("Falha ao salvar dados");
+        console.log(err);
+      });
   }
   function changePassword() {}
 
@@ -93,6 +116,7 @@ const Account: React.FC = () => {
                 label="E-mail"
                 placeholder="example@email.com"
                 style={styles.input}
+                disabled={true}
                 onChangeText={setEmail}
                 mode="outlined"
               ></TextInput>
@@ -101,7 +125,7 @@ const Account: React.FC = () => {
               <TextInput
                 value={number}
                 label="Telefone"
-                placeholder="Rua do Sabiá, 21"
+                placeholder="(XX) XXXXX-XXXX"
                 style={styles.input}
                 onChangeText={setNumber}
                 mode="outlined"
@@ -109,7 +133,7 @@ const Account: React.FC = () => {
               <TextInput
                 value={address}
                 label="Endereço"
-                placeholder="(XX) XXXXX-XXXX"
+                placeholder="Rua do Sabiá, 21"
                 style={styles.input}
                 onChangeText={setAddress}
                 mode="outlined"

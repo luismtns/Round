@@ -37,11 +37,13 @@ export const PROFESSIONAL = {
 import { Firebase } from "../../integrations/firebase";
 import "firebase/firestore";
 import { ThemeConsumer } from "react-native-elements";
+
 const collectionPatients = "patients";
 const collectionProfessionals = "professionals";
+const collectionUser = "users";
 
 export const firebaseDataService = {
-  // Patient collection_patient
+  // PATIENTS COLLECTION
   async addPatient(PatientObj: any) {
     return this.collection_patient.add(PatientObj);
   },
@@ -90,19 +92,16 @@ export const firebaseDataService = {
     return ref.get();
   },
   async updatePatientAlimentation(uuid: string, new_alimentation: any) {
-    // if ((await this.collection_patient.doc(uuid).get()).exists) {
-    //   return this.collection_patient.doc(uuid).set({
-    //     alimentation: new_alimentation,
-    //   });
-    // } else {
     return this.collection_patient.doc(uuid).update({
       alimentation: new_alimentation,
     });
-    // }
   },
-  // Professionals collection_professionals
-  async addProfessional(PatientObj: any) {
-    return this.collection_professionals.add(PatientObj);
+
+  // PROFESSIONAL COLLECTIONS
+  async addProfessional(professionalOBj: any) {
+    return this.collection_professionals
+      .doc(professionalOBj.personal.cpf)
+      .set(professionalOBj);
   },
   async getProfessionalList(size: number, start?: number) {
     return this.collection_professionals
@@ -137,6 +136,16 @@ export const firebaseDataService = {
     var ref = this.collection_professionals.doc(uuid);
     return ref.get();
   },
+
+  // USERS COLLECTIONS
+  async getUser(uuid: string) {
+    var ref = this.collection_users.doc(uuid);
+    return ref.get();
+  },
+  async updateUser(uuid: string, userData: any) {
+    return this.collection_users.doc(uuid).set(userData);
+  },
+
   // Helpers
   get collection_patient() {
     return Firebase.firestore().collection(collectionPatients);
@@ -144,9 +153,14 @@ export const firebaseDataService = {
   get collection_professionals() {
     return Firebase.firestore().collection(collectionProfessionals);
   },
-
-  get uid() {
+  get collection_users() {
+    return Firebase.firestore().collection(collectionUser);
+  },
+  get uid(): any {
     return (Firebase.auth().currentUser || {}).uid;
+  },
+  get email(): any {
+    return (Firebase.auth().currentUser || {}).email;
   },
   get timestamp(): firebase.firestore.Timestamp {
     return Firebase.firestore.Timestamp.now();

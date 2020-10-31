@@ -44,8 +44,8 @@ const styles = StyleSheet.create({
   },
 
   modalIcon: {
-    maxWidth: 100,
-    maxHeight: 100,
+    maxWidth: 80,
+    maxHeight: 80,
     height: "100%",
     width: "100%",
     alignSelf: "center",

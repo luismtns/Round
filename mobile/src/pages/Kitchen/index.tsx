@@ -6,12 +6,13 @@ import { useEffect } from "react";
 import SearchSection from "../../components/SearchSection";
 import TableKitchen from "../../components/TableKitchen";
 
-const Kitchen: React.FC = ({ navigation }: any) => {
+const Kitchen: React.FC = ({ navigation, route }: any) => {
   const [selectedValue, setSelectedValue] = useState();
+  var userInfo = route.params.data;
 
   useEffect(() => {
     navigation.setOptions({
-      title: PROFESSIONAL,
+      title: userInfo,
     });
   }, []);
 

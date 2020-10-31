@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     fontSize: theme.FONT_SIZE_MEDIUM,
     color: "#F3F3F3",
   },
-  ra: {
+  role: {
     fontSize: theme.FONT_SIZE_SMALL,
     color: "#659A9F",
   },

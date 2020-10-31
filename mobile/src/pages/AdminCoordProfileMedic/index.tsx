@@ -15,11 +15,9 @@ const AdminCoordProfileMedic: React.FC = (props: any) => {
     //   title: PROFESSIONAL,
     // });
 
-    firebaseDataService
-      .getProfessional(professional_uuid)
-      .then(async (data: any) => {
-        setProfessionalInfo(data.data());
-      });
+    firebaseDataService.getProfessional(professional_uuid).then((data: any) => {
+      setProfessionalInfo(data);
+    });
   }, []);
 
   return (

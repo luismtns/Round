@@ -25,6 +25,7 @@ function Menu() {
   const logo = require("../../assets/logo.png");
 
   const hideModal = () => setVisible(false);
+  const [destination, setDestination] = useState("");
 
   // Dialong Consts
   const [open, setOpen] = useState(false);
@@ -34,20 +35,26 @@ function Menu() {
   });
 
   function goToClinic() {
+    setDestination("Clinic");
     setVisible(true);
     // navigate("Clinic");
   }
 
   function goToAdmin() {
-    navigate("AdminMenu");
+    setDestination("AdminMenu");
+    setVisible(true);
+    // navigate("AdminMenu");
   }
 
   function goToConfigPage() {
-    navigate("Configuration");
+    setDestination("Configuration");
+    setVisible(true);
   }
 
   function goToKitchen() {
-    navigate("Kitchen");
+    setDestination("Kitchen");
+    setVisible(true);
+    // navigate("Kitchen");
   }
 
   function authUser() {
@@ -58,15 +65,48 @@ function Menu() {
       });
       return setOpen(true);
     }
-    firebaseDataService.getAuthMedic(userPass).then(async (data: any) => {
-      if (data && data.clinic) {
-        hideModal();
-        navigate("Clinic");
+    firebaseDataService.getProfessional(userPass).then(async (data: any) => {
+      if (data && data.auth) {
+        switch (destination) {
+          case "Clinic":
+            hideModal();
+            if (data.auth.clinic) {
+              navigate("Clinic", { data });
+            }
+            break;
+          case "Kitchen":
+            hideModal();
+            if (data.auth.kitchen) {
+              navigate("Kitchen", { data });
+            }
+            break;
+          case "AdminMenu":
+            hideModal();
+            if (data.auth.adm) {
+              navigate("AdminMenu", { data });
+            }
+            break;
+          case "Configuration":
+            hideModal();
+            if (data.auth.adm) {
+              navigate("Configuration");
+            }
+            break;
+          default:
+            hideModal();
+            setDialog({
+              title: "Erro!",
+              label:
+                "CPF informado não autorizado a acessar essa área, se o problema persistir contate um administrador.",
+            });
+            setOpen(true);
+            break;
+        }
       } else {
-        hideModal();
         setDialog({
           title: "Erro!",
-          label: "CPF informado não encontrado ou não autorizado.",
+          label:
+            "CPF informado não encontrado. Verifique o campo e tente novamente.",
         });
         setOpen(true);
       }

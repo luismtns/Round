@@ -146,8 +146,8 @@ export const firebaseDataService = {
       });
   },
   async getProfessional(uuid: string) {
-    var ref = this.collection_professionals.doc(uuid);
-    return ref.get();
+    const snapshot = await this.collection_professionals.doc(uuid).get();
+    return snapshot.data();
   },
 
   // USERS COLLECTIONS
@@ -157,12 +157,6 @@ export const firebaseDataService = {
   },
   async updateUser(uuid: string, userData: any) {
     return this.collection_users.doc(uuid).set(userData);
-  },
-
-  // AUTH Users Collection
-  async getAuthMedic(uuid: string) {
-    const snapshot = await this.collection_professionals.doc(uuid).get();
-    return snapshot.data()?.auth;
   },
   // Helpers
   get collection_patient() {

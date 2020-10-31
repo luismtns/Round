@@ -1,30 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { View, Text, Image, ImageBackground } from "react-native";
-import { Button } from "react-native-paper";
-import DialogPrimary from "../../components/DialogPrimary";
 import styles from "./styles";
 
 const bkImg = require("../../assets/background_2.png");
 
 const About: React.FC = () => {
-  const [open, setOpen] = useState(false);
-
-  function teste() {
-    console.log("teste");
-  }
   return (
     <>
-      <DialogPrimary
-        show={open}
-        title="Oi pessoal"
-        paragraph="Olá gente linda"
-        button="OK"
-        buttonPrimary="Vai"
-        hide={() => setOpen(false)}
-        action={() => teste()}
-      />
-
-      <Button onPress={() => setOpen(true)}>AAA</Button>
       <ImageBackground source={bkImg}>
         <View style={styles.container}>
           <Image

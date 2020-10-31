@@ -10,7 +10,6 @@ const ClinicPatient = (props: any) => {
   const patient_uuid = props.route.params.patient;
   const [isFetching, setIsFetching] = useState(false);
   const [patient_data, setPatientData] = useState({});
-  const [patientAlimentation, setPatientAlimentation] = useState({});
 
   useEffect(() => {
     // props.navigation.setOptions({

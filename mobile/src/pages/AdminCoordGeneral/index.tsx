@@ -28,6 +28,10 @@ const AdminCoordGeneral: React.FC = () => {
     // navigate(`Patient`, { patient: id });
   }
 
+  function goToAddNewProfessional() {
+    navigate("AdminAddProfessionalGeneral");
+  }
+
   return (
     <>
       <FAB
@@ -35,7 +39,7 @@ const AdminCoordGeneral: React.FC = () => {
         small
         label="Adicionar"
         icon="plus"
-        onPress={() => console.log("Pressed")}
+        onPress={goToAddNewProfessional}
       />
       <View style={styles.container}>
         <Text style={styles.title}>Equipe geral</Text>

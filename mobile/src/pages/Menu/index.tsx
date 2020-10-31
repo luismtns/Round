@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, Image, ImageBackground } from "react-native";
 
 import styles from "./styles";
@@ -13,20 +13,29 @@ import {
   Provider,
   TextInput,
 } from "react-native-paper";
+import { firebaseDataService } from "../../services/data";
+import DialogPrimary from "./../../components/DialogPrimary/index";
 
 function Menu() {
   const { navigate } = useNavigation();
   const [visible, setVisible] = useState(false);
-
+  const [userPass, setUserPass] = useState("");
   const img = require("../../assets/key.png");
   const bkImg = require("../../assets/illustration.png");
   const logo = require("../../assets/logo.png");
 
   const hideModal = () => setVisible(false);
 
+  // Dialong Consts
+  const [open, setOpen] = useState(false);
+  const [Dialog, setDialog] = useState({
+    title: "",
+    label: "",
+  });
+
   function goToClinic() {
-    setVisible(false);
-    navigate("Clinic");
+    setVisible(true);
+    // navigate("Clinic");
   }
 
   function goToAdmin() {
@@ -41,8 +50,43 @@ function Menu() {
     navigate("Kitchen");
   }
 
+  function authUser() {
+    if (!userPass) {
+      setDialog({
+        title: "Campo vazio!",
+        label: "Informe seu CPF para realizar o acesso",
+      });
+      return setOpen(true);
+    }
+    firebaseDataService.getAuthMedic(userPass).then(async (data: any) => {
+      if (data && data.clinic) {
+        hideModal();
+        navigate("Clinic");
+      } else {
+        hideModal();
+        setDialog({
+          title: "Erro!",
+          label: "CPF informado não encontrado ou não autorizado.",
+        });
+        setOpen(true);
+      }
+    });
+  }
+
+  // useEffect(() => {
+  // }, []);
+
   return (
     <>
+      <DialogPrimary
+        show={open}
+        title={Dialog.title}
+        paragraph={Dialog.label}
+        button="OK"
+        hide={() => {
+          setOpen(false);
+        }}
+      />
       <Provider>
         <Portal>
           <Modal
@@ -60,10 +104,10 @@ function Menu() {
             <View style={styles.modalContainer}>
               <View>
                 <Image style={styles.modalIcon} source={img}></Image>
-                <Text>Insira abaixo o código de autenticação</Text>
+                <Text>Insira abaixo seu CPF para ser indetificado.</Text>
                 <TextInput
-                  textContentType={"password"}
-                  secureTextEntry={true}
+                  value={userPass}
+                  onChangeText={setUserPass}
                   style={styles.modalActions}
                 ></TextInput>
               </View>
@@ -73,7 +117,7 @@ function Menu() {
                   mode="contained"
                   theme={{ colors: { primary: "#376C71" } }}
                   style={[styles.modalActions, { marginVertical: 12 }]}
-                  onPress={() => {}}
+                  onPress={authUser}
                 >
                   Acessar
                 </Button>

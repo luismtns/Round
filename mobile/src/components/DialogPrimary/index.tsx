@@ -10,6 +10,7 @@ const DialogPrimary = ({
   show,
   hide,
   action,
+  hideModal,
 }: any) => {
   const visible = show ? true : false;
 

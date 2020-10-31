@@ -220,7 +220,6 @@ const AdminAddProfessional: React.FC = () => {
                   mode="outlined"
                   value={specialty}
                   onChangeText={(e) => {
-                    d;
                     setSpecialty(e);
                   }}
                   label="Especialidade"

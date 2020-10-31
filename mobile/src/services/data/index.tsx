@@ -158,6 +158,12 @@ export const firebaseDataService = {
   async updateUser(uuid: string, userData: any) {
     return this.collection_users.doc(uuid).set(userData);
   },
+
+  // AUTH Users Collection
+  async getAuthMedic(uuid: string) {
+    const snapshot = await this.collection_professionals.doc(uuid).get();
+    return snapshot.data()?.auth;
+  },
   // Helpers
   get collection_patient() {
     return Firebase.firestore().collection(collectionPatients);

@@ -89,8 +89,18 @@ export const firebaseDataService = {
     var ref = this.collection_patient.doc(uuid);
     return ref.get();
   },
+  async updatePatientAlimentation(uuid: string, new_alimentation: any) {
+    // if ((await this.collection_patient.doc(uuid).get()).exists) {
+    //   return this.collection_patient.doc(uuid).set({
+    //     alimentation: new_alimentation,
+    //   });
+    // } else {
+    return this.collection_patient.doc(uuid).update({
+      alimentation: new_alimentation,
+    });
+    // }
+  },
   // Professionals collection_professionals
-
   async addProfessional(PatientObj: any) {
     return this.collection_professionals.add(PatientObj);
   },

@@ -24,6 +24,7 @@ import MedicRoute from "./MedicRoute";
 import NewPatientRoute from "./NewPatientRoute";
 import AdminFoodWaste from "../pages/AdminFoodWaste";
 import AdminAddProfessional from "../pages/AdminAddProfessional";
+import AdminAddProfessionalGeneral from "../pages/AdminAddProfessionalGeneral";
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -75,7 +76,6 @@ function AppRoute() {
         name="ClinicPatient"
         component={ClinicPatient}
       />
-
       <Screen
         name="Configuration"
         options={{ headerTitle: "Configurações" }}
@@ -94,7 +94,6 @@ function AppRoute() {
           headerTitle: "Conta",
         }}
       />
-
       <Screen
         name="AdminMenu"
         component={AdminMenu}
@@ -128,7 +127,6 @@ function AppRoute() {
           ),
         }}
       />
-
       <Screen
         name="AdminFoodWaste"
         component={AdminFoodWaste}
@@ -145,10 +143,26 @@ function AppRoute() {
           ),
         }}
       />
-
       <Screen
         name="AdminAddProfessional"
         component={AdminAddProfessional}
+        options={{
+          headerTitle: (props) => <Header {...props} />,
+          headerRight: () => (
+            <Button
+              onPress={() => navigate("Menu")}
+              icon="logout"
+              color="#659A9F"
+            >
+              Sair
+            </Button>
+          ),
+        }}
+      />
+
+      <Screen
+        name="AdminAddProfessionalGeneral"
+        component={AdminAddProfessionalGeneral}
         options={{
           headerTitle: (props) => <Header {...props} />,
           headerRight: () => (
@@ -179,7 +193,6 @@ function AppRoute() {
           ),
         }}
       />
-
       <Screen
         name="AdminCoordMedic"
         component={AdminCoordMedic}
@@ -196,7 +209,6 @@ function AppRoute() {
           ),
         }}
       />
-
       <Screen
         name="AdminCoordGeneral"
         component={AdminCoordGeneral}
@@ -213,7 +225,6 @@ function AppRoute() {
           ),
         }}
       />
-
       <Screen
         name="Kitchen"
         component={Kitchen}
@@ -231,7 +242,6 @@ function AppRoute() {
           ),
         }}
       />
-
       <Screen
         name="KitchenTag"
         component={KitchenTag}

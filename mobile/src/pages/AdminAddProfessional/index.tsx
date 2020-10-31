@@ -4,24 +4,19 @@ import styles from "./styles";
 
 import {
   Avatar,
+  Chip,
   IconButton,
-  List,
   Portal,
   Surface,
   TextInput,
 } from "react-native-paper";
-// import { Container } from './styles';
 import { FAB } from "react-native-paper";
 import { ImagePicker } from "expo";
 import { firebaseDataService } from "./../../services/data/index";
-
-interface Intern {
-  type: string;
-  date: string;
-  rh: string;
-}
+import { useNavigation } from "@react-navigation/native";
 
 const AdminAddProfessional: React.FC = () => {
+  const { navigate } = useNavigation();
   const [name, setName] = useState("");
   const [birthday, setBirthday] = useState("");
   const [marital, setMarital] = useState("");
@@ -36,6 +31,10 @@ const AdminAddProfessional: React.FC = () => {
   const [code, setCode] = useState("");
   const [admission, setAdmission] = useState("");
   const [manager, setManager] = useState("");
+
+  const [kitchen, setKitchen] = useState(false);
+  const [adm, setAdm] = useState(false);
+  const [clinic, setClinic] = useState(false);
 
   const [documents, setDocuments] = useState<string[]>([]);
 
@@ -59,15 +58,24 @@ const AdminAddProfessional: React.FC = () => {
       manager,
     };
 
+    const auth = {
+      kitchen,
+      adm,
+      clinic,
+    };
+
     const ProfessionalDataModel = {
       professional: professionalData,
       personal: personalData,
       timestamp: firebaseDataService.timestamp,
+      auth,
     };
+
     firebaseDataService
       .addProfessional(ProfessionalDataModel)
       .then((value) => {
         alert("Dados Salvos");
+        navigate("AdminCoordMedic");
       })
       .catch((err) => {
         alert("Falha ao salvar dados");
@@ -140,7 +148,7 @@ const AdminAddProfessional: React.FC = () => {
                 onPress={() => saveData()}
               />
             </Portal>
-            <View style={styles.container}>
+            <View style={[styles.container]}>
               <View style={[styles.item, { width: "75%" }]}>
                 <TextInput
                   mode="outlined"
@@ -262,6 +270,41 @@ const AdminAddProfessional: React.FC = () => {
           </View>
         </Surface>
 
+        <Surface style={{ marginTop: 40 }}>
+          <Text style={styles.title}>Cargos</Text>
+          <View style={{ padding: 8, flex: 1, marginLeft: 8, marginBottom: 8 }}>
+            <View style={styles.container}>
+              <View>
+                <Chip
+                  selected={clinic}
+                  style={{ marginRight: 12 }}
+                  onPress={() => setClinic(!clinic)}
+                >
+                  Clínica
+                </Chip>
+              </View>
+              <View>
+                <Chip
+                  selected={kitchen}
+                  style={{ marginRight: 12 }}
+                  onPress={() => setKitchen(!kitchen)}
+                >
+                  Cozinha
+                </Chip>
+              </View>
+              <View>
+                <Chip
+                  selected={adm}
+                  style={{ marginRight: 12 }}
+                  onPress={() => setAdm(!adm)}
+                >
+                  Administração
+                </Chip>
+              </View>
+            </View>
+          </View>
+        </Surface>
+
         {Platform.OS !== "web" && (
           <Surface style={{ marginTop: 40 }}>
             <Text style={styles.title}>Documentos</Text>
@@ -280,26 +323,6 @@ const AdminAddProfessional: React.FC = () => {
             </View>
           </Surface>
         )}
-
-        {/* <List.Item
-                  title="First Item"
-                  right={(props) => (
-                    <>
-                      <IconButton
-                        icon="download"
-                        color="black"
-                        size={20}
-                        onPress={() => console.log("Pressed")}
-                      />
-                      <IconButton
-                        icon="delete"
-                        color="red"
-                        size={20}
-                        onPress={() => console.log("Pressed")}
-                      />
-                    </>
-                  )}
-                /> */}
       </View>
     </>
   );

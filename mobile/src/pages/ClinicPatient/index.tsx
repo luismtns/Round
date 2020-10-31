@@ -10,6 +10,7 @@ const ClinicPatient = (props: any) => {
   const patient_uuid = props.route.params.patient;
   const [isFetching, setIsFetching] = useState(false);
   const [patient_data, setPatientData] = useState({});
+  const [patientAlimentation, setPatientAlimentation] = useState({});
 
   useEffect(() => {
     // props.navigation.setOptions({
@@ -27,7 +28,9 @@ const ClinicPatient = (props: any) => {
       <View style={styles.container}>
         {isFetching && <Profile patient_data={patient_data} />}
         <View style={styles.containerDataAndHistory}>
-          <ProfileForm />
+          {isFetching && (
+            <ProfileForm uuid={patient_uuid} alimentation={patient_data} />
+          )}
           <Historic />
         </View>
       </View>

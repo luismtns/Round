@@ -5,11 +5,14 @@ import Profile from "../../components/Profile";
 import styles from "./styles";
 // import { Container } from './styles';
 
-const AdminCoordProfileMedic: React.FC = () => {
+const AdminCoordProfileMedic: React.FC = (props: any) => {
+  // const medic_uuid = props.route.params.medic;
+  console.log(props.route.params);
+
   return (
     <View>
       <ScrollView style={styles.container}>
-        <Profile />
+        {/* <Profile />* */}
 
         <Surface
           style={{

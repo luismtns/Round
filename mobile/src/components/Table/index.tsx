@@ -9,7 +9,12 @@ const Table = ({ data, medic }: any) => {
   }
 
   function goToMedic(id: any) {
-    navigate(`AdminCoordProfileMedic`, { medic: id });
+    navigate(`AdminCoordProfileMedic`, {
+      screen: "Informações Gerais",
+      params: {
+        medic: id,
+      },
+    });
   }
 
   return (

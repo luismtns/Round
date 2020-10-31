@@ -6,11 +6,7 @@ import styles from "./styles";
 // import { Container } from './styles';
 
 const AdminCoordProfileMedicDocs: React.FC = () => {
-  return (
-    <>
-      <Profile />
-    </>
-  );
+  return <>{/* <Profile /> */}</>;
 };
 
 export default AdminCoordProfileMedicDocs;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Picker, View } from "react-native";
 import {
   Avatar,
@@ -12,22 +12,40 @@ import {
 } from "react-native-paper";
 import { colors, text } from "../../styles/theme.style";
 import styles from "./styles";
+import { firebaseDataService } from "./../../services/data/index";
 
-const ProfileForm = () => {
-  const [selectedValue, setSelectedValue] = useState("java");
-  const [generalDiet, setGeneralDiet] = useState(false);
-  const [vegetarianDiet, setVegetarianDiet] = useState(false);
-  const [veganDiet, setVeganDiet] = useState(false);
-  const [kosherDiet, setKosherDiet] = useState(false);
-  const [halalDiet, setHalalDiet] = useState(false);
+const ProfileForm = ({ uuid, alimentation }: any) => {
+  alimentation = alimentation.alimentation ? alimentation.alimentation : {};
+  const [selectedValue, setSelectedValue] = useState(
+    alimentation.diet ? alimentation.diet : ""
+  );
+  const [generalDiet, setGeneralDiet] = useState(
+    alimentation.restrictions ? alimentation.restrictions.geral : false
+  );
+  const [vegetarianDiet, setVegetarianDiet] = useState(
+    alimentation.restrictions ? alimentation.restrictions.vegetariano : false
+  );
+  const [veganDiet, setVeganDiet] = useState(
+    alimentation.restrictions ? alimentation.restrictions.vegan : false
+  );
+  const [kosherDiet, setKosherDiet] = useState(
+    alimentation.restrictions ? alimentation.restrictions.kosher : false
+  );
+  const [halalDiet, setHalalDiet] = useState(
+    alimentation.restrictions ? alimentation.restrictions.halal : false
+  );
 
-  const [isSwitchOn, setIsSwitchOn] = useState(false);
+  const [isSwitchOn, setIsSwitchOn] = useState(
+    alimentation.acompanhante ? alimentation.acompanhante : false
+  );
   const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
 
-  const [observations, setObservations] = useState("");
+  const [observations, setObservations] = useState(
+    alimentation.observations ? alimentation.observations : ""
+  );
 
   function savePatientForm() {
-    const diet = {
+    const Restrictions = {
       geral: generalDiet,
       vegetariano: vegetarianDiet,
       vegan: veganDiet,
@@ -35,16 +53,32 @@ const ProfileForm = () => {
       halal: halalDiet,
     };
 
-    const data = {
+    const alimentationData = {
       diet: selectedValue,
-      restrictions: diet,
+      restrictions: Restrictions,
       acompanhante: isSwitchOn,
       observations,
     };
 
     // data OK
-    console.log(data);
+    firebaseDataService
+      .updatePatientAlimentation(uuid, alimentationData)
+      .then((value) => {
+        alert("Dados Salvos");
+      })
+      .catch((err) => {
+        alert("Falha ao salvar dados");
+        console.log(err);
+      });
   }
+
+  // if (alimentation) {
+  //   setSelectedValue(alimentation.diet ? alimentation.diet : "");
+  //   setIsSwitchOn(
+  //     alimentation.acompanhante ? alimentation.acompanhante : false
+  //   );
+  //   setObservations(alimentation.observations ? alimentation.observations : "");
+  // }
 
   return (
     <Surface style={styles.containerChangePatientData}>
@@ -60,12 +94,8 @@ const ProfileForm = () => {
           style={{ height: 50, borderRadius: 3.5 }}
           onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
         >
-          <Picker.Item label="Geral" value="all" />
-          <Picker.Item label="Lorem" value="lorem" />
-          <Picker.Item label="Lorem" value="lorem" />
-          <Picker.Item label="Lorem" value="lorem" />
-          <Picker.Item label="Lorem" value="lorem" />
-          <Picker.Item label="Lorem" value="lorem" />
+          <Picker.Item label="Selecione" value="" />
+          <Picker.Item label="Geral" value="Geral" />
           <Picker.Item label="Lorem" value="lorem" />
         </Picker>
       </View>

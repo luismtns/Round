@@ -1,12 +1,19 @@
 import { useNavigation } from "@react-navigation/native";
-import React from "react";
+import React, { useEffect } from "react";
 import { SafeAreaView, View, Text } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Surface } from "react-native-paper";
 import styles from "./styles";
 
-const AdminMenu: React.FC = () => {
+const AdminMenu: React.FC = ({ navigation, route }: any) => {
   const { navigate } = useNavigation();
+  var userInfo = route.params.data;
+
+  useEffect(() => {
+    navigation.setOptions({
+      title: userInfo,
+    });
+  }, []);
 
   function goToAddPatient() {
     navigate("AdminAddPatient");

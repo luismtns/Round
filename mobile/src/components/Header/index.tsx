@@ -13,15 +13,16 @@ const Header: React.FC<ProfessionalProps> = (props: any) => {
   return (
     <>
       <View style={styles.container}>
-        <Avatar.Image
-          size={32}
-          source={{
-            uri: props.children.img,
-          }}
+        <Avatar.Text
+          size={40}
+          labelStyle={styles.role}
+          label={props.children.personal?.name.slice(0, 2).toLocaleUpperCase()}
         />
         <View style={styles.titles}>
-          <Text style={styles.name}>{props.children.name}</Text>
-          <Text style={styles.ra}>{props.children.ra}</Text>
+          <Text style={styles.name}>{props.children.personal?.name}</Text>
+          <Text style={styles.role}>
+            {props.children.professional?.specialty}
+          </Text>
         </View>
       </View>
     </>

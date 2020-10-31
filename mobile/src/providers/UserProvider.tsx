@@ -7,8 +7,6 @@ function UserProvider(props: any) {
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState();
 
-  console.log(user);
-
   function onAuthStateChanged(user: any) {
     setUser(user);
     if (initializing) setInitializing(false);

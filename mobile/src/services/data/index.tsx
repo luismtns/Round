@@ -49,8 +49,8 @@ export const firebaseDataService = {
   },
   async getPatientsList(size: number, start?: number) {
     return this.collection_patient
-      .limit(size)
       .orderBy("timestamp", "desc")
+      .limit(size)
       .get()
       .then(function (querySnapshot) {
         var patients_data: any[] = [];
@@ -104,6 +104,8 @@ export const firebaseDataService = {
     const snapshot = await this.collection_patient
       .doc(uuid)
       .collection("historic")
+      .orderBy("timestamp", "desc")
+      .limit(6)
       .get();
     return snapshot.docs.map((doc) => doc.data());
   },
@@ -116,8 +118,8 @@ export const firebaseDataService = {
   },
   async getProfessionalList(size: number, start?: number) {
     return this.collection_professionals
-      .limit(size)
       .orderBy("timestamp", "desc")
+      .limit(size)
       .get()
       .then(function (querySnapshot) {
         var professional_data: any[] = [];

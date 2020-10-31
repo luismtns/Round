@@ -13,6 +13,8 @@ import {
 import { colors, text } from "../../styles/theme.style";
 import styles from "./styles";
 import { firebaseDataService } from "./../../services/data/index";
+import DialogPrimary from "./../DialogPrimary/index";
+import { useNavigation } from "@react-navigation/native";
 
 const ProfileForm = ({ uuid, alimentation }: any) => {
   alimentation = alimentation.alimentation ? alimentation.alimentation : {};
@@ -44,6 +46,13 @@ const ProfileForm = ({ uuid, alimentation }: any) => {
     alimentation.observations ? alimentation.observations : ""
   );
 
+  const [Dialog, setDialog] = useState({
+    title: "",
+    label: "",
+  });
+  const [open, setOpen] = useState(false);
+  const { navigate } = useNavigation();
+
   function savePatientForm() {
     const Restrictions = {
       geral: generalDiet,
@@ -64,100 +73,122 @@ const ProfileForm = ({ uuid, alimentation }: any) => {
     firebaseDataService
       .updatePatientAlimentation(uuid, alimentationData)
       .then((value) => {
-        alert("Dados Salvos");
+        setDialog({
+          title: "Sucesso!",
+          label: "Dados do paciente salvos com sucesso.",
+        });
       })
       .catch((err) => {
-        alert("Falha ao salvar dados");
-        console.log(err);
+        setDialog({
+          title: "Erro!",
+          label: "Erro ao salvar dados do paciente.",
+        });
+      })
+      .finally(() => {
+        setOpen(true);
       });
   }
 
   return (
-    <Surface style={styles.containerChangePatientData}>
-      <Text
-        style={[styles.title, { fontSize: text.text3, color: colors.gray }]}
-      >
-        Alimentação
-      </Text>
-      <View style={styles.inputBlock}>
-        <Text style={styles.subtitles}>Dieta</Text>
-        <Picker
-          selectedValue={selectedValue}
-          style={{ height: 50, borderRadius: 3.5 }}
-          onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+    <>
+      <DialogPrimary
+        show={open}
+        title={Dialog.title}
+        paragraph={Dialog.label}
+        button="OK"
+        hide={() => {
+          setOpen(false);
+          navigate(`Clinic`);
+        }}
+      />
+      <Surface style={styles.containerChangePatientData}>
+        <Text
+          style={[styles.title, { fontSize: text.text3, color: colors.gray }]}
         >
-          <Picker.Item label="Selecione" value="" />
-          <Picker.Item label="Geral" value="Geral" />
-          <Picker.Item label="Lorem" value="lorem" />
-        </Picker>
-      </View>
-
-      <View style={styles.restrictions}>
-        <Text style={styles.subtitles}>Restrições alimentares</Text>
-        <View style={{ flexDirection: "row" }}>
-          <Chip
-            selected={generalDiet}
-            style={{ marginRight: 12 }}
-            onPress={() => setGeneralDiet(!generalDiet)}
+          Alimentação
+        </Text>
+        <View style={styles.inputBlock}>
+          <Text style={styles.subtitles}>Dieta</Text>
+          <Picker
+            selectedValue={selectedValue}
+            style={{ height: 50, borderRadius: 3.5 }}
+            onValueChange={(itemValue, itemIndex) =>
+              setSelectedValue(itemValue)
+            }
           >
-            Comum
-          </Chip>
-          <Chip
-            selected={vegetarianDiet}
-            style={{ marginRight: 12 }}
-            onPress={() => setVegetarianDiet(!vegetarianDiet)}
-          >
-            Vegetariana
-          </Chip>
-          <Chip
-            selected={veganDiet}
-            style={{ marginRight: 12 }}
-            onPress={() => setVeganDiet(!veganDiet)}
-          >
-            Vegana
-          </Chip>
-          <Chip
-            selected={kosherDiet}
-            style={{ marginRight: 12 }}
-            onPress={() => setKosherDiet(!kosherDiet)}
-          >
-            Kosher
-          </Chip>
-          <Chip
-            selected={halalDiet}
-            style={{ marginRight: 12 }}
-            onPress={() => setHalalDiet(!halalDiet)}
-          >
-            Halal
-          </Chip>
+            <Picker.Item label="Selecione" value="" />
+            <Picker.Item label="Geral" value="Geral" />
+            <Picker.Item label="Lorem" value="lorem" />
+          </Picker>
         </View>
-      </View>
 
-      <View style={[styles.inputBlock, { flexDirection: "row" }]}>
-        <Text style={styles.subtitles}>Acompanhante</Text>
-        <Switch
-          style={{ marginLeft: 12 }}
-          value={isSwitchOn}
-          onValueChange={onToggleSwitch}
-        />
-      </View>
+        <View style={styles.restrictions}>
+          <Text style={styles.subtitles}>Restrições alimentares</Text>
+          <View style={{ flexDirection: "row" }}>
+            <Chip
+              selected={generalDiet}
+              style={{ marginRight: 12 }}
+              onPress={() => setGeneralDiet(!generalDiet)}
+            >
+              Comum
+            </Chip>
+            <Chip
+              selected={vegetarianDiet}
+              style={{ marginRight: 12 }}
+              onPress={() => setVegetarianDiet(!vegetarianDiet)}
+            >
+              Vegetariana
+            </Chip>
+            <Chip
+              selected={veganDiet}
+              style={{ marginRight: 12 }}
+              onPress={() => setVeganDiet(!veganDiet)}
+            >
+              Vegana
+            </Chip>
+            <Chip
+              selected={kosherDiet}
+              style={{ marginRight: 12 }}
+              onPress={() => setKosherDiet(!kosherDiet)}
+            >
+              Kosher
+            </Chip>
+            <Chip
+              selected={halalDiet}
+              style={{ marginRight: 12 }}
+              onPress={() => setHalalDiet(!halalDiet)}
+            >
+              Halal
+            </Chip>
+          </View>
+        </View>
 
-      <View style={styles.inputBlock}>
-        <Text style={styles.subtitles}>Observações</Text>
-        <TextInput
-          placeholder="Observações sobre o paciente..."
-          value={observations}
-          onChangeText={setObservations}
-          multiline
-          mode="outlined"
-          numberOfLines={3}
-        ></TextInput>
-      </View>
+        <View style={[styles.inputBlock, { flexDirection: "row" }]}>
+          <Text style={styles.subtitles}>Acompanhante</Text>
+          <Switch
+            style={{ marginLeft: 12 }}
+            value={isSwitchOn}
+            onValueChange={onToggleSwitch}
+          />
+        </View>
 
-      <Button mode="contained" onPress={() => savePatientForm()}>
-        Salvar alterações
-      </Button>
-    </Surface>
+        <View style={styles.inputBlock}>
+          <Text style={styles.subtitles}>Observações</Text>
+          <TextInput
+            placeholder="Observações sobre o paciente..."
+            value={observations}
+            onChangeText={setObservations}
+            multiline
+            mode="outlined"
+            numberOfLines={3}
+          ></TextInput>
+        </View>
+
+        <Button mode="contained" onPress={() => savePatientForm()}>
+          Salvar alterações
+        </Button>
+      </Surface>
+    </>
   );
 };
 

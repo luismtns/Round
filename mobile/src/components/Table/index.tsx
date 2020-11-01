@@ -2,16 +2,16 @@ import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { DataTable } from "react-native-paper";
 
-const Table = ({ data, professional }: any) => {
+const Table = ({ data, professional, userInfo }: any) => {
   const { navigate } = useNavigation();
   function goToPatient(id: any) {
-    navigate(`ClinicPatient`, { patient: id });
+    navigate(`ClinicPatient`, { patient: id, data: userInfo });
   }
 
   function goToMedic(id: any) {
     navigate(`AdminCoordProfileMedic`, {
       screen: `Informações Gerais`,
-      params: { professional: id },
+      params: { professional: id, data: userInfo },
     });
   }
 

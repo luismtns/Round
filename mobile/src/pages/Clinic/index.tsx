@@ -7,7 +7,7 @@ import { firebaseDataService } from "./../../services/data/index";
 
 const Clinic = ({ navigation, route }: any) => {
   const [dataTable, setDataTable] = useState([{}]);
-  var userInfo = route.params.data;
+  const userInfo = route.params.data;
 
   useEffect(() => {
     navigation.setOptions({
@@ -24,7 +24,7 @@ const Clinic = ({ navigation, route }: any) => {
         <Text style={styles.title}>Pacientes</Text>
 
         <SearchSection />
-        <Table data={dataTable} />
+        <Table data={dataTable} userInfo={userInfo} />
       </View>
     </>
   );

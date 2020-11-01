@@ -8,13 +8,15 @@ import { firebaseDataService } from "./../../services/data/index";
 
 const ClinicPatient = (props: any) => {
   const patient_uuid = props.route.params.patient;
+  const userInfo = props.route.params.data;
   const [isFetching, setIsFetching] = useState(false);
   const [patient_data, setPatientData] = useState({});
 
+  console.log(props);
   useEffect(() => {
-    // props.navigation.setOptions({
-    //   title: PROFESSIONAL,
-    // });
+    props.navigation.setOptions({
+      title: userInfo,
+    });
 
     firebaseDataService.getPatient(patient_uuid).then(async (data: any) => {
       await setPatientData(data.data());

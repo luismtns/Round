@@ -1,36 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import styles from "./styles";
 
 import { View, Text } from "react-native";
-import {
-  Button,
-  DataTable,
-  FAB,
-  Menu,
-  Provider,
-  Searchbar,
-} from "react-native-paper";
-import { DATA, PROFESSIONAL } from "../../services/data/index";
+import { FAB } from "react-native-paper";
+import { DATA } from "../../services/data/index";
 import { useNavigation } from "@react-navigation/native";
 import Table from "../../components/Table";
 import SearchSection from "../../components/SearchSection";
 
-const AdminCoordGeneral: React.FC = () => {
+const AdminCoordGeneral: React.FC = ({ route, navigation }: any) => {
   const { navigate } = useNavigation();
-  const [search, setSearch] = useState("");
-  const [visible, setVisible] = useState(false);
-
-  const openMenu = () => setVisible(true);
-
-  const closeMenu = () => setVisible(false);
-
-  function goToPatient(id: any) {
-    // navigate(`Patient`, { patient: id });
-  }
+  const userInfo = route.params.data;
 
   function goToAddNewProfessional() {
-    navigate("AdminAddProfessionalGeneral");
+    navigate("AdminAddProfessionalGeneral", { data: userInfo });
   }
+
+  useEffect(() => {
+    navigation.setOptions({
+      title: userInfo,
+    });
+  }, []);
 
   return (
     <>

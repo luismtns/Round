@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text } from "react-native";
 import styles from "./styles";
 
@@ -20,7 +20,7 @@ interface Intern {
   rh: string;
 }
 
-const AdminAddPatient: React.FC = () => {
+const AdminAddPatient: React.FC = ({ route, navigation }: any) => {
   const [selectIndex, setSelectedIndex] = useState(0);
   const [name, setName] = useState("");
   const [birthday, setBirthday] = useState("");
@@ -42,6 +42,14 @@ const AdminAddPatient: React.FC = () => {
   const [companion, setCompanion] = useState("");
 
   const [observation, setObservation] = useState("");
+
+  const userInfo = route.params.data;
+
+  useEffect(() => {
+    navigation.setOptions({
+      title: userInfo,
+    });
+  }, []);
 
   function saveData() {
     const personalData = {

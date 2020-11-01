@@ -8,7 +8,15 @@ import { colors } from "../styles/theme.style";
 
 const Tab = createMaterialTopTabNavigator();
 
-function MedicRoute() {
+function MedicRoute({ navigation, route }: any) {
+  const userInfo = route.params.params.data;
+
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      title: userInfo,
+    });
+  }, []);
+
   return (
     <Tab.Navigator
       tabBarOptions={{
@@ -17,6 +25,7 @@ function MedicRoute() {
         inactiveTintColor: "rgba(255,255,255,0.5)",
         indicatorStyle: { backgroundColor: colors.white },
       }}
+      initialRouteName="Informações Gerais"
     >
       <Tab.Screen
         name="Informações Gerais"

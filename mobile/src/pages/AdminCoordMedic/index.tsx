@@ -7,8 +7,9 @@ import Table from "../../components/Table";
 import SearchSection from "../../components/SearchSection";
 import { firebaseDataService } from "./../../services/data/index";
 
-const AdminCoordMedic: React.FC = () => {
+const AdminCoordMedic: React.FC = ({ route, navigation }: any) => {
   const { navigate } = useNavigation();
+  const userInfo = route.params.data;
   const [dataTable, setDataTable] = useState([{}]);
 
   function goToPatient(id: any) {
@@ -18,10 +19,13 @@ const AdminCoordMedic: React.FC = () => {
     firebaseDataService.getProfessionalList(30).then((data: any) => {
       setDataTable(data);
     });
+    navigation.setOptions({
+      title: userInfo,
+    });
   }, []);
 
   function goToAdminAddProfessional() {
-    navigate(`AdminAddProfessional`);
+    navigate(`AdminAddProfessional`, { data: userInfo });
   }
 
   return (
@@ -37,7 +41,7 @@ const AdminCoordMedic: React.FC = () => {
         <Text style={styles.title}>Equipe médica</Text>
 
         <SearchSection />
-        <Table data={dataTable} professional />
+        <Table data={dataTable} professional userInfo={userInfo} />
       </View>
     </>
   );

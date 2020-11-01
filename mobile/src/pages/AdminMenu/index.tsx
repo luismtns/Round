@@ -16,19 +16,19 @@ const AdminMenu: React.FC = ({ navigation, route }: any) => {
   }, []);
 
   function goToAddPatient() {
-    navigate("AdminAddPatient");
+    navigate("AdminAddPatient", { data: userInfo });
   }
 
   function goToAdminCoordMedic() {
-    navigate("AdminCoordMedic");
+    navigate("AdminCoordMedic", { data: userInfo });
   }
 
   function goToAdminCoordGeneral() {
-    navigate("AdminCoordGeneral");
+    navigate("AdminCoordGeneral", { data: userInfo });
   }
 
   function goToFoodWaste() {
-    navigate("AdminFoodWaste");
+    navigate("AdminFoodWaste", { data: userInfo });
   }
 
   return (

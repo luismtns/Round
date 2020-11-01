@@ -1,7 +1,6 @@
-import React from "react";
-import { View, Text, Image } from "react-native";
+import React, { useLayoutEffect, useState } from "react";
+import { View, Text } from "react-native";
 import { Avatar } from "react-native-paper";
-// import { Container } from './styles';
 import styles from "./styles";
 
 interface ProfessionalProps {
@@ -10,21 +9,28 @@ interface ProfessionalProps {
 }
 
 const Header: React.FC<ProfessionalProps> = (props: any) => {
+  const [userInfo, setUserInfo] = useState<any>({});
+
+  useLayoutEffect(() => {
+    setUserInfo(props?.children);
+    console.log("te");
+  }, [props?.children.personal]);
+
   return (
     <>
-      <View style={styles.container}>
-        <Avatar.Text
-          size={40}
-          labelStyle={styles.role}
-          label={props.children.personal?.name.slice(0, 2).toLocaleUpperCase()}
-        />
-        <View style={styles.titles}>
-          <Text style={styles.name}>{props.children.personal?.name}</Text>
-          <Text style={styles.role}>
-            {props.children.professional?.specialty}
-          </Text>
+      {props.children.personal && (
+        <View style={styles.container}>
+          <Avatar.Text
+            size={40}
+            labelStyle={styles.role}
+            label={userInfo.personal?.name.slice(0, 2).toLocaleUpperCase()}
+          />
+          <View style={styles.titles}>
+            <Text style={styles.name}>{userInfo.personal?.name}</Text>
+            <Text style={styles.role}>{userInfo.professional?.specialty}</Text>
+          </View>
         </View>
-      </View>
+      )}
     </>
   );
 };

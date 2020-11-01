@@ -1,20 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, ScrollView } from "react-native";
-import { FAB, Portal, Surface } from "react-native-paper";
-import Profile from "../../components/Profile";
+import { FAB, Surface } from "react-native-paper";
 import { firebaseDataService } from "../../services/data";
 import styles from "./styles";
 // import { Container } from './styles';
 
 const AdminCoordProfileMedic: React.FC = (props: any) => {
   const professional_uuid = props.route.params.professional;
+  const userInfo = props.route.params.data;
   const [professionalInfo, setProfessionalInfo] = useState<any>({});
 
+  console.log(props, userInfo);
   useEffect(() => {
-    // props.navigation.setOptions({
-    //   title: PROFESSIONAL,
-    // });
-
     firebaseDataService.getProfessional(professional_uuid).then((data: any) => {
       setProfessionalInfo(data);
     });

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, TouchableOpacity, Platform } from "react-native";
 import styles from "./styles";
 
@@ -15,8 +15,9 @@ import { ImagePicker } from "expo";
 import { firebaseDataService } from "./../../services/data/index";
 import { useNavigation } from "@react-navigation/native";
 
-const AdminAddProfessional: React.FC = () => {
+const AdminAddProfessional: React.FC = ({ navigation, route }: any) => {
   const { navigate } = useNavigation();
+  const userInfo = route.params.data;
   const [name, setName] = useState("");
   const [birthday, setBirthday] = useState("");
   const [marital, setMarital] = useState("");
@@ -37,6 +38,12 @@ const AdminAddProfessional: React.FC = () => {
   const [clinic, setClinic] = useState(false);
 
   const [documents, setDocuments] = useState<string[]>([]);
+
+  useEffect(() => {
+    navigation.setOptions({
+      title: userInfo,
+    });
+  }, []);
 
   function saveData() {
     const personalData = {

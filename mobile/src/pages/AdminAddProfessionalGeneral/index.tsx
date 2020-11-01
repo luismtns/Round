@@ -74,6 +74,7 @@ const AdminAddProfessionalGeneral: React.FC = ({ route, navigation }: any) => {
       personal: personalData,
       timestamp: firebaseDataService.timestamp,
       auth,
+      professional_type: "general",
     };
 
     firebaseDataService

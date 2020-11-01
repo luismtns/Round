@@ -145,9 +145,24 @@ export const firebaseDataService = {
         console.log("Error getting documents: ", error);
       });
   },
+  async getProfessionalList2(size: number, start?: number) {
+    const snapshot = await this.collection_professionals
+      .orderBy("timestamp", "desc")
+      .limit(size)
+      .get();
+
+    return snapshot.docs.map((doc) => doc.data());
+  },
   async getProfessional(uuid: string) {
     const snapshot = await this.collection_professionals.doc(uuid).get();
     return snapshot.data();
+  },
+
+  // GENERAL PROFESSIONAL COLLECTIONS
+  async addGeneralProfessional(professionalOBj: any) {
+    return this.collection_professionals
+      .doc(professionalOBj.personal.cpf)
+      .set(professionalOBj);
   },
 
   // USERS COLLECTIONS

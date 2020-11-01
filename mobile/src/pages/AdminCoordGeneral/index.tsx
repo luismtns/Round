@@ -1,22 +1,28 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./styles";
 
 import { View, Text } from "react-native";
 import { FAB } from "react-native-paper";
-import { DATA } from "../../services/data/index";
+import { DATA, firebaseDataService } from "../../services/data/index";
 import { useNavigation } from "@react-navigation/native";
 import Table from "../../components/Table";
 import SearchSection from "../../components/SearchSection";
+import TableProfessionals from "./../../components/TableProfessionals/index";
+import { ProfessionalProfile } from "./../../interfaces/professional.interface";
 
 const AdminCoordGeneral: React.FC = ({ route, navigation }: any) => {
   const { navigate } = useNavigation();
   const userInfo = route.params.data;
+  const [dataTable, setDataTable] = useState([{}]);
 
   function goToAddNewProfessional() {
     navigate("AdminAddProfessionalGeneral", { data: userInfo });
   }
 
   useEffect(() => {
+    firebaseDataService.getProfessionalList2(30).then((data: any) => {
+      setDataTable(data);
+    });
     navigation.setOptions({
       title: userInfo,
     });
@@ -34,7 +40,7 @@ const AdminCoordGeneral: React.FC = ({ route, navigation }: any) => {
       <View style={styles.container}>
         <Text style={styles.title}>Equipe geral</Text>
         <SearchSection />
-        <Table data={DATA} professional />
+        {dataTable && <TableProfessionals TableData={dataTable} />}
       </View>
     </>
   );

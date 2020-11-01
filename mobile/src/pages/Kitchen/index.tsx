@@ -35,7 +35,7 @@ const Kitchen: React.FC = ({ navigation, route }: any) => {
 
       <SearchSection />
 
-      <TableKitchen data={DATA} />
+      <TableKitchen data={DATA} userInfo={userInfo} />
     </View>
   );
 };

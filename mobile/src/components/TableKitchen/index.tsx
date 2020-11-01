@@ -2,11 +2,11 @@ import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { DataTable, IconButton } from "react-native-paper";
 
-const TableKitchen = ({ data }: any) => {
+const TableKitchen = ({ data, userInfo }: any) => {
   const { navigate } = useNavigation();
 
   function goToKitchenTag(id: any) {
-    navigate(`KitchenTag`);
+    navigate(`KitchenTag`, { data: userInfo });
   }
 
   return (

@@ -37,8 +37,8 @@ const Profile = ({ patient_data }: any) => {
             borderBottomColor: "#000",
           }}
         >
-          <Text>Nome: {patient_data.personal.name}</Text>
-          <Text>RA: {patient_data.hospitalization.rh}</Text>
+          <Text>Nome: {patient_data?.personal?.name}</Text>
+          <Text>RA: {patient_data?.hospitalization?.rh}</Text>
         </View>
         <View
           style={{
@@ -47,9 +47,11 @@ const Profile = ({ patient_data }: any) => {
             justifyContent: "space-between",
           }}
         >
-          <Text>Convênio: {patient_data.hospitalization.healthInsurance}</Text>
-          <Text>Data de nascimento: {patient_data.personal.birthday}</Text>
-          <Text>CPF: {patient_data.personal.cpf}</Text>
+          <Text>
+            Convênio: {patient_data?.hospitalization?.healthInsurance}
+          </Text>
+          <Text>Data de nascimento: {patient_data?.personal?.birthday}</Text>
+          <Text>CPF: {patient_data?.personal?.cpf}</Text>
         </View>
       </View>
     </Surface>

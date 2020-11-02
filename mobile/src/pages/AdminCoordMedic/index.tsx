@@ -6,11 +6,12 @@ import { useNavigation } from "@react-navigation/native";
 import Table from "../../components/Table";
 import SearchSection from "../../components/SearchSection";
 import { firebaseDataService } from "./../../services/data/index";
+import TableProfessionals from "./../../components/TableProfessionals/index";
 
 const AdminCoordMedic: React.FC = ({ route, navigation }: any) => {
   const { navigate } = useNavigation();
   const userInfo = route.params.data;
-  const [dataTable, setDataTable] = useState([{}]);
+  const [dataTable, setDataTable] = useState();
 
   function goToPatient(id: any) {
     // navigate(`Patient`, { patient: id });
@@ -41,7 +42,7 @@ const AdminCoordMedic: React.FC = ({ route, navigation }: any) => {
         <Text style={styles.title}>Equipe médica</Text>
 
         <SearchSection />
-        <Table data={dataTable} professional userInfo={userInfo} />
+        {dataTable && <TableProfessionals TableData={dataTable} />}
       </View>
     </>
   );

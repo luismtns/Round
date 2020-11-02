@@ -31,6 +31,8 @@ const AdminAddProfessionalGeneral: React.FC = ({ route, navigation }: any) => {
   const [code, setCode] = useState("");
   const [admission, setAdmission] = useState("");
   const [manager, setManager] = useState("");
+  const [floor, setFloor] = useState("");
+  const [sector, setSector] = useState("");
 
   const [kitchen, setKitchen] = useState(false);
   const [adm, setAdm] = useState(false);
@@ -61,6 +63,8 @@ const AdminAddProfessionalGeneral: React.FC = ({ route, navigation }: any) => {
       code,
       admission,
       manager,
+      floor,
+      sector,
     };
 
     const auth = {
@@ -140,19 +144,21 @@ const AdminAddProfessionalGeneral: React.FC = ({ route, navigation }: any) => {
           <Text style={styles.title}>Dados pessoais</Text>
           <View style={{ padding: 8, flex: 1 }}>
             <Portal>
-              <FAB
-                style={{
-                  position: "absolute",
-                  margin: 16,
-                  right: 0,
-                  bottom: 0,
-                  zIndex: 1000,
-                }}
-                small
-                label="CONCLUÍDO"
-                icon="plus"
-                onPress={() => saveData()}
-              />
+              <div style={{ position: "fixed", bottom: "1em", right: "1em" }}>
+                <FAB
+                  style={{
+                    position: "absolute",
+                    margin: 16,
+                    right: 0,
+                    bottom: 0,
+                    zIndex: 1000,
+                  }}
+                  small
+                  label="CONCLUÍDO"
+                  icon="plus"
+                  onPress={() => saveData()}
+                />
+              </div>
             </Portal>
             <View style={[styles.container]}>
               <View style={[styles.item, { width: "75%" }]}>
@@ -226,7 +232,7 @@ const AdminAddProfessionalGeneral: React.FC = ({ route, navigation }: any) => {
         </Surface>
 
         <Surface style={{ marginTop: 40 }}>
-          <Text style={styles.title}>Internações</Text>
+          <Text style={styles.title}>Dados profissionais</Text>
           <View style={{ padding: 8, flex: 1 }}>
             <View style={styles.container}>
               <View style={styles.item}>
@@ -262,6 +268,22 @@ const AdminAddProfessionalGeneral: React.FC = ({ route, navigation }: any) => {
                   value={manager}
                   onChangeText={setManager}
                   label="Gestor"
+                />
+              </View>
+              <View style={styles.item}>
+                <TextInput
+                  mode="outlined"
+                  value={floor}
+                  onChangeText={setFloor}
+                  label="Andar"
+                />
+              </View>
+              <View style={styles.item}>
+                <TextInput
+                  mode="outlined"
+                  value={sector}
+                  onChangeText={setSector}
+                  label="Setor"
                 />
               </View>
             </View>

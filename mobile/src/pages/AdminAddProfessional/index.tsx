@@ -76,6 +76,7 @@ const AdminAddProfessional: React.FC = ({ navigation, route }: any) => {
       personal: personalData,
       timestamp: firebaseDataService.timestamp,
       auth,
+      professional_type: "medic",
     };
 
     firebaseDataService

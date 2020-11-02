@@ -116,7 +116,7 @@ export const firebaseDataService = {
       .doc(professionalOBj.personal.cpf)
       .set(professionalOBj);
   },
-  async getProfessionalList(size: number, start?: number) {
+  async getProfessionalListOld(size: number, start?: number) {
     return this.collection_professionals
       .orderBy("timestamp", "desc")
       .limit(size)
@@ -145,8 +145,18 @@ export const firebaseDataService = {
         console.log("Error getting documents: ", error);
       });
   },
+  async getProfessionalList(size: number, start?: number) {
+    const snapshot = await this.collection_professionals
+      .where("professional_type", "==", "medic")
+      .orderBy("timestamp", "desc")
+      .limit(size)
+      .get();
+
+    return snapshot.docs.map((doc) => doc.data());
+  },
   async getProfessionalList2(size: number, start?: number) {
     const snapshot = await this.collection_professionals
+      .where("professional_type", "==", "general")
       .orderBy("timestamp", "desc")
       .limit(size)
       .get();

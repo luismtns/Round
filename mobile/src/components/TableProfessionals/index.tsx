@@ -5,7 +5,6 @@ import { ProfessionalProfile } from "./../../interfaces/professional.interface";
 
 const TableProfessionals = ({ TableData }: any) => {
   const { navigate } = useNavigation();
-  console.log(TableData);
   function goToProfessional(_pD: ProfessionalProfile) {
     console.log(_pD);
 
@@ -25,7 +24,6 @@ const TableProfessionals = ({ TableData }: any) => {
       </DataTable.Header>
 
       {TableData &&
-        TableData.length > 1 &&
         TableData.map((_pD: ProfessionalProfile) => {
           return (
             <DataTable.Row

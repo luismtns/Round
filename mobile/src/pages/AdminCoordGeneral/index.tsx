@@ -13,7 +13,7 @@ import { ProfessionalProfile } from "./../../interfaces/professional.interface";
 const AdminCoordGeneral: React.FC = ({ route, navigation }: any) => {
   const { navigate } = useNavigation();
   const userInfo = route.params.data;
-  const [dataTable, setDataTable] = useState([{}]);
+  const [dataTable, setDataTable] = useState();
 
   function goToAddNewProfessional() {
     navigate("AdminAddProfessionalGeneral", { data: userInfo });
@@ -21,6 +21,7 @@ const AdminCoordGeneral: React.FC = ({ route, navigation }: any) => {
 
   useEffect(() => {
     firebaseDataService.getProfessionalList2(30).then((data: any) => {
+      console.log("🔥 getProfessionalList2", data);
       setDataTable(data);
     });
     navigation.setOptions({

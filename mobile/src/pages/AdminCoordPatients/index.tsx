@@ -27,7 +27,9 @@ const AdminCoordPatients: React.FC = ({ navigation, route }: any) => {
         <Text style={styles.title}>Pacientes</Text>
 
         <SearchSection />
-        <Table data={dataTable} userInfo={userInfo} editPatient />
+        {dataTable && (
+          <Table dataTable={dataTable} userInfo={userInfo} editPatient />
+        )}
       </View>
     </>
   );

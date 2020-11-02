@@ -8,20 +8,16 @@ import {
   List,
   Portal,
   Surface,
+  Switch,
   TextInput,
 } from "react-native-paper";
-// import { Container } from './styles';
 import { FAB } from "react-native-paper";
 import { firebaseDataService } from "./../../services/data/index";
-
-interface Intern {
-  type: string;
-  date: string;
-  rh: string;
-}
+import { useNavigation } from "@react-navigation/native";
 
 const AdminAddPatient: React.FC = ({ route, navigation }: any) => {
   const [selectIndex, setSelectedIndex] = useState(0);
+  const { navigate } = useNavigation();
   const [name, setName] = useState("");
   const [birthday, setBirthday] = useState("");
   const [marital, setMarital] = useState("");
@@ -39,13 +35,35 @@ const AdminAddPatient: React.FC = ({ route, navigation }: any) => {
   const [floor, setFloor] = useState("");
   const [room, setRoom] = useState("");
   const [bed, setBed] = useState("");
-  const [companion, setCompanion] = useState("");
+  const [companion, setCompanion] = useState(false);
 
   const [observation, setObservation] = useState("");
 
   const userInfo = route.params.data;
+  const patient = route.params.patient;
 
   useEffect(() => {
+    if (route.params.editPatient) {
+      setName(patient.personal.name);
+      setBirthday(patient.personal.birthday);
+      setMarital(patient.personal.marital);
+      setNationality(patient.personal.nationality);
+      setCitizenship(patient.personal.citizenship);
+      setGender(patient.personal.gender);
+      setCpf(patient.personal.cpf);
+      setRg(patient.personal.rg);
+      setHospitalization(patient.hospitalization.hospitalization);
+      setEntryDate(patient.hospitalization.entryDate);
+      setRh(patient.hospitalization.rh);
+      setHealthInsurance(patient.hospitalization.healthInsurance);
+      setSector(patient.hospitalization.sector);
+      setFloor(patient.hospitalization.floor);
+      setRoom(patient.hospitalization.room);
+      setBed(patient.hospitalization.bed);
+      setCompanion(patient.hospitalization.companion);
+      setObservation(patient.personal.observation);
+    }
+
     navigation.setOptions({
       title: userInfo,
     });
@@ -86,11 +104,14 @@ const AdminAddPatient: React.FC = ({ route, navigation }: any) => {
       .then((value) => {
         alert("Dados Salvos");
 
-        console.log(value);
+        if (route.params.editPatient) {
+          navigate("AdminCoordPatients");
+        } else {
+          navigate("AdminMenu");
+        }
       })
       .catch((err) => {
         alert("Falha ao salvar dados");
-        console.log(err);
       });
   }
 
@@ -276,12 +297,27 @@ const AdminAddPatient: React.FC = ({ route, navigation }: any) => {
                   label="Leito"
                 />
               </View>
-              <View style={styles.item}>
-                <TextInput
+              <View
+                style={[
+                  styles.item,
+                  {
+                    flexDirection: "row",
+                    height: 65,
+                    alignItems: "center",
+                    justifyContent: "center",
+                  },
+                ]}
+              >
+                {/* <TextInput
                   mode="outlined"
                   value={companion}
                   onChangeText={setCompanion}
                   label="Acompanhamento"
+                /> */}
+                <Text style={{ paddingRight: 10 }}>Acompanhante</Text>
+                <Switch
+                  value={companion}
+                  onValueChange={() => setCompanion(!companion)}
                 />
               </View>
             </View>

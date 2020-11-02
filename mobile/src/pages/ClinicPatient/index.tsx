@@ -10,26 +10,26 @@ const ClinicPatient = (props: any) => {
   const patient_uuid = props.route.params.patient;
   const userInfo = props.route.params.data;
   const [isFetching, setIsFetching] = useState(false);
-  const [patient_data, setPatientData] = useState({});
+  const [patient_data, setPatientData] = useState();
 
-  console.log(props);
   useEffect(() => {
     props.navigation.setOptions({
       title: userInfo,
     });
 
     firebaseDataService.getPatient(patient_uuid).then(async (data: any) => {
-      await setPatientData(data.data());
-      setIsFetching(true);
+      console.log(data);
+
+      setPatientData(data);
     });
   }, []);
 
   return (
     <>
       <View style={styles.container}>
-        {isFetching && <Profile patient_data={patient_data} />}
+        {patient_data && <Profile patient_data={patient_data} />}
         <View style={styles.containerDataAndHistory}>
-          {isFetching && (
+          {patient_data && (
             <>
               <ProfileForm uuid={patient_uuid} alimentation={patient_data} />
               <Historic uuid={patient_uuid} patientData={patient_data} />

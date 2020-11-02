@@ -14,10 +14,13 @@ import { FAB } from "react-native-paper";
 import { ImagePicker } from "expo";
 import { firebaseDataService } from "./../../services/data/index";
 import { useNavigation } from "@react-navigation/native";
+import { ProfessionalProfile } from "./../../interfaces/professional.interface";
 
 const AdminAddProfessional: React.FC = ({ navigation, route }: any) => {
   const { navigate } = useNavigation();
   const userInfo = route.params.data;
+  const userEdit: ProfessionalProfile = route.params?.edit;
+
   const [name, setName] = useState("");
   const [birthday, setBirthday] = useState("");
   const [marital, setMarital] = useState("");
@@ -43,6 +46,24 @@ const AdminAddProfessional: React.FC = ({ navigation, route }: any) => {
     navigation.setOptions({
       title: userInfo,
     });
+    if (userEdit) {
+      setName(userEdit.personal.name);
+      setBirthday(userEdit.personal.birthday);
+      setMarital(userEdit.personal.marital);
+      setNationality(userEdit.personal.nationality);
+      setCitizenship(userEdit.personal.citizenship);
+      setGender(userEdit.personal.gender);
+      setCpf(userEdit.personal.cpf);
+      setRg(userEdit.personal.rg);
+      setSpecialty(userEdit.professional.specialty);
+      setCrm(userEdit.professional.crm ? userEdit.professional.crm : "");
+      setCode(userEdit.professional.code);
+      setAdmission(userEdit.professional.admission);
+      setManager(userEdit.professional.manager);
+      setKitchen(userEdit.auth.kitchen);
+      setAdm(userEdit.auth.adm);
+      setClinic(userEdit.auth.clinic);
+    }
   }, []);
 
   function saveData() {
@@ -90,6 +111,8 @@ const AdminAddProfessional: React.FC = ({ navigation, route }: any) => {
         console.log(err);
       });
   }
+
+  // Edit User
 
   async function handleSelectDocuments() {
     if (Platform.OS !== "web") {
@@ -212,6 +235,7 @@ const AdminAddProfessional: React.FC = ({ navigation, route }: any) => {
                   mode="outlined"
                   value={cpf}
                   onChangeText={setCpf}
+                  disabled={userEdit ? true : false}
                   label="CPF"
                 />
               </View>

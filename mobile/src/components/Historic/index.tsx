@@ -8,8 +8,10 @@ import styles from "./styles";
 import DialogPrimary from "./../DialogPrimary/index";
 
 const Historic = ({ patientData, uuid }: any) => {
-  const [patientHistoric, setPatientHistoric] = useState([]);
+  const [patientHistoric, setPatientHistoric] = useState<Array<any>>();
   const [open, setOpen] = useState(false);
+  console.log(patientData, uuid);
+
   if (patientData) {
     if (patientData.personal && patientData.personal.observation) {
       var patientObservations = patientData.personal.observation;

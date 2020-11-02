@@ -1,18 +1,12 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { DataTable } from "react-native-paper";
+import { PatientProfile } from "./../../interfaces/patient.interface";
 
-const Table = ({ data, professional, userInfo }: any) => {
+const Table = ({ dataTable, professional, userInfo }: any) => {
   const { navigate } = useNavigation();
   function goToPatient(id: any) {
     navigate(`ClinicPatient`, { patient: id, data: userInfo });
-  }
-
-  function goToMedic(id: any) {
-    navigate(`AdminCoordProfileMedic`, {
-      screen: `Informações Gerais`,
-      params: { professional: id, data: userInfo },
-    });
   }
 
   return (
@@ -21,32 +15,25 @@ const Table = ({ data, professional, userInfo }: any) => {
         <DataTable.Title>Nome</DataTable.Title>
         <DataTable.Title>RH</DataTable.Title>
         <DataTable.Title>Data de nascimento</DataTable.Title>
-        {professional ? (
-          <DataTable.Title>Área</DataTable.Title>
-        ) : (
-          <DataTable.Title>Localização</DataTable.Title>
-        )}
+        <DataTable.Title>Localização</DataTable.Title>
       </DataTable.Header>
 
-      {data.map((item: any, index: any) => {
-        return (
-          <DataTable.Row
-            key={index}
-            onPress={() => {
-              if (professional) {
-                goToMedic(item.id);
-              } else {
-                goToPatient(item.id);
-              }
-            }}
-          >
-            <DataTable.Cell>{item.name}</DataTable.Cell>
-            <DataTable.Cell>{item.ra}</DataTable.Cell>
-            <DataTable.Cell>{item.nascimento}</DataTable.Cell>
-            <DataTable.Cell>{item.quarto}</DataTable.Cell>
-          </DataTable.Row>
-        );
-      })}
+      {dataTable &&
+        dataTable.map((_patient: PatientProfile, index: any) => {
+          return (
+            <DataTable.Row
+              key={index}
+              onPress={() => {
+                goToPatient(_patient.id);
+              }}
+            >
+              <DataTable.Cell>{_patient.personal.name}</DataTable.Cell>
+              <DataTable.Cell>{_patient.hospitalization.rh}</DataTable.Cell>
+              <DataTable.Cell>{_patient.personal.birthday}</DataTable.Cell>
+              <DataTable.Cell>{`${_patient.hospitalization.floor}º Andar | Quarto ${_patient.hospitalization.room}`}</DataTable.Cell>
+            </DataTable.Row>
+          );
+        })}
 
       <DataTable.Pagination
         page={1}

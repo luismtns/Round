@@ -18,9 +18,9 @@ interface Professional {
 }
 
 interface Auth {
-  adm: string;
-  clinic: string;
-  kitchen: string;
+  adm: boolean;
+  clinic: boolean;
+  kitchen: boolean;
 }
 export interface ProfessionalProfile {
   auth: Auth;

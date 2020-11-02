@@ -14,9 +14,11 @@ import { FAB } from "react-native-paper";
 import { ImagePicker } from "expo";
 import { firebaseDataService } from "../../services/data/index";
 import { useNavigation } from "@react-navigation/native";
+import { ProfessionalProfile } from "./../../interfaces/professional.interface";
 
 const AdminAddProfessionalGeneral: React.FC = ({ route, navigation }: any) => {
   const userInfo = route.params.data;
+  const userEdit: ProfessionalProfile = route.params?.edit;
   const { navigate } = useNavigation();
   const [name, setName] = useState("");
   const [birthday, setBirthday] = useState("");
@@ -44,6 +46,23 @@ const AdminAddProfessionalGeneral: React.FC = ({ route, navigation }: any) => {
     navigation.setOptions({
       title: userInfo,
     });
+    if (userEdit) {
+      setName(userEdit.personal.name);
+      setBirthday(userEdit.personal.birthday);
+      setMarital(userEdit.personal.marital);
+      setNationality(userEdit.personal.nationality);
+      setCitizenship(userEdit.personal.citizenship);
+      setGender(userEdit.personal.gender);
+      setCpf(userEdit.personal.cpf);
+      setRg(userEdit.personal.rg);
+      setSpecialty(userEdit.professional.specialty);
+      setCode(userEdit.professional.code);
+      setAdmission(userEdit.professional.admission);
+      setManager(userEdit.professional.manager);
+      setKitchen(userEdit.auth.kitchen);
+      setAdm(userEdit.auth.adm);
+      setClinic(userEdit.auth.clinic);
+    }
   }, []);
 
   function saveData() {
@@ -217,6 +236,7 @@ const AdminAddProfessionalGeneral: React.FC = ({ route, navigation }: any) => {
                   value={cpf}
                   onChangeText={setCpf}
                   label="CPF"
+                  disabled={userEdit ? true : false}
                 />
               </View>
               <View style={styles.item}>

@@ -48,48 +48,19 @@ export const firebaseDataService = {
     return this.collection_patient.add(PatientObj);
   },
   async getPatientsList(size: number, start?: number) {
-    return this.collection_patient
+    const snapshot = await this.collection_patient
       .orderBy("timestamp", "desc")
       .limit(size)
-      .get()
-      .then(function (querySnapshot) {
-        var patients_data: any[] = [];
-        querySnapshot.forEach(function (doc) {
-          var _data_personal = doc.data().personal ? doc.data().personal : null;
-          var _data_hos = doc.data().hospitalization
-            ? doc.data().hospitalization
-            : null;
-          if (!_data_personal) {
-            return patients_data.push({
-              id: "",
-              name: "",
-              ra: "",
-              nascimento: "",
-              quarto: "",
-              key: "",
-            });
-          }
-
-          patients_data.push({
-            id: doc.id,
-            name: _data_personal.name ? _data_personal.name : "",
-            ra: _data_hos.rh ? _data_hos.rh : "",
-            nascimento: _data_personal.birthday ? _data_personal.birthday : "",
-            quarto: (_data_hos.floor
-              ? `${_data_hos.floor}º Andar | `
-              : ""
-            ).concat(_data_hos.room ? `Quarto ${_data_hos.room}` : ""),
-          });
-        });
-        return patients_data;
-      })
-      .catch(function (error) {
-        console.log("Error getting documents: ", error);
-      });
+      .get();
+    return snapshot.docs.map((doc) => {
+      var data = doc.data();
+      data["id"] = doc.id;
+      return data;
+    });
   },
   async getPatient(uuid: string) {
-    var ref = this.collection_patient.doc(uuid);
-    return ref.get();
+    const snapshot = await this.collection_patient.doc(uuid).get();
+    return snapshot.data();
   },
   async updatePatientAlimentation(uuid: string, new_alimentation: any) {
     this.collection_patient.doc(uuid).update({
@@ -115,35 +86,6 @@ export const firebaseDataService = {
     return this.collection_professionals
       .doc(professionalOBj.personal.cpf)
       .set(professionalOBj);
-  },
-  async getProfessionalListOld(size: number, start?: number) {
-    return this.collection_professionals
-      .orderBy("timestamp", "desc")
-      .limit(size)
-      .get()
-      .then(function (querySnapshot) {
-        var professional_data: any[] = [];
-        querySnapshot.forEach(function (doc) {
-          var _data_personal = doc.data().personal ? doc.data().personal : null;
-          var _data_prof = doc.data().professional
-            ? doc.data().professional
-            : null;
-          if (!_data_personal) {
-            return false;
-          }
-          professional_data.push({
-            id: doc.id,
-            name: _data_personal.name ? _data_personal.name : "",
-            ra: _data_prof.crm ? _data_prof.crm : "",
-            nascimento: _data_personal.birthday ? _data_personal.birthday : "",
-            quarto: _data_prof.specialty ? _data_prof.specialty : "",
-          });
-        });
-        return professional_data;
-      })
-      .catch(function (error) {
-        console.log("Error getting documents: ", error);
-      });
   },
   async getProfessionalList(size: number, start?: number) {
     const snapshot = await this.collection_professionals

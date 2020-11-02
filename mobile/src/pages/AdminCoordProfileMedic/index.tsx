@@ -4,19 +4,32 @@ import { FAB, Surface } from "react-native-paper";
 import { firebaseDataService } from "../../services/data";
 import styles from "./styles";
 // import { Container } from './styles';
+import { useNavigation } from "@react-navigation/native";
+import { ProfessionalProfile } from "./../../interfaces/professional.interface";
 
 const AdminCoordProfileMedic: React.FC = (props: any) => {
+  const { navigate } = useNavigation();
   const professional_uuid = props.route.params.professional;
   const userInfo = props.route.params.data;
-  const [professionalInfo, setProfessionalInfo] = useState<any>({});
+  const [professionalInfo, setProfessionalInfo] = useState<
+    ProfessionalProfile
+  >();
 
-  console.log(props, userInfo);
   useEffect(() => {
     firebaseDataService.getProfessional(professional_uuid).then((data: any) => {
       setProfessionalInfo(data);
     });
   }, []);
-
+  function goToEditProfessional() {
+    var destination =
+      professionalInfo?.professional_type == "medic"
+        ? "AdminAddProfessional"
+        : "AdminAddProfessionalGeneral";
+    navigate(destination, {
+      data: userInfo,
+      edit: professionalInfo,
+    });
+  }
   return (
     <View>
       <ScrollView style={styles.container}>
@@ -36,42 +49,42 @@ const AdminCoordProfileMedic: React.FC = (props: any) => {
               <View style={styles.content}>
                 <Text style={styles.contentName}>Nome</Text>
                 <Text style={styles.contentDetail}>
-                  {professionalInfo.personal?.name}
+                  {professionalInfo?.personal?.name}
                 </Text>
               </View>
 
               <View style={styles.content}>
                 <Text style={styles.contentName}>CRM</Text>
                 <Text style={styles.contentDetail}>
-                  {professionalInfo.professional?.crm}
+                  {professionalInfo?.professional?.crm}
                 </Text>
               </View>
 
               <View style={styles.content}>
                 <Text style={styles.contentName}>Data de nascimento</Text>
                 <Text style={styles.contentDetail}>
-                  {professionalInfo.personal?.birthday}
+                  {professionalInfo?.personal?.birthday}
                 </Text>
               </View>
 
               <View style={styles.content}>
                 <Text style={styles.contentName}>Nacionalidade</Text>
                 <Text style={styles.contentDetail}>
-                  {professionalInfo.personal?.nationality}
+                  {professionalInfo?.personal?.nationality}
                 </Text>
               </View>
 
               <View style={styles.content}>
                 <Text style={styles.contentName}>Naturalidade</Text>
                 <Text style={styles.contentDetail}>
-                  {professionalInfo.personal?.citizenship}
+                  {professionalInfo?.personal?.citizenship}
                 </Text>
               </View>
 
               <View style={styles.content}>
                 <Text style={styles.contentName}>Gênero</Text>
                 <Text style={styles.contentDetail}>
-                  {professionalInfo.personal?.gender}
+                  {professionalInfo?.personal?.gender}
                 </Text>
               </View>
             </View>
@@ -93,7 +106,7 @@ const AdminCoordProfileMedic: React.FC = (props: any) => {
               <View style={styles.content}>
                 <Text style={styles.contentName}>CEP</Text>
                 <Text style={styles.contentDetail}>
-                  {professionalInfo.personal?.cpf}
+                  {professionalInfo?.personal?.cpf}
                 </Text>
               </View>
 
@@ -195,7 +208,7 @@ const AdminCoordProfileMedic: React.FC = (props: any) => {
         label="Editar"
         small
         icon="pencil"
-        onPress={() => console.log("Pressed")}
+        onPress={() => goToEditProfessional()}
       />
     </View>
   );

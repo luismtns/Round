@@ -2,10 +2,18 @@ import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { DataTable } from "react-native-paper";
 
-const Table = ({ data, professional, userInfo }: any) => {
+const Table = ({ data, professional, userInfo, editPatient }: any) => {
   const { navigate } = useNavigation();
   function goToPatient(id: any) {
-    navigate(`ClinicPatient`, { patient: id, data: userInfo });
+    if (editPatient) {
+      navigate(`AdminAddPatient`, {
+        patient: id,
+        data: userInfo,
+        editPatient,
+      });
+    } else {
+      navigate(`ClinicPatient`, { patient: id, data: userInfo });
+    }
   }
 
   function goToMedic(id: any) {

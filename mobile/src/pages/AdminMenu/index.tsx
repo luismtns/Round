@@ -19,6 +19,10 @@ const AdminMenu: React.FC = ({ navigation, route }: any) => {
     navigate("AdminAddPatient", { data: userInfo });
   }
 
+  function goToPatients() {
+    navigate("AdminCoordPatients", { data: userInfo });
+  }
+
   function goToAdminCoordMedic() {
     navigate("AdminCoordMedic", { data: userInfo });
   }
@@ -49,9 +53,12 @@ const AdminMenu: React.FC = ({ navigation, route }: any) => {
           </TouchableOpacity>
         </View>
         <View style={{ width: "49%" }}>
-          <TouchableOpacity style={{ flex: 1, width: "100%" }}>
+          <TouchableOpacity
+            style={{ flex: 1, width: "100%" }}
+            onPress={goToPatients}
+          >
             <Surface style={styles.optionsContainer}>
-              <Text style={styles.title}>Triagem</Text>
+              <Text style={styles.title}>Pacientes</Text>
               <Text style={styles.subtitle}>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
                 convallis.

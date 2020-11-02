@@ -3,16 +3,14 @@ import React from "react";
 import { DataTable } from "react-native-paper";
 import { ProfessionalProfile } from "./../../interfaces/professional.interface";
 
-const TableProfessionals = ({ TableData }: any) => {
+const TableProfessionals = ({ TableData, userInfo }: any) => {
   const { navigate } = useNavigation();
-  console.log(TableData);
-  function goToProfessional(_pD: ProfessionalProfile) {
-    console.log(_pD);
 
-    // navigate(`AdminCoordProfileMedic`, {
-    //   screen: `Informações Gerais`,
-    //   params: { professional: id, data: userInfo },
-    // });
+  function goToProfessional(_pD: ProfessionalProfile) {
+    navigate(`AdminCoordProfileMedic`, {
+      screen: `Informações Gerais`,
+      params: { professional: _pD.personal.cpf, data: userInfo },
+    });
   }
 
   return (

@@ -25,6 +25,7 @@ import NewPatientRoute from "./NewPatientRoute";
 import AdminFoodWaste from "../pages/AdminFoodWaste";
 import AdminAddProfessional from "../pages/AdminAddProfessional";
 import AdminAddProfessionalGeneral from "../pages/AdminAddProfessionalGeneral";
+import AdminCoordPatients from "../pages/AdminCoordPatients";
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -127,6 +128,24 @@ function AppRoute() {
           ),
         }}
       />
+
+      <Screen
+        name="AdminCoordPatients"
+        component={AdminCoordPatients}
+        options={{
+          headerTitle: (props) => <Header {...props} />,
+          headerRight: () => (
+            <Button
+              onPress={() => navigate("Menu")}
+              icon="logout"
+              color="#659A9F"
+            >
+              Sair
+            </Button>
+          ),
+        }}
+      />
+
       <Screen
         name="AdminFoodWaste"
         component={AdminFoodWaste}

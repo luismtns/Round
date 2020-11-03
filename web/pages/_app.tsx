@@ -4,7 +4,7 @@ import "../styles/index.scss";
 import type { AppProps /*, AppContext */ } from "next/app";
 import Head from "next/head";
 import Navbar from "./../components/Navbar";
-
+import "animate.css/animate.min.css";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
@@ -14,6 +14,10 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link
           href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&display=swap"
           rel="stylesheet"
+        />
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
         />
       </Head>
       <Navbar />

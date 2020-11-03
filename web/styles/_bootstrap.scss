@@ -95,18 +95,18 @@ $theme-colors: (
 @include media-breakpoint-down(md) {
   h1,
   .h1 {
-    font-size: floor($h1-font-size / 1.5);
+    font-size: floor($h1-font-size / 1.3);
   }
   h2,
   .h2 {
-    font-size: floor($h2-font-size / 1.25);
+    font-size: floor($h2-font-size / 1.15);
   }
   h3,
   .h3 {
-    font-size: floor($h3-font-size / 1.25);
+    font-size: floor($h3-font-size / 1.05);
   }
   h4,
   .h4 {
-    font-size: floor($h4-font-size / 1.25);
+    font-size: floor($h4-font-size / 1.05);
   }
 }

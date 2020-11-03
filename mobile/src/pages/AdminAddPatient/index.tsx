@@ -8,7 +8,6 @@ import {
   List,
   Portal,
   Surface,
-  Switch,
   TextInput,
 } from "react-native-paper";
 import { FAB } from "react-native-paper";
@@ -16,7 +15,6 @@ import { firebaseDataService } from "./../../services/data/index";
 import { useNavigation } from "@react-navigation/native";
 
 const AdminAddPatient: React.FC = ({ route, navigation }: any) => {
-  const [selectIndex, setSelectedIndex] = useState(0);
   const { navigate } = useNavigation();
   const [name, setName] = useState("");
   const [birthday, setBirthday] = useState("");
@@ -35,7 +33,6 @@ const AdminAddPatient: React.FC = ({ route, navigation }: any) => {
   const [floor, setFloor] = useState("");
   const [room, setRoom] = useState("");
   const [bed, setBed] = useState("");
-  const [companion, setCompanion] = useState(false);
 
   const [observation, setObservation] = useState("");
 
@@ -60,7 +57,6 @@ const AdminAddPatient: React.FC = ({ route, navigation }: any) => {
       setFloor(patient.hospitalization.floor);
       setRoom(patient.hospitalization.room);
       setBed(patient.hospitalization.bed);
-      setCompanion(patient.hospitalization.companion);
       setObservation(patient.personal.observation);
     }
 
@@ -91,7 +87,6 @@ const AdminAddPatient: React.FC = ({ route, navigation }: any) => {
       floor,
       room,
       bed,
-      companion,
     };
 
     const PatientData = {
@@ -295,29 +290,6 @@ const AdminAddPatient: React.FC = ({ route, navigation }: any) => {
                   value={bed}
                   onChangeText={setBed}
                   label="Leito"
-                />
-              </View>
-              <View
-                style={[
-                  styles.item,
-                  {
-                    flexDirection: "row",
-                    height: 65,
-                    alignItems: "center",
-                    justifyContent: "center",
-                  },
-                ]}
-              >
-                {/* <TextInput
-                  mode="outlined"
-                  value={companion}
-                  onChangeText={setCompanion}
-                  label="Acompanhamento"
-                /> */}
-                <Text style={{ paddingRight: 10 }}>Acompanhante</Text>
-                <Switch
-                  value={companion}
-                  onValueChange={() => setCompanion(!companion)}
                 />
               </View>
             </View>

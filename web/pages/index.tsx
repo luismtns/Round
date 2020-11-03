@@ -1,7 +1,7 @@
 import { addListener } from "process";
 import ScrollAnimation from "react-animate-on-scroll";
 export default function Home() {
-  const animationsDuration: number = 1600;
+  const animationsDuration: number = 1800;
 
   return (
     <main>
@@ -261,9 +261,9 @@ export default function Home() {
                 </h2>
               </ScrollAnimation>
               <ScrollAnimation
-                animateIn="fadeInUp"
+                animateIn="fadeIn"
                 animationInDuration={animationsDuration}
-                delay={200}
+                delay={400}
                 animateOnce={true}
               >
                 <h5 className="py-3">
@@ -285,29 +285,51 @@ export default function Home() {
       <div className="container">
         <div className="row">
           <div className="col-12">
-            <h2 className="font-weight-bold ">
-              O GRAACC foi nossa escolha para <wbr />a primeira aplicação, mas
-              porque?
-            </h2>
+            <ScrollAnimation
+              animateIn="fadeInUp"
+              animationInDuration={animationsDuration}
+              delay={200}
+              animateOnce={true}
+            >
+              <h2 className="font-weight-bold ">
+                O GRAACC foi nossa escolha para <wbr />a primeira aplicação, mas
+                porque?
+              </h2>
+            </ScrollAnimation>
           </div>
         </div>
       </div>
       <div className="container">
         <div className="row align-items-end">
           <div className="col-12 col-md-6">
-            <h5 className="pb-4">
-              Além de ser uma instituição com uma{" "}
-              <strong className="text-primary">causa nobre</strong>, uma
-              estrutura única, eles são um instituto social sem fins lucrativos,{" "}
-              <strong>morada perfeita para nossa proposta</strong>.
-            </h5>
+            <ScrollAnimation
+              animateIn="fadeIn"
+              animationInDuration={animationsDuration}
+              delay={400}
+              animateOnce={true}
+            >
+              <h5 className="pb-4">
+                Além de ser uma instituição com uma{" "}
+                <strong className="text-primary">causa nobre</strong>, uma
+                estrutura única, eles são um instituto social sem fins
+                lucrativos, <strong>morada perfeita para nossa proposta</strong>
+                .
+              </h5>
+            </ScrollAnimation>
           </div>
           <div className="col-12 col-md-6">
-            <img
-              src="/images/Hospital_Ilu.png"
-              alt="Trash and Guy Illustration"
-              className="img-fluid"
-            />
+            <ScrollAnimation
+              animateIn="fadeIn"
+              animationInDuration={animationsDuration}
+              delay={400}
+              animateOnce={true}
+            >
+              <img
+                src="/images/Hospital_Ilu.png"
+                alt="Trash and Guy Illustration"
+                className="img-fluid"
+              />
+            </ScrollAnimation>
           </div>
         </div>
       </div>
@@ -315,114 +337,233 @@ export default function Home() {
         <div className="container">
           <div className="row">
             <div className="col-12">
-              <h1 className="text-center font-weight-bold">Como Funciona?</h1>
+              <ScrollAnimation
+                animateIn="fadeInUp"
+                animationInDuration={animationsDuration}
+                delay={200}
+                animateOnce={true}
+              >
+                <h1 className="text-center font-weight-bold">Como Funciona?</h1>
+              </ScrollAnimation>
             </div>
           </div>
 
           <div className="row">
             <div className="col-12 col-md-4 mb-3">
-              <img
-                src="/images/earth_icon.png"
-                className="w-50 img-fluid"
-                alt="Earth Icon Illustrate"
-              />
-              <h3 className="font-weight-bold my-1">Sustentabilidade</h3>
-              <p className="h5">
-                Se é importante para você, é importante para o meio ambiente.
-                ROUND te ajuda a diminuir o gasto de papel, reduz o desperdício
-                de alimentos e reafirma seu compromisso com o meio ambiente.
-              </p>
+              <ScrollAnimation
+                animateIn="fadeInDown"
+                animationInDuration={animationsDuration}
+                delay={400}
+                animateOnce={true}
+              >
+                <img
+                  src="/images/earth_icon.png"
+                  className="w-50 img-fluid"
+                  alt="Earth Icon Illustrate"
+                />
+              </ScrollAnimation>
+              <ScrollAnimation
+                animateIn="fadeIn"
+                animationInDuration={animationsDuration}
+                delay={600}
+                animateOnce={true}
+              >
+                <h3 className="font-weight-bold my-1">Sustentabilidade</h3>
+              </ScrollAnimation>
+
+              <ScrollAnimation
+                animateIn="fadeIn"
+                animationInDuration={animationsDuration}
+                delay={800}
+                animateOnce={true}
+              >
+                {" "}
+                <p className="h5">
+                  Se é importante para você, é importante para o meio ambiente.
+                  ROUND te ajuda a diminuir o gasto de papel, reduz o
+                  desperdício de alimentos e reafirma seu compromisso com o meio
+                  ambiente.
+                </p>
+              </ScrollAnimation>
             </div>
             <div className="col-12 col-md-4 mb-3">
-              <img
-                src="/images/efficiency.png"
-                className="w-50 img-fluid"
-                alt="Efficiency Illustrate"
-              />
-              <h3 className="font-weight-bold my-1">Eficiência</h3>
-              <p className="h5">
-                Reaproximar setores e facilitar a comunicação?
-                <br />
-                Sim! ROUND simplifica o fluxo de trabalho, facilitando o acesso
-                as informações e disponibilizando em tempo real a atualização de
-                dados e informações.
-              </p>
+              <ScrollAnimation
+                animateIn="fadeInDown"
+                animationInDuration={animationsDuration}
+                delay={600}
+                animateOnce={true}
+              >
+                <img
+                  src="/images/efficiency.png"
+                  className="w-50 img-fluid"
+                  alt="Efficiency Illustrate"
+                />
+              </ScrollAnimation>
+              <ScrollAnimation
+                animateIn="fadeIn"
+                animationInDuration={animationsDuration}
+                delay={800}
+                animateOnce={true}
+              >
+                <h3 className="font-weight-bold my-1">Eficiência</h3>
+              </ScrollAnimation>
+              <ScrollAnimation
+                animateIn="fadeIn"
+                animationInDuration={animationsDuration}
+                delay={1000}
+                animateOnce={true}
+              >
+                <p className="h5">
+                  Reaproximar setores e facilitar a comunicação?
+                  <br />
+                  Sim! ROUND simplifica o fluxo de trabalho, facilitando o
+                  acesso as informações e disponibilizando em tempo real a
+                  atualização de dados e informações.
+                </p>
+              </ScrollAnimation>
             </div>
             <div className="col-12 col-md-4 mb-3">
-              <img
-                src="/images/smartphone.png"
-                className="w-50 img-fluid"
-                alt="Smartphone Illustrate"
-              />
-              <h3 className="font-weight-bold my-1">Inteligência artificial</h3>
-              <p className="h5">
-                Todo o potencial da inteligencia artificial nas suas mãos. ROUND
-                aprende com o que você faz e possibilita a predição de cenários,
-                a análise detalhada de alterações comportamentais e a compilação
-                de dados.
-              </p>
+              <ScrollAnimation
+                animateIn="fadeInDown"
+                animationInDuration={animationsDuration}
+                delay={1200}
+                animateOnce={true}
+              >
+                <img
+                  src="/images/smartphone.png"
+                  className="w-50 img-fluid"
+                  alt="Smartphone Illustrate"
+                />
+              </ScrollAnimation>
+
+              <ScrollAnimation
+                animateIn="fadeIn"
+                animationInDuration={animationsDuration}
+                delay={1400}
+                animateOnce={true}
+              >
+                <h3 className="font-weight-bold my-1">
+                  Inteligência artificial
+                </h3>
+              </ScrollAnimation>
+              <ScrollAnimation
+                animateIn="fadeIn"
+                animationInDuration={animationsDuration}
+                delay={1600}
+                animateOnce={true}
+              >
+                <p className="h5">
+                  Todo o potencial da inteligencia artificial nas suas mãos.
+                  ROUND aprende com o que você faz e possibilita a predição de
+                  cenários, a análise detalhada de alterações comportamentais e
+                  a compilação de dados.
+                </p>
+              </ScrollAnimation>
             </div>
           </div>
         </div>
       </div>
       <div className="container-fluid px-0 my-5">
-        <img
-          src="/images/Mockup_Large.png"
-          className="w-100 img-fluid"
-          alt="Mockup Round"
-        />
+        <ScrollAnimation
+          animateIn="fadeIn"
+          animationInDuration={animationsDuration}
+          delay={600}
+          animateOnce={true}
+        >
+          <img
+            src="/images/Mockup_Large.png"
+            className="w-100 img-fluid"
+            alt="Mockup Round"
+          />
+        </ScrollAnimation>
       </div>
 
       <div className="container" id="Apoie">
         <div className="row align-items-end">
           <div className="col-12 col-md-6 offset-md-1 py-4">
-            <h2 className="font-weight-light mb-3">Curtiu? Fale conosco!</h2>
-            <h5>
-              Cadastre seu e-mail e crie essa ponte com a nossa iniciativa.
-            </h5>
-            <form className="w-100 mt-1">
-              <div className="input-group mb-3">
-                <input
-                  type="text"
-                  className="form-control form-control-lg"
-                  placeholder="Seu e-mail"
-                  aria-label="Seu e-mail"
-                  aria-describedby="basic-addon2"
-                />
-                <div className="input-group-append">
-                  <button className="btn btn-primary btn-lg" type="button">
-                    APOIAR
-                  </button>
+            <ScrollAnimation
+              animateIn="fadeInUp"
+              animationInDuration={animationsDuration}
+              delay={600}
+              animateOnce={true}
+            >
+              <h2 className="font-weight-light mb-3">Curtiu? Fale conosco!</h2>
+            </ScrollAnimation>
+            <ScrollAnimation
+              animateIn="fadeIn"
+              animationInDuration={animationsDuration}
+              delay={1200}
+              animateOnce={true}
+            >
+              <h5>
+                Cadastre seu e-mail e crie essa ponte com a nossa iniciativa.
+              </h5>
+            </ScrollAnimation>
+            <ScrollAnimation
+              animateIn="fadeIn"
+              animationInDuration={animationsDuration}
+              delay={1200}
+              animateOnce={true}
+            >
+              <form className="w-100 mt-1">
+                <div className="input-group mb-3">
+                  <input
+                    type="text"
+                    className="form-control form-control-lg"
+                    placeholder="Seu e-mail"
+                    aria-label="Seu e-mail"
+                    aria-describedby="basic-addon2"
+                  />
+                  <div className="input-group-append">
+                    <button className="btn btn-primary btn-lg" type="button">
+                      APOIAR
+                    </button>
+                  </div>
                 </div>
-              </div>
-            </form>
+              </form>
+            </ScrollAnimation>
           </div>
           <div className="col-8 col-md-3 offset-md-1">
-            <img
-              src="/images/Persons_Hospital_Ilu.png"
-              className="w-100 img-fluid"
-              alt="Hospital Persons Illustrate"
-            />
+            <ScrollAnimation
+              animateIn="fadeInDown"
+              animationInDuration={animationsDuration}
+              delay={200}
+              animateOnce={true}
+            >
+              <img
+                src="/images/Persons_Hospital_Ilu.png"
+                className="w-100 img-fluid"
+                alt="Hospital Persons Illustrate"
+              />
+            </ScrollAnimation>
           </div>
         </div>
       </div>
 
-      <footer className="container-fluid text-primary text-right bg-p-dark py-4 ">
-        <div className="container">
-          <div className="row align-items-end">
-            <div className="col-3 col-md-2">
-              <img
-                src="/images/Icon_white.svg"
-                className="w-100 img-fluid"
-                alt="Icon White"
-              />
-            </div>
-            <div className="col-9 col-md-10 text-right">
-              <p>Round - Todos os direitos reservados ©</p>
+      <ScrollAnimation
+        offset={0}
+        animateIn="fadeInUp"
+        animationInDuration={animationsDuration}
+        delay={200}
+        animateOnce={true}
+      >
+        <footer className="container-fluid text-primary text-right bg-p-dark py-4 ">
+          <div className="container">
+            <div className="row align-items-end">
+              <div className="col-3 col-md-1">
+                <img
+                  src="/images/Icon_white.svg"
+                  className="w-100 img-fluid"
+                  alt="Icon White"
+                />
+              </div>
+              <div className="col-9 col-md-10 text-right">
+                <p>Round - Todos os direitos reservados ©</p>
+              </div>
             </div>
           </div>
-        </div>
-      </footer>
+        </footer>
+      </ScrollAnimation>
       <style jsx>{``}</style>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>

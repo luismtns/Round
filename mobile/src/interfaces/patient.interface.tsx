@@ -43,4 +43,5 @@ export interface PatientProfile {
   alimentation?: IAlimentation;
   timestamp: firebase.firestore.Timestamp;
   id: string;
+  lastAlimentationUpdate: firebase.firestore.Timestamp;
 }

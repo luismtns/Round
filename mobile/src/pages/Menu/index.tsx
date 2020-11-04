@@ -57,6 +57,14 @@ function Menu() {
     // navigate("Kitchen");
   }
 
+  function AuthError() {
+    setDialog({
+      title: "Erro!",
+      label: "CPF informado não autorizado a acessar essa área.",
+    });
+    setOpen(true);
+  }
+
   function authUser() {
     if (!userPass) {
       setDialog({
@@ -68,32 +76,23 @@ function Menu() {
     firebaseDataService.getProfessional(userPass).then(async (data: any) => {
       if (data && data.auth) {
         switch (destination) {
-          case "Clinic":
+          case data.auth.clinic == true && "Clinic":
             hideModal();
-            if (data.auth.clinic) {
-              navigate("Clinic", { data });
-            }
+            navigate("Clinic", { data });
             break;
-          case "Kitchen":
+          case data.auth.kitchen == true && "Kitchen":
             hideModal();
-            if (data.auth.kitchen) {
-              navigate("Kitchen", { data });
-            }
+            navigate("Kitchen", { data });
             break;
-          case "AdminMenu":
+          case data.auth.adm == true && "AdminMenu":
             hideModal();
-            if (data.auth.adm) {
-              navigate("AdminMenu", { data });
-            }
+            navigate("AdminMenu", { data });
             break;
-          case "Configuration":
+          case data.auth.adm == true && "Configuration":
             hideModal();
-            if (data.auth.adm) {
-              navigate("Configuration");
-            }
+            navigate("Configuration");
             break;
           default:
-            hideModal();
             setDialog({
               title: "Erro!",
               label:
@@ -115,17 +114,16 @@ function Menu() {
 
   return (
     <>
-      <DialogPrimary
-        show={open}
-        title={Dialog.title}
-        paragraph={Dialog.label}
-        button="OK"
-        hide={() => {
-          setOpen(false);
-        }}
-      />
-
       <Portal>
+        <DialogPrimary
+          show={open}
+          title={Dialog.title}
+          paragraph={Dialog.label}
+          button="OK"
+          hide={() => {
+            setOpen(false);
+          }}
+        />
         <Modal
           visible={visible}
           contentContainerStyle={{

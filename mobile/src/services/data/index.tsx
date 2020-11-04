@@ -65,6 +65,7 @@ export const firebaseDataService = {
   async updatePatientAlimentation(uuid: string, new_alimentation: any) {
     this.collection_patient.doc(uuid).update({
       alimentation: new_alimentation,
+      lastAlimentationUpdate: firebaseDataService.timestamp,
     });
     return this.collection_patient.doc(uuid).collection("historic").add({
       timestamp: this.timestamp,
@@ -115,6 +116,21 @@ export const firebaseDataService = {
     return this.collection_professionals
       .doc(professionalOBj.personal.cpf)
       .set(professionalOBj);
+  },
+
+  // KITCHEN COLLECTIONS
+  async getPatientAlimentationToday(size: number) {
+    const snapshot = await this.collection_patient
+      .orderBy("lastAlimentationUpdate", "desc")
+      .limit(size)
+      .get();
+    return snapshot.docs
+      .map((doc) => {
+        if (doc.exists && doc.data().alimentation) {
+          return doc.data();
+        }
+      })
+      .filter((e) => (e ? true : false));
   },
 
   // USERS COLLECTIONS

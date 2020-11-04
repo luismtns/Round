@@ -47,16 +47,11 @@ export const firebaseDataService = {
   async addPatient(PatientObj: any) {
     return this.collection_patient.add(PatientObj);
   },
-  async getPatientsList(size: number, start?: number) {
-    const snapshot = await this.collection_patient
+  getPatientSnapshot(size: number, observer: any) {
+    return this.collection_patient
       .orderBy("timestamp", "desc")
       .limit(size)
-      .get();
-    return snapshot.docs.map((doc) => {
-      var data = doc.data();
-      data["id"] = doc.id;
-      return data;
-    });
+      .onSnapshot(observer);
   },
   async getPatient(uuid: string) {
     const snapshot = await this.collection_patient.doc(uuid).get();
@@ -119,18 +114,11 @@ export const firebaseDataService = {
   },
 
   // KITCHEN COLLECTIONS
-  async getPatientAlimentationToday(size: number) {
-    const snapshot = await this.collection_patient
+  getPatientAlimentation(size: number, observer: any) {
+    return this.collection_patient
       .orderBy("lastAlimentationUpdate", "desc")
       .limit(size)
-      .get();
-    return snapshot.docs
-      .map((doc) => {
-        if (doc.exists && doc.data().alimentation) {
-          return doc.data();
-        }
-      })
-      .filter((e) => (e ? true : false));
+      .onSnapshot(observer);
   },
 
   // USERS COLLECTIONS

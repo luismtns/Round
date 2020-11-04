@@ -14,30 +14,41 @@ const Kitchen: React.FC = ({ navigation, route }: any) => {
   const [hoursAlimentUpdated, setHoursAlimentUpdated] = useState(4);
   var userInfo = route.params.data;
 
-  useEffect(() => {
+  useEffect((): any => {
     navigation.setOptions({
       title: userInfo,
     });
-    getPatientsList(hoursAlimentUpdated);
-  }, []);
+    // Table Data Observable
+    const unsubscribe = firebaseDataService.getPatientSnapshot(30, {
+      next: (querySnapshot: any) => {
+        var _querySnapshot = querySnapshot.docs
+          .map((doc: any) => {
+            if (doc.exists && doc.data().alimentation) {
+              return doc.data();
+            }
+          })
+          .filter((e: any) => (e ? true : false));
 
-  function getPatientsList(hoursOffsetAliment: number) {
-    firebaseDataService
-      .getPatientAlimentationToday(30)
-      .then(async (data: any) => {
-        data = data.filter((e: PatientProfile) => {
-          var _timestamp = e.lastAlimentationUpdate.toDate();
-          var diff = moment(new Date()).diff(_timestamp);
+        timeTableRules(_querySnapshot, hoursAlimentUpdated);
+      },
+      error: (err: any) => console.log(err),
+    });
+    return unsubscribe;
+  }, [setdataTable]);
 
-          var durationHours = moment.duration(diff).asHours();
-          if (parseInt(durationHours.toFixed(0)) > hoursOffsetAliment) {
-            return false;
-          } else {
-            return true;
-          }
-        });
-        setdataTable(data);
-      });
+  function timeTableRules(query: any, hoursOffsetAliment: number) {
+    query = query.filter((e: PatientProfile) => {
+      var _timestamp = e.lastAlimentationUpdate.toDate();
+      var diff = moment(new Date()).diff(_timestamp);
+
+      var durationHours = moment.duration(diff).asHours();
+      if (parseInt(durationHours.toFixed(0)) > hoursOffsetAliment) {
+        return false;
+      } else {
+        return true;
+      }
+    });
+    setdataTable(query);
   }
 
   return (

@@ -16,10 +16,24 @@ const Clinic = ({ navigation, route }: any) => {
     navigation.setOptions({
       title: userInfo,
     });
-    firebaseDataService.getPatientsList(30).then((data: any) => {
-      setDataTable(data);
+    // Table Data Observable
+    const unsubscribe = firebaseDataService.getPatientSnapshot(30, {
+      next: (querySnapshot: any) => {
+        var arrayQuery = querySnapshot.docs.map((doc: any) => {
+          var data = doc.data();
+          data["id"] = doc.id;
+          return data;
+        });
+        setDataTable(arrayQuery);
+      },
+      error: (err: any) => console.log(err),
     });
-  }, [isVisible]);
+    return unsubscribe;
+
+    // firebaseDataService.getPatientSnapshot(30).then((data: any) => {
+    //   setDataTable(data);
+    // });
+  }, [setDataTable, isVisible]);
 
   return (
     <>

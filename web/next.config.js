@@ -9,4 +9,9 @@ module.exports = {
     path: "/_next/image",
     loader: "default",
   },
+  env: {
+    MAILCHIMP_SECRET: process.env.MAILCHIMP_SECRET,
+    MAILCHIMP_SERVER: process.env.MAILCHIMP_SERVER,
+    MAILCHIMP_LIST: process.env.MAILCHIMP_LIST,
+  },
 };

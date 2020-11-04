@@ -1,8 +1,32 @@
-import { addListener } from "process";
+import { useState } from "react";
 import ScrollAnimation from "react-animate-on-scroll";
-export default function Home() {
-  const animationsDuration: number = 1800;
+const mailchimp = require("@mailchimp/mailchimp_marketing");
 
+export default function Home() {
+  const [email, setEmail] = useState("");
+  const listId = process.env.MAILCHIMP_LIST;
+  const animationsDuration: number = 1800;
+  const [feedback, setFeedback] = useState(false);
+
+  const subscribe = async (e) => {
+    e.preventDefault();
+
+    mailchimp.setConfig({
+      apiKey: process.env.MAILCHIMP_SECRET,
+      server: process.env.MAILCHIMP_SERVER,
+    });
+
+    const response = await mailchimp.lists
+      .addListMember(listId, {
+        email_address: email,
+        status: "subscribed",
+      })
+      .then((a) => {
+        setFeedback(true);
+        setEmail("");
+      })
+      .catch((err) => {});
+  };
   return (
     <main>
       <div className="container pt-4">
@@ -51,17 +75,24 @@ export default function Home() {
               delay={2000}
               animateOnce={true}
             >
-              <form className="w-100 mt-1">
-                <div className="input-group mb-3">
+              <form className="w-100 mt-1" onSubmit={subscribe}>
+                <div className="input-group mb-1 mt-3">
                   <input
-                    type="text"
                     className="form-control form-control-lg"
                     placeholder="Seu e-mail"
                     aria-label="Seu e-mail"
                     aria-describedby="basic-addon2"
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={email}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                    }}
                   />
+
                   <div className="input-group-append">
-                    <button className="btn btn-primary btn-lg" type="button">
+                    <button className="btn btn-primary btn-lg" type="submit">
                       APOIAR
                     </button>
                   </div>
@@ -75,7 +106,11 @@ export default function Home() {
               delay={2200}
               animateOnce={true}
             >
-              <p>Cadastre-se para saber como apoiar essa iniciativa.</p>
+              {!feedback ? (
+                <p>Cadastre-se para saber como apoiar essa iniciativa.</p>
+              ) : (
+                <p>Obrigado por nos apoiar, logo entraremos em contato!</p>
+              )}
             </ScrollAnimation>
           </div>
         </div>
@@ -564,7 +599,7 @@ export default function Home() {
           </div>
         </footer>
       </ScrollAnimation>
-      <style jsx>{``}</style>
+
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     </main>

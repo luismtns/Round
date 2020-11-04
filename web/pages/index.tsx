@@ -1,31 +1,47 @@
 import { useState } from "react";
 import ScrollAnimation from "react-animate-on-scroll";
-const mailchimp = require("@mailchimp/mailchimp_marketing");
 
 export default function Home() {
   const [email, setEmail] = useState("");
-  const listId = process.env.MAILCHIMP_LIST;
+
   const animationsDuration: number = 1800;
   const [feedback, setFeedback] = useState(false);
+  const [warning, setWarning] = useState(false);
+  const [response, setResponse] = useState("");
 
   const subscribe = async (e) => {
     e.preventDefault();
 
-    mailchimp.setConfig({
-      apiKey: process.env.MAILCHIMP_SECRET,
-      server: process.env.MAILCHIMP_SERVER,
-    });
-
-    const response = await mailchimp.lists
-      .addListMember(listId, {
-        email_address: email,
-        status: "subscribed",
-      })
-      .then((a) => {
+    const res = await fetch("/api/subscribe", {
+      body: JSON.stringify({
+        email: email,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+    })
+      .then((res: any) => {
+        console.log(res);
         setFeedback(true);
+        setResponse("Obrigado por nos apoiar, logo entraremos em contato!");
         setEmail("");
+
+        if (res.status === 400) {
+          setResponse(
+            "Tivemos um problema no envio do seu e-mail, confira se ele está correto."
+          );
+        }
       })
-      .catch((err) => {});
+      .catch((err) => {
+        console.log(err);
+        setWarning(true);
+        setFeedback(false);
+        setResponse(
+          "Tivemos um problema no envio do seu e-mail, confira se ele está correto."
+        );
+        setEmail("");
+      });
   };
   return (
     <main>
@@ -109,8 +125,9 @@ export default function Home() {
               {!feedback ? (
                 <p>Cadastre-se para saber como apoiar essa iniciativa.</p>
               ) : (
-                <p>Obrigado por nos apoiar, logo entraremos em contato!</p>
+                <p>{response}</p>
               )}
+              {warning && <p className="text-danger">{response}</p>}
             </ScrollAnimation>
           </div>
         </div>

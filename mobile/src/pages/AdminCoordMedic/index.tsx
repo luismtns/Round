@@ -43,13 +43,15 @@ const AdminCoordMedic: React.FC = ({ route, navigation }: any) => {
 
   return (
     <>
-      <FAB
-        style={styles.fab}
-        small
-        label="Adicionar"
-        icon="plus"
-        onPress={goToAdminAddProfessional}
-      />
+      <div style={{ position: "fixed", bottom: "1em", right: "1em" }}>
+        <FAB
+          style={styles.fab}
+          small
+          label="Adicionar"
+          icon="plus"
+          onPress={goToAdminAddProfessional}
+        />
+      </div>
       <View style={styles.container}>
         <Text style={styles.title}>Equipe médica</Text>
 

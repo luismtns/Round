@@ -203,13 +203,15 @@ const AdminCoordProfileMedic: React.FC = (props: any) => {
         </Surface>
       </ScrollView>
 
-      <FAB
-        style={styles.fab}
-        label="Editar"
-        small
-        icon="pencil"
-        onPress={() => goToEditProfessional()}
-      />
+      <div style={{ position: "fixed", bottom: "1em", right: "1em" }}>
+        <FAB
+          style={styles.fab}
+          label="Editar"
+          small
+          icon="pencil"
+          onPress={() => goToEditProfessional()}
+        />
+      </div>
     </View>
   );
 };

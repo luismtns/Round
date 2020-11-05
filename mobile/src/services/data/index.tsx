@@ -67,15 +67,6 @@ export const firebaseDataService = {
       observations: new_alimentation.observations,
     });
   },
-  async getHistoric(uuid: string) {
-    const snapshot = await this.collection_patient
-      .doc(uuid)
-      .collection("historic")
-      .orderBy("timestamp", "desc")
-      .limit(6)
-      .get();
-    return snapshot.docs.map((doc) => doc.data());
-  },
   getHistoricSnapshot(uid: string, observer: any) {
     return this.collection_patient
       .doc(uid)

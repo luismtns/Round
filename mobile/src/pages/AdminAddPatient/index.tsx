@@ -136,19 +136,21 @@ const AdminAddPatient: React.FC = ({ route, navigation }: any) => {
           <Text style={styles.title}>Dados pessoais</Text>
           <View style={{ padding: 8, flex: 1 }}>
             <Portal>
-              <FAB
-                style={{
-                  position: "absolute",
-                  margin: 16,
-                  right: 0,
-                  bottom: 0,
-                  zIndex: 1000,
-                }}
-                small
-                label="CONCLUÍDO"
-                icon="plus"
-                onPress={() => saveData()}
-              />
+              <div style={{ position: "fixed", bottom: "1em", right: "1em" }}>
+                <FAB
+                  style={{
+                    position: "absolute",
+                    margin: 16,
+                    right: 0,
+                    bottom: 0,
+                    zIndex: 1000,
+                  }}
+                  small
+                  label="CONCLUÍDO"
+                  icon="plus"
+                  onPress={() => saveData()}
+                />
+              </div>
             </Portal>
             <View style={styles.container}>
               <View style={[styles.item, { width: "75%" }]}>

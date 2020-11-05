@@ -29,6 +29,10 @@ const Table = ({
     });
   }
 
+  function goToKitchenTag(id: any) {
+    navigate(`KitchenTag`, { professional: id, data: userInfo });
+  }
+
   return (
     <DataTable style={{ zIndex: -10 }}>
       <DataTable.Header>
@@ -52,7 +56,11 @@ const Table = ({
                 if (professional) {
                   goToMedic(_patient.id);
                 } else {
-                  goToPatient(_patient);
+                  if (kitchen) {
+                    goToKitchenTag(_patient);
+                  } else {
+                    goToPatient(_patient);
+                  }
                 }
               }}
             >

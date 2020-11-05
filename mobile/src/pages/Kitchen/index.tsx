@@ -72,7 +72,7 @@ const Kitchen: React.FC = ({ navigation, route }: any) => {
 
       <SearchSection />
 
-      {DataTable !== [] ? (
+      {DataTable == [] ? (
         <EmptyAlert />
       ) : (
         <Table dataTable={DataTable} userInfo={userInfo} kitchen />

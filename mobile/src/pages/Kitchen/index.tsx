@@ -7,11 +7,13 @@ import { firebaseDataService } from "./../../services/data/index";
 import moment from "moment";
 import { PatientProfile } from "./../../interfaces/patient.interface";
 import Table from "./../../components/Table/index";
+import EmptyAlert from "../../components/EmptyAlert";
 
 const Kitchen: React.FC = ({ navigation, route }: any) => {
   const [selectedValue, setSelectedValue] = useState();
   const [DataTable, setdataTable] = useState();
   const [hoursAlimentUpdated, setHoursAlimentUpdated] = useState(4);
+
   var userInfo = route.params.data;
 
   useEffect((): any => {
@@ -70,7 +72,11 @@ const Kitchen: React.FC = ({ navigation, route }: any) => {
 
       <SearchSection />
 
-      {DataTable && <Table dataTable={DataTable} userInfo={userInfo} kitchen />}
+      {DataTable !== [] ? (
+        <EmptyAlert />
+      ) : (
+        <Table dataTable={DataTable} userInfo={userInfo} kitchen />
+      )}
     </View>
   );
 };

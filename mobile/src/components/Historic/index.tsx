@@ -22,14 +22,16 @@ const Historic = ({ patientData, uuid }: any) => {
     // props.navigation.setOptions({
     //   title: PROFESSIONAL,
     // });
-    getHistoricList();
-  }, []);
-
-  function getHistoricList() {
-    firebaseDataService.getHistoric(uuid).then(async (data: any) => {
-      setPatientHistoric(data);
+    // Table Data Observable
+    const unsubscribe = firebaseDataService.getHistoricSnapshot(uuid, {
+      next: (querySnapshot: any) => {
+        var arrayQuery = querySnapshot.docs.map((doc: any) => doc.data());
+        setPatientHistoric(arrayQuery);
+      },
+      error: (err: any) => console.log(err),
     });
-  }
+    return unsubscribe;
+  }, []);
 
   return (
     <>

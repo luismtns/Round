@@ -19,12 +19,22 @@ const AdminCoordMedic: React.FC = ({ route, navigation }: any) => {
     // navigate(`Patient`, { patient: id });
   }
   useEffect(() => {
-    firebaseDataService.getProfessionalList(30).then((data: any) => {
-      setDataTable(data);
-    });
     navigation.setOptions({
       title: userInfo,
     });
+    // Table Data Observable
+    const unsubscribe = firebaseDataService.getProfessionalSnapshot(
+      30,
+      "medic",
+      {
+        next: (querySnapshot: any) => {
+          var arrayQuery = querySnapshot.docs.map((doc: any) => doc.data());
+          setDataTable(arrayQuery);
+        },
+        error: (err: any) => console.log(err),
+      }
+    );
+    return unsubscribe;
   }, [isVisible]);
 
   function goToAdminAddProfessional() {

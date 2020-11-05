@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     height: 100,
   },
   containerChangePatientData: {
-    flex: 3,
+    flex: 2,
     marginRight: 20,
     padding: 20,
     elevation: 2,

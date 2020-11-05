@@ -98,7 +98,6 @@ const ProfileForm = ({ uuid, alimentation }: any) => {
         button="OK"
         hide={() => {
           setOpen(false);
-          navigate(`Clinic`);
         }}
       />
       <Surface style={styles.containerChangePatientData}>

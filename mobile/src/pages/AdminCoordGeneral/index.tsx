@@ -20,12 +20,22 @@ const AdminCoordGeneral: React.FC = ({ route, navigation }: any) => {
   }
 
   useEffect(() => {
-    firebaseDataService.getProfessionalList2(30).then((data: any) => {
-      setDataTable(data);
-    });
     navigation.setOptions({
       title: userInfo,
     });
+    // Table Data Observable
+    const unsubscribe = firebaseDataService.getProfessionalSnapshot(
+      30,
+      "general",
+      {
+        next: (querySnapshot: any) => {
+          var arrayQuery = querySnapshot.docs.map((doc: any) => doc.data());
+          setDataTable(arrayQuery);
+        },
+        error: (err: any) => console.log(err),
+      }
+    );
+    return unsubscribe;
   }, [isVisible]);
 
   return (

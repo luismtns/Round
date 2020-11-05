@@ -76,6 +76,14 @@ export const firebaseDataService = {
       .get();
     return snapshot.docs.map((doc) => doc.data());
   },
+  getHistoricSnapshot(uid: string, observer: any) {
+    return this.collection_patient
+      .doc(uid)
+      .collection("historic")
+      .orderBy("timestamp", "desc")
+      .limit(6)
+      .onSnapshot(observer);
+  },
 
   // PROFESSIONAL COLLECTIONS
   async addProfessional(professionalOBj: any) {
@@ -83,23 +91,16 @@ export const firebaseDataService = {
       .doc(professionalOBj.personal.cpf)
       .set(professionalOBj);
   },
-  async getProfessionalList(size: number, start?: number) {
-    const snapshot = await this.collection_professionals
-      .where("professional_type", "==", "medic")
+  getProfessionalSnapshot(
+    size: number,
+    professionalType: "medic" | "general",
+    observer: any
+  ) {
+    return this.collection_professionals
+      .where("professional_type", "==", professionalType)
       .orderBy("timestamp", "desc")
       .limit(size)
-      .get();
-
-    return snapshot.docs.map((doc) => doc.data());
-  },
-  async getProfessionalList2(size: number, start?: number) {
-    const snapshot = await this.collection_professionals
-      .where("professional_type", "==", "general")
-      .orderBy("timestamp", "desc")
-      .limit(size)
-      .get();
-
-    return snapshot.docs.map((doc) => doc.data());
+      .onSnapshot(observer);
   },
   async getProfessional(uuid: string) {
     const snapshot = await this.collection_professionals.doc(uuid).get();

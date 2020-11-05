@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import styles from "./styles";
 import { View, Text, Picker } from "react-native";
-import { DATA, PROFESSIONAL } from "../../services/data/index";
 import { useEffect } from "react";
 import SearchSection from "../../components/SearchSection";
-import TableKitchen from "../../components/TableKitchen";
 import { firebaseDataService } from "./../../services/data/index";
 import moment from "moment";
 import { PatientProfile } from "./../../interfaces/patient.interface";
 import Table from "./../../components/Table/index";
-import { TextInput } from "react-native-paper";
 
 const Kitchen: React.FC = ({ navigation, route }: any) => {
   const [selectedValue, setSelectedValue] = useState();
@@ -73,8 +70,7 @@ const Kitchen: React.FC = ({ navigation, route }: any) => {
 
       <SearchSection />
 
-      {DataTable && <Table dataTable={DataTable} userInfo={userInfo} />}
-      {/* <TableKitchen data={DATA} userInfo={userInfo} /> */}
+      {DataTable && <Table dataTable={DataTable} userInfo={userInfo} kitchen />}
     </View>
   );
 };

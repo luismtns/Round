@@ -1,8 +1,14 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { DataTable } from "react-native-paper";
+import { DataTable, IconButton } from "react-native-paper";
 
-const Table = ({ dataTable, professional, userInfo, editPatient }: any) => {
+const Table = ({
+  dataTable,
+  professional,
+  userInfo,
+  editPatient,
+  kitchen,
+}: any) => {
   const { navigate } = useNavigation();
   function goToPatient(item: any) {
     if (editPatient) {
@@ -34,6 +40,7 @@ const Table = ({ dataTable, professional, userInfo, editPatient }: any) => {
         ) : (
           <DataTable.Title>Localização</DataTable.Title>
         )}
+        {kitchen && <DataTable.Title>Etiqueta</DataTable.Title>}
       </DataTable.Header>
 
       {dataTable &&
@@ -53,6 +60,16 @@ const Table = ({ dataTable, professional, userInfo, editPatient }: any) => {
               <DataTable.Cell>{_patient?.hospitalization?.rh}</DataTable.Cell>
               <DataTable.Cell>{_patient?.personal?.birthday}</DataTable.Cell>
               <DataTable.Cell>{`${_patient?.hospitalization?.floor}º Andar | Quarto ${_patient?.hospitalization?.room}`}</DataTable.Cell>
+              {kitchen && (
+                <DataTable.Cell>
+                  <IconButton
+                    icon="ticket-confirmation"
+                    color="#376C71"
+                    size={20}
+                    onPress={() => console.log("Pressed")}
+                  />
+                </DataTable.Cell>
+              )}
             </DataTable.Row>
           );
         })}

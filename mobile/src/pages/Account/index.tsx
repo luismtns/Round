@@ -40,7 +40,6 @@ const Account: React.FC = () => {
       }
     });
   }, []);
-  function goToLogin() {}
 
   function saveData() {
     const data = { name, number, address };
@@ -49,24 +48,16 @@ const Account: React.FC = () => {
       .updateUser(uuid, data)
       .then((value) => {
         alert("Dados Salvos");
-
-        console.log(value);
       })
       .catch((err) => {
         alert("Falha ao salvar dados");
-        console.log(err);
       });
   }
-  function changePassword() {}
 
   function deleteUserAccount() {
     AuthService.delete()
-      ?.then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      ?.then((res) => {})
+      .catch((err) => {});
   }
 
   return (
@@ -148,11 +139,7 @@ const Account: React.FC = () => {
             </Button>
             <Text style={[styles.titles, { marginTop: 24 }]}>Acesso</Text>
             <Divider />
-            <List.Item
-              title="Alterar senha"
-              onPress={changePassword}
-              style={styles.accountBlock}
-            />
+
             <List.Item
               title="Deletar conta"
               titleStyle={styles.textLogout}

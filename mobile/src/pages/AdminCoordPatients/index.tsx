@@ -7,10 +7,23 @@ import Table from "../../components/Table";
 import SearchSection from "../../components/SearchSection";
 import { firebaseDataService } from "./../../services/data/index";
 import TableProfessionals from "./../../components/TableProfessionals/index";
+import { PatientProfile } from "./../../interfaces/patient.interface";
 
 const AdminCoordPatients: React.FC = ({ navigation, route }: any) => {
   const [dataTable, setDataTable] = useState([{}]);
+  const [search, setSearch] = useState<any>();
   const userInfo = route.params.data;
+
+  function filterData(childData: string) {
+    setDataTable(
+      search?.filter(function (data: PatientProfile) {
+        return (
+          data.personal.name.toLowerCase().indexOf(childData.toLowerCase()) >
+            -1 || data.hospitalization.rh == childData.toLowerCase().trim()
+        );
+      })
+    );
+  }
 
   useEffect(() => {
     navigation.setOptions({
@@ -25,6 +38,7 @@ const AdminCoordPatients: React.FC = ({ navigation, route }: any) => {
           return data;
         });
         setDataTable(arrayQuery);
+        setSearch(arrayQuery);
       },
       error: (err: any) => console.log(err),
     });
@@ -36,7 +50,7 @@ const AdminCoordPatients: React.FC = ({ navigation, route }: any) => {
       <View style={styles.container}>
         <Text style={styles.title}>Pacientes</Text>
 
-        <SearchSection />
+        <SearchSection searchProp={filterData} />
         {dataTable && (
           <Table dataTable={dataTable} userInfo={userInfo} editPatient />
         )}

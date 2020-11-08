@@ -5,6 +5,7 @@ import SearchSection from "../../components/SearchSection";
 import Table from "../../components/Table";
 import { firebaseDataService } from "./../../services/data/index";
 import { useIsFocused } from "@react-navigation/native";
+import { PatientProfile } from "./../../interfaces/patient.interface";
 
 const Clinic = ({ navigation, route }: any) => {
   const [dataTable, setDataTable] = useState();
@@ -12,12 +13,12 @@ const Clinic = ({ navigation, route }: any) => {
   const [search, setSearch] = useState<any>();
   const isVisible = useIsFocused();
 
-  function filterData(childData: any) {
-    console.log(search);
+  function filterData(childData: string) {
     setDataTable(
-      search?.filter(function (data: any) {
+      search?.filter(function (data: PatientProfile) {
         return (
-          data.personal.name.toLowerCase().indexOf(childData.toLowerCase()) > -1
+          data.personal.name.toLowerCase().indexOf(childData.toLowerCase()) >
+            -1 || data.hospitalization.rh == childData.toLowerCase().trim()
         );
       })
     );

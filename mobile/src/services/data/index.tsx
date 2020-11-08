@@ -37,10 +37,12 @@ export const PROFESSIONAL = {
 import { Firebase } from "../../integrations/firebase";
 import "firebase/firestore";
 import { ThemeConsumer } from "react-native-elements";
+import { PatientProfile } from "./../../interfaces/patient.interface";
 
 const collectionPatients = "patients";
 const collectionProfessionals = "professionals";
 const collectionUser = "users";
+const collectiondischargePatients = "dischargePatients";
 
 export const firebaseDataService = {
   // PATIENTS COLLECTION
@@ -56,6 +58,20 @@ export const firebaseDataService = {
   async getPatient(uuid: string) {
     const snapshot = await this.collection_patient.doc(uuid).get();
     return snapshot.data();
+  },
+  async dischargePatient(patient: PatientProfile) {
+    const snapshot2 = await this.collection_discharge_patient.add(patient);
+    if (snapshot2) {
+      await this.collection_patient
+        .doc(patient.id)
+        .delete()
+        .then((val) => {
+          return val;
+        })
+        .catch((reason: any) => {
+          return reason;
+        });
+    }
   },
   async updatePatientAlimentation(uuid: string, new_alimentation: any) {
     this.collection_patient.doc(uuid).update({
@@ -124,6 +140,9 @@ export const firebaseDataService = {
   // Helpers
   get collection_patient() {
     return Firebase.firestore().collection(collectionPatients);
+  },
+  get collection_discharge_patient() {
+    return Firebase.firestore().collection(collectiondischargePatients);
   },
   get collection_professionals() {
     return Firebase.firestore().collection(collectionProfessionals);

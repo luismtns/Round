@@ -3,14 +3,16 @@ import { View } from "react-native";
 import { Button, Menu, Provider, Searchbar } from "react-native-paper";
 import styles from "./styles";
 
-const SearchSection = () => {
+const SearchSection = (props: any) => {
   const [search, setSearch] = useState("");
   const [visible, setVisible] = useState(false);
 
   const openMenu = () => setVisible(true);
   const closeMenu = () => setVisible(false);
 
-  function handleSearch() {}
+  function handleSearch() {
+    props.searchProp(search);
+  }
 
   return (
     <View style={styles.filter}>

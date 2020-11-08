@@ -9,8 +9,19 @@ import { useIsFocused } from "@react-navigation/native";
 const Clinic = ({ navigation, route }: any) => {
   const [dataTable, setDataTable] = useState();
   const userInfo = route.params.data;
-
+  const [search, setSearch] = useState<any>();
   const isVisible = useIsFocused();
+
+  function filterData(childData: any) {
+    console.log(search);
+    setDataTable(
+      search?.filter(function (data: any) {
+        return (
+          data.personal.name.toLowerCase().indexOf(childData.toLowerCase()) > -1
+        );
+      })
+    );
+  }
 
   useEffect(() => {
     navigation.setOptions({
@@ -25,14 +36,11 @@ const Clinic = ({ navigation, route }: any) => {
           return data;
         });
         setDataTable(arrayQuery);
+        setSearch(arrayQuery);
       },
       error: (err: any) => console.log(err),
     });
     return unsubscribe;
-
-    // firebaseDataService.getPatientSnapshot(30).then((data: any) => {
-    //   setDataTable(data);
-    // });
   }, [setDataTable, isVisible]);
 
   return (
@@ -40,7 +48,7 @@ const Clinic = ({ navigation, route }: any) => {
       <View style={styles.container}>
         <Text style={styles.title}>Pacientes</Text>
 
-        <SearchSection />
+        <SearchSection searchProp={filterData} />
         {dataTable && <Table dataTable={dataTable} userInfo={userInfo} />}
       </View>
     </>

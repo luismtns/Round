@@ -9,7 +9,7 @@ const DialogPrimary = ({
   buttonAction,
   show,
   hide,
-  action,
+  onAction,
   hideModal,
 }: any) => {
   const visible = show ? true : false;
@@ -24,7 +24,9 @@ const DialogPrimary = ({
           </Dialog.Content>
           <Dialog.Actions>
             <Button onPress={hide}>{button}</Button>
-            <Button onPress={action}>{buttonAction}</Button>
+            <Button color="red" onPress={onAction}>
+              {buttonAction}
+            </Button>
           </Dialog.Actions>
         </Dialog>
       </Portal>

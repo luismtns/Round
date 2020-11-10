@@ -7,16 +7,29 @@ import { firebaseDataService } from "../../services/data/index";
 import { useIsFocused, useNavigation } from "@react-navigation/native";
 import SearchSection from "../../components/SearchSection";
 import TableProfessionals from "./../../components/TableProfessionals/index";
+import { ProfessionalProfile } from "./../../interfaces/professional.interface";
 
 const AdminCoordGeneral: React.FC = ({ route, navigation }: any) => {
   const { navigate } = useNavigation();
   const userInfo = route.params.data;
   const [dataTable, setDataTable] = useState();
+  const [search, setSearch] = useState<any>();
 
   const isVisible = useIsFocused();
 
   function goToAddNewProfessional() {
     navigate("AdminAddProfessionalGeneral", { data: userInfo });
+  }
+
+  function filterData(childData: string) {
+    setDataTable(
+      search?.filter(function (data: ProfessionalProfile) {
+        return (
+          data.personal.name.toLowerCase().indexOf(childData.toLowerCase()) >
+            -1 || data.professional.code == childData.toLowerCase().trim()
+        );
+      })
+    );
   }
 
   useEffect(() => {
@@ -31,6 +44,7 @@ const AdminCoordGeneral: React.FC = ({ route, navigation }: any) => {
         next: (querySnapshot: any) => {
           var arrayQuery = querySnapshot.docs.map((doc: any) => doc.data());
           setDataTable(arrayQuery);
+          setSearch(arrayQuery);
         },
         error: (err: any) => console.log(err),
       }
@@ -51,7 +65,7 @@ const AdminCoordGeneral: React.FC = ({ route, navigation }: any) => {
       </div>
       <View style={styles.container}>
         <Text style={styles.title}>Equipe geral</Text>
-        <SearchSection />
+        <SearchSection searchProp={filterData} />
         {dataTable && (
           <TableProfessionals TableData={dataTable} userInfo={userInfo} />
         )}

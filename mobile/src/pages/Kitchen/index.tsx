@@ -11,11 +11,22 @@ import EmptyAlert from "../../components/EmptyAlert";
 
 const Kitchen: React.FC = ({ navigation, route }: any) => {
   const [selectedValue, setSelectedValue] = useState();
+  const [DataTable, setDataTable] = useState<PatientProfile[]>([]);
   const [search, setSearch] = useState<any>();
-  const [DataTable, setdataTable] = useState();
   const [hoursAlimentUpdated, setHoursAlimentUpdated] = useState(4);
 
   var userInfo = route.params.data;
+
+  function filterData(childData: string) {
+    setDataTable(
+      search?.filter(function (data: PatientProfile) {
+        return (
+          data.personal.name.toLowerCase().indexOf(childData.toLowerCase()) >
+            -1 || data.hospitalization.rh == childData.toLowerCase().trim()
+        );
+      })
+    );
+  }
 
   useEffect((): any => {
     navigation.setOptions({
@@ -37,7 +48,7 @@ const Kitchen: React.FC = ({ navigation, route }: any) => {
       error: (err: any) => console.log(err),
     });
     return unsubscribe;
-  }, [setdataTable]);
+  }, [setDataTable]);
 
   function timeTableRules(query: any, hoursOffsetAliment: number) {
     query = query.filter((e: PatientProfile) => {
@@ -51,18 +62,8 @@ const Kitchen: React.FC = ({ navigation, route }: any) => {
         return true;
       }
     });
-    console.log(query);
-    setdataTable(query);
-  }
-
-  function filterData(childData: any) {
-    setdataTable(
-      search?.filter(function (data: any) {
-        return (
-          data.personal.name.toLowerCase().indexOf(childData.toLowerCase()) > -1
-        );
-      })
-    );
+    setDataTable(query);
+    setSearch(query);
   }
 
   return (
@@ -84,7 +85,7 @@ const Kitchen: React.FC = ({ navigation, route }: any) => {
 
       <SearchSection searchProp={filterData} />
 
-      {DataTable == [] ? (
+      {!DataTable || DataTable.length < 1 ? (
         <EmptyAlert />
       ) : (
         <Table dataTable={DataTable} userInfo={userInfo} kitchen />

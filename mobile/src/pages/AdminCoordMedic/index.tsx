@@ -7,16 +7,31 @@ import Table from "../../components/Table";
 import SearchSection from "../../components/SearchSection";
 import { firebaseDataService } from "./../../services/data/index";
 import TableProfessionals from "./../../components/TableProfessionals/index";
+import { ProfessionalProfile } from "./../../interfaces/professional.interface";
 
 const AdminCoordMedic: React.FC = ({ route, navigation }: any) => {
   const { navigate } = useNavigation();
   const userInfo = route.params.data;
   const [dataTable, setDataTable] = useState();
+  const [search, setSearch] = useState<any>();
 
   const isVisible = useIsFocused();
 
   function goToPatient(id: any) {
     // navigate(`Patient`, { patient: id });
+  }
+
+  function filterData(childData: string) {
+    setDataTable(
+      search?.filter(function (data: ProfessionalProfile) {
+        return (
+          data.personal.name.toLowerCase().indexOf(childData.toLowerCase()) >
+            -1 ||
+          data.professional.code == childData.toLowerCase().trim() ||
+          data.professional.crm == childData.toLowerCase().trim()
+        );
+      })
+    );
   }
   useEffect(() => {
     navigation.setOptions({
@@ -30,6 +45,7 @@ const AdminCoordMedic: React.FC = ({ route, navigation }: any) => {
         next: (querySnapshot: any) => {
           var arrayQuery = querySnapshot.docs.map((doc: any) => doc.data());
           setDataTable(arrayQuery);
+          setSearch(arrayQuery);
         },
         error: (err: any) => console.log(err),
       }
@@ -55,7 +71,7 @@ const AdminCoordMedic: React.FC = ({ route, navigation }: any) => {
       <View style={styles.container}>
         <Text style={styles.title}>Equipe médica</Text>
 
-        <SearchSection />
+        <SearchSection searchProp={filterData} />
         {dataTable && (
           <TableProfessionals TableData={dataTable} userInfo={userInfo} />
         )}

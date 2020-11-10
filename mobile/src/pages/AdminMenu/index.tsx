@@ -27,6 +27,10 @@ const AdminMenu: React.FC = ({ navigation, route }: any) => {
     navigate("AdminCoordMedic", { data: userInfo });
   }
 
+  function goToAdminDischargePatients() {
+    navigate("AdminDischargePatients", { data: userInfo });
+  }
+
   function goToAdminCoordGeneral() {
     navigate("AdminCoordGeneral", { data: userInfo });
   }
@@ -70,7 +74,10 @@ const AdminMenu: React.FC = ({ navigation, route }: any) => {
 
       <View style={[styles.optionsRow, { marginVertical: 20 }]}>
         <View style={{ width: "49%" }}>
-          <TouchableOpacity style={{ flex: 1, width: "100%" }}>
+          <TouchableOpacity
+            onPress={goToAdminDischargePatients}
+            style={{ flex: 1, width: "100%" }}
+          >
             <Surface style={styles.optionsContainer}>
               <Text style={styles.title}>Alta paciente</Text>
               <Text style={styles.subtitle}>

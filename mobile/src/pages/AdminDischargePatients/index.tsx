@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { View, Text } from "react-native";
 import styles from "./styles";
-import SearchSection from "../../components/SearchSection";
+import { View, Text } from "react-native";
+import { FAB } from "react-native-paper";
+import { useNavigation } from "@react-navigation/native";
 import Table from "../../components/Table";
+import SearchSection from "../../components/SearchSection";
 import { firebaseDataService } from "./../../services/data/index";
-import { useIsFocused } from "@react-navigation/native";
+import TableProfessionals from "./../../components/TableProfessionals/index";
 import { PatientProfile } from "./../../interfaces/patient.interface";
 
-const Clinic = ({ navigation, route }: any) => {
-  const [dataTable, setDataTable] = useState();
-  const userInfo = route.params.data;
+const AdminDischargePatients: React.FC = ({ navigation, route }: any) => {
+  const [dataTable, setDataTable] = useState([{}]);
   const [search, setSearch] = useState<any>();
-  const isVisible = useIsFocused();
+  const userInfo = route.params.data;
 
   function filterData(childData: string) {
     setDataTable(
@@ -42,18 +43,24 @@ const Clinic = ({ navigation, route }: any) => {
       error: (err: any) => console.log(err),
     });
     return unsubscribe;
-  }, [setDataTable, isVisible]);
+  }, []);
 
   return (
     <>
       <View style={styles.container}>
-        <Text style={styles.title}>Pacientes</Text>
+        <Text style={styles.title}>Alta Pacientes</Text>
 
         <SearchSection searchProp={filterData} />
-        {dataTable && <Table dataTable={dataTable} userInfo={userInfo} />}
+        {dataTable && (
+          <Table
+            dataTable={dataTable}
+            userInfo={userInfo}
+            dischargePatient={(val: any) => console.log(val)}
+          />
+        )}
       </View>
     </>
   );
 };
 
-export default Clinic;
+export default AdminDischargePatients;

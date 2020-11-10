@@ -25,6 +25,7 @@ const SearchSection = (props: any) => {
           { backgroundColor: "#EEEEEE", shadowColor: "transparent" },
         ]}
         inputStyle={{ color: "#AEAEAE" }}
+        onIconPress={handleSearch}
       />
       <Provider>
         <View

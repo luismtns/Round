@@ -316,13 +316,13 @@ const AdminAddPatient: React.FC = ({ route, navigation }: any) => {
           </View>
         </Surface>
 
-        <Surface style={{ marginTop: 40 }}>
+        <Surface style={{ marginVertical: 40 }}>
           <Text style={styles.title}>Documentos</Text>
           <View style={{ padding: 8, flex: 1 }}>
             <View style={styles.container}>
               <View style={[styles.item, { width: "100%" }]}>
                 <List.Item
-                  title="First Item"
+                  title="Foto 3x4"
                   right={(props) => (
                     <>
                       <IconButton

@@ -11,6 +11,7 @@ import EmptyAlert from "../../components/EmptyAlert";
 
 const Kitchen: React.FC = ({ navigation, route }: any) => {
   const [selectedValue, setSelectedValue] = useState();
+  const [search, setSearch] = useState<any>();
   const [DataTable, setdataTable] = useState();
   const [hoursAlimentUpdated, setHoursAlimentUpdated] = useState(4);
 
@@ -50,7 +51,18 @@ const Kitchen: React.FC = ({ navigation, route }: any) => {
         return true;
       }
     });
+    console.log(query);
     setdataTable(query);
+  }
+
+  function filterData(childData: any) {
+    setdataTable(
+      search?.filter(function (data: any) {
+        return (
+          data.personal.name.toLowerCase().indexOf(childData.toLowerCase()) > -1
+        );
+      })
+    );
   }
 
   return (
@@ -70,7 +82,7 @@ const Kitchen: React.FC = ({ navigation, route }: any) => {
       </Picker>
       <Text style={styles.title}>Pacientes</Text>
 
-      <SearchSection />
+      <SearchSection searchProp={filterData} />
 
       {DataTable == [] ? (
         <EmptyAlert />

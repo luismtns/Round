@@ -230,21 +230,13 @@ export default function Home() {
 
       {/* Projeto */}
       <div className="clearfix py-4 my-4" id="Projeto">
-        <ScrollAnimation
-          animateIn="fadeIn"
-          animateOut="fadeOut"
-          animationInDuration={animationsDuration}
-          delay={600}
-          animateOnce={true}
-        >
-          <div className=" illustration--width-41 float-md-right">
-            <img
-              src="/images/Guy_Trash_Ilu.png"
-              alt="Trash and Guy Illustration"
-              className="img-fluid"
-            />
-          </div>
-        </ScrollAnimation>
+        <div className=" illustration--width-41 float-md-right">
+          <img
+            src="/images/Guy_Trash_Ilu.png"
+            alt="Trash and Guy Illustration"
+            className="img-fluid"
+          />
+        </div>
         <div className="container">
           <div className="row">
             <div className="col-12 mt-3">
@@ -286,18 +278,11 @@ export default function Home() {
       {/* Impactar */}
       <div className="clearfix py-4 my-4" id="Projeto">
         <div className=" illustration--width-33 float-md-left">
-          <ScrollAnimation
-            animateIn="fadeIn"
-            animationInDuration={animationsDuration}
-            delay={600}
-            animateOnce={true}
-          >
-            <img
-              src="/images/Impact_Ilu.png"
-              alt="Impact Illustration"
-              className="img-fluid"
-            />
-          </ScrollAnimation>
+          <img
+            src="/images/Impact_Ilu.png"
+            alt="Impact Illustration"
+            className="img-fluid"
+          />
         </div>
         <div className="container">
           <div className="row">
@@ -352,7 +337,7 @@ export default function Home() {
         </div>
       </div>
       <div className="container">
-        <div className="row align-items-end">
+        <div className="row align-items-center">
           <div className="col-12 col-md-6">
             <ScrollAnimation
               animateIn="fadeIn"
@@ -370,18 +355,11 @@ export default function Home() {
             </ScrollAnimation>
           </div>
           <div className="col-12 col-md-6">
-            <ScrollAnimation
-              animateIn="fadeIn"
-              animationInDuration={animationsDuration}
-              delay={400}
-              animateOnce={true}
-            >
-              <img
-                src="/images/Hospital_Ilu.png"
-                alt="Trash and Guy Illustration"
-                className="img-fluid"
-              />
-            </ScrollAnimation>
+            <img
+              src="/images/Hospital_Ilu.png"
+              alt="Trash and Guy Illustration"
+              className="img-fluid"
+            />
           </div>
         </div>
       </div>
@@ -519,7 +497,7 @@ export default function Home() {
         <ScrollAnimation
           animateIn="fadeIn"
           animationInDuration={animationsDuration}
-          delay={600}
+          delay={200}
           animateOnce={true}
         >
           <img
@@ -592,30 +570,22 @@ export default function Home() {
         </div>
       </div>
 
-      <ScrollAnimation
-        offset={0}
-        animateIn="fadeInUp"
-        animationInDuration={animationsDuration}
-        delay={200}
-        animateOnce={true}
-      >
-        <footer className="container-fluid text-primary text-right bg-p-dark py-4 ">
-          <div className="container">
-            <div className="row align-items-end">
-              <div className="col-3 col-md-1">
-                <img
-                  src="/images/Icon_white.svg"
-                  className="w-100 img-fluid"
-                  alt="Icon White"
-                />
-              </div>
-              <div className="col-9 col-md-10 text-right">
-                <p>Round - Todos os direitos reservados ©</p>
-              </div>
+      <footer className="container-fluid text-primary text-right bg-p-dark py-4 ">
+        <div className="container">
+          <div className="row align-items-end">
+            <div className="col-3 col-md-1">
+              <img
+                src="/images/Icon_white.svg"
+                className="w-100 img-fluid"
+                alt="Icon White"
+              />
+            </div>
+            <div className="col-9 col-md-10 text-right">
+              <p>Round - Todos os direitos reservados ©</p>
             </div>
           </div>
-        </footer>
-      </ScrollAnimation>
+        </div>
+      </footer>
 
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>

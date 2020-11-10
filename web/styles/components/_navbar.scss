@@ -1,11 +1,11 @@
 .navbar-brand--size {
   img {
-    max-height: $h2-font-size;
+    max-height: 2.5rem;
   }
 }
 
 .bg-translucid {
-  background-color: rgba(255, 255, 255, 0.75);
+  background-color: rgba(255, 255, 255, 0.9);
   transition: ease-in-out 400ms;
   a.nav-link {
     color: $primary_color;
@@ -29,7 +29,7 @@
     }
   }
   &:hover {
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: rgba(255, 255, 255, 1);
     .nav-link {
       color: $gray;
       &:hover,

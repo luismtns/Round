@@ -50,8 +50,7 @@ const AdminMenu: React.FC = ({ navigation, route }: any) => {
             <Surface style={styles.optionsContainer}>
               <Text style={styles.title}>Novo paciente</Text>
               <Text style={styles.subtitle}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
-                convallis.
+                Cadastro da entrada de paciente
               </Text>
             </Surface>
           </TouchableOpacity>
@@ -64,8 +63,7 @@ const AdminMenu: React.FC = ({ navigation, route }: any) => {
             <Surface style={styles.optionsContainer}>
               <Text style={styles.title}>Pacientes</Text>
               <Text style={styles.subtitle}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
-                convallis.
+                Consulta e alteração de informações.
               </Text>
             </Surface>
           </TouchableOpacity>
@@ -81,8 +79,7 @@ const AdminMenu: React.FC = ({ navigation, route }: any) => {
             <Surface style={styles.optionsContainer}>
               <Text style={styles.title}>Alta paciente</Text>
               <Text style={styles.subtitle}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
-                convallis.
+                Fechamento da ficha e revisão de dados.
               </Text>
             </Surface>
           </TouchableOpacity>
@@ -95,8 +92,7 @@ const AdminMenu: React.FC = ({ navigation, route }: any) => {
             <Surface style={styles.optionsContainer}>
               <Text style={styles.title}>Coordenação Médica</Text>
               <Text style={styles.subtitle}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
-                convallis.
+                Lista dos médicos cadastrados no hospital.
               </Text>
             </Surface>
           </TouchableOpacity>
@@ -112,8 +108,7 @@ const AdminMenu: React.FC = ({ navigation, route }: any) => {
             <Surface style={styles.optionsContainer}>
               <Text style={styles.title}>Coordenação Geral</Text>
               <Text style={styles.subtitle}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
-                convallis.
+                Lista dos funcionários gerais cadastrados no hospital.
               </Text>
             </Surface>
           </TouchableOpacity>

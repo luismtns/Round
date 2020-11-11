@@ -19,7 +19,7 @@ const TableProfessionals = ({ TableData, userInfo }: any) => {
         <DataTable.Title>Nome</DataTable.Title>
         <DataTable.Title>Código</DataTable.Title>
         <DataTable.Title>Cargo</DataTable.Title>
-        <DataTable.Title>Alocação</DataTable.Title>
+        <DataTable.Title>Admissão</DataTable.Title>
       </DataTable.Header>
 
       {TableData &&
@@ -34,7 +34,7 @@ const TableProfessionals = ({ TableData, userInfo }: any) => {
               <DataTable.Cell>{_pD.personal.name}</DataTable.Cell>
               <DataTable.Cell>{_pD.professional.code}</DataTable.Cell>
               <DataTable.Cell>{_pD.professional.specialty}</DataTable.Cell>
-              <DataTable.Cell>{_pD.professional.specialty}</DataTable.Cell>
+              <DataTable.Cell>{_pD.professional.admission}</DataTable.Cell>
             </DataTable.Row>
           );
         })}

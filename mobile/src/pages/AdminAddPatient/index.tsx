@@ -140,19 +140,25 @@ const AdminAddPatient: React.FC = ({ route, navigation }: any) => {
             }
           },
         });
+      })
+      .finally(() => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
       });
   }
 
   return (
     <>
+      <DialogPrimary
+        show={Dialog.open}
+        title={Dialog.title}
+        paragraph={Dialog.label}
+        button={"Ok"}
+        hide={Dialog.onHide}
+      />
       <View style={styles.containerInputs}>
-        <DialogPrimary
-          show={Dialog.open}
-          title={Dialog.title}
-          paragraph={Dialog.label}
-          button={"Ok"}
-          hide={Dialog.onHide}
-        />
         <View style={styles.imgCompany}>
           <IconButton
             icon="pencil"

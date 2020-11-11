@@ -82,7 +82,7 @@ const Table = ({
         paragraph={Dialog.label}
         hide={Dialog.patient ? finallyDischargePatient : null}
         button={Dialog.patient ? "Sim" : null}
-        buttonAction={Dialog.patient ? "Não" : "Fechar"}
+        buttonAction={Dialog.open ? (Dialog.patient ? "Não" : "Fechar") : ""}
         onAction={() => {
           setDialog({
             title: "",

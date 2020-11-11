@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Picker, View } from "react-native";
+import React, { FC, useEffect, useRef, useState } from "react";
+import { Picker, ScrollView, View } from "react-native";
 import {
   Avatar,
   Button,
@@ -75,16 +75,21 @@ const ProfileForm = ({ uuid, alimentation }: any) => {
       .then((value) => {
         setDialog({
           title: "Sucesso!",
-          label: "Dados do paciente salvos com sucesso.",
+          label: "Alimentação do paciente registrada com sucesso.",
         });
       })
       .catch((err) => {
         setDialog({
           title: "Erro!",
-          label: "Erro ao salvar dados do paciente.",
+          label:
+            "Tivemos um problema ao salvar dados de alimentação do paciente. Tente novamente.",
         });
       })
       .finally(() => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
         setOpen(true);
       });
   }
@@ -117,7 +122,10 @@ const ProfileForm = ({ uuid, alimentation }: any) => {
           >
             <Picker.Item label="Selecione" value="" />
             <Picker.Item label="Geral" value="Geral" />
-            <Picker.Item label="Lorem" value="lorem" />
+            <Picker.Item label="Branda" value="Branda" />
+            <Picker.Item label="Pastosa" value="Pastosa" />
+            <Picker.Item label="Pastosa Liquidificada" value="Pastosa" />
+            <Picker.Item label="Líquida Completa" value="Pastosa" />
           </Picker>
         </View>
 

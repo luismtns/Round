@@ -15,6 +15,7 @@ import { ImagePicker } from "expo";
 import { firebaseDataService } from "./../../services/data/index";
 import { useNavigation } from "@react-navigation/native";
 import { ProfessionalProfile } from "./../../interfaces/professional.interface";
+import DialogPrimary from "../../components/DialogPrimary";
 
 const AdminAddProfessional: React.FC = ({ navigation, route }: any) => {
   const { navigate } = useNavigation();
@@ -41,6 +42,13 @@ const AdminAddProfessional: React.FC = ({ navigation, route }: any) => {
   const [clinic, setClinic] = useState(false);
 
   const [documents, setDocuments] = useState<string[]>([]);
+
+  const [Dialog, setDialog] = useState({
+    open: false,
+    title: "",
+    label: "",
+    onHide: () => {},
+  });
 
   useEffect(() => {
     navigation.setOptions({
@@ -103,8 +111,14 @@ const AdminAddProfessional: React.FC = ({ navigation, route }: any) => {
     firebaseDataService
       .addProfessional(ProfessionalDataModel)
       .then((value) => {
-        alert("Dados Salvos");
-        navigate("AdminCoordMedic");
+        setDialog({
+          open: true,
+          title: "Sucesso!",
+          label: "Dados do médico salvos com sucesso!",
+          onHide: () => {
+            navigate("AdminCoordMedic");
+          },
+        });
       })
       .catch((err) => {
         alert("Falha ao salvar dados");
@@ -142,6 +156,13 @@ const AdminAddProfessional: React.FC = ({ navigation, route }: any) => {
   return (
     <>
       <View style={styles.containerInputs}>
+        <DialogPrimary
+          show={Dialog.open}
+          title={Dialog.title}
+          paragraph={Dialog.label}
+          button={"Ok"}
+          hide={Dialog.onHide}
+        />
         <View style={styles.imgCompany}>
           <IconButton
             icon="pencil"

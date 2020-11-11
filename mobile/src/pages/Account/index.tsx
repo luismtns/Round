@@ -91,26 +91,24 @@ const Account: React.FC = () => {
 
   return (
     <>
-      <Portal>
-        <DialogPrimary
-          show={Dialog.open}
-          title={Dialog.title}
-          paragraph={Dialog.label}
-          button={Dialog.btnLabel}
-          hide={() => {
-            setDialog({
-              open: false,
-              title: "",
-              label: "",
-              btnLabel: "",
-              onAction: () => {},
-              buttonAction: "",
-            });
-          }}
-          onAction={Dialog.onAction}
-          buttonAction={Dialog.buttonAction}
-        />
-      </Portal>
+      <DialogPrimary
+        show={Dialog.open}
+        title={Dialog.title}
+        paragraph={Dialog.label}
+        button={Dialog.btnLabel}
+        hide={() => {
+          setDialog({
+            open: false,
+            title: "",
+            label: "",
+            btnLabel: "",
+            onAction: () => {},
+            buttonAction: "",
+          });
+        }}
+        onAction={Dialog.onAction}
+        buttonAction={Dialog.buttonAction}
+      />
       <View style={styles.containerLogout}>
         <View style={styles.imgCompany}>
           <IconButton

@@ -1,6 +1,8 @@
 import * as React from "react";
 import { View } from "react-native";
 import { Button, Paragraph, Dialog, Portal } from "react-native-paper";
+import styles from "./styles";
+import { ScrollView } from "react-native-gesture-handler";
 
 const DialogPrimary = ({
   title,
@@ -15,22 +17,20 @@ const DialogPrimary = ({
   const visible = show ? true : false;
 
   return (
-    <View>
-      <Portal>
-        <Dialog onDismiss={hide} visible={visible}>
-          <Dialog.Title>{title}</Dialog.Title>
-          <Dialog.Content>
-            <Paragraph>{paragraph}</Paragraph>
-          </Dialog.Content>
-          <Dialog.Actions>
-            <Button onPress={hide}>{button}</Button>
-            <Button color="red" onPress={onAction}>
-              {buttonAction}
-            </Button>
-          </Dialog.Actions>
-        </Dialog>
-      </Portal>
-    </View>
+    <Portal>
+      <Dialog onDismiss={hide} visible={visible}>
+        <Dialog.Title>{title}</Dialog.Title>
+        <Dialog.Content>
+          <Paragraph>{paragraph}</Paragraph>
+        </Dialog.Content>
+        <Dialog.Actions>
+          <Button onPress={hide}>{button}</Button>
+          <Button color="red" onPress={onAction}>
+            {buttonAction}
+          </Button>
+        </Dialog.Actions>
+      </Dialog>
+    </Portal>
   );
 };
 

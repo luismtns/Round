@@ -109,6 +109,12 @@ const AdminAddProfessionalGeneral: React.FC = ({ route, navigation }: any) => {
       .catch((err) => {
         alert("Falha ao salvar dados");
         console.log(err);
+      })
+      .finally(() => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
       });
   }
 

@@ -114,16 +114,16 @@ function Menu() {
 
   return (
     <>
-      <DialogPrimary
-        show={open}
-        title={Dialog.title}
-        paragraph={Dialog.label}
-        button="OK"
-        hide={() => {
-          setOpen(false);
-        }}
-      />
       <Portal>
+        <DialogPrimary
+          show={open}
+          title={Dialog.title}
+          paragraph={Dialog.label}
+          button="OK"
+          hide={() => {
+            setOpen(false);
+          }}
+        />
         <Modal
           visible={visible}
           contentContainerStyle={{

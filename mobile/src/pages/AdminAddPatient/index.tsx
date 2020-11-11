@@ -13,6 +13,7 @@ import {
 import { FAB } from "react-native-paper";
 import { firebaseDataService } from "./../../services/data/index";
 import { useNavigation } from "@react-navigation/native";
+import DialogPrimary from "../../components/DialogPrimary";
 
 const AdminAddPatient: React.FC = ({ route, navigation }: any) => {
   const { navigate } = useNavigation();
@@ -35,6 +36,13 @@ const AdminAddPatient: React.FC = ({ route, navigation }: any) => {
   const [bed, setBed] = useState("");
 
   const [observation, setObservation] = useState("");
+
+  const [Dialog, setDialog] = useState({
+    open: false,
+    title: "",
+    label: "",
+    onHide: () => {},
+  });
 
   const userInfo = route.params.data;
   const patient = route.params.patient;
@@ -98,22 +106,53 @@ const AdminAddPatient: React.FC = ({ route, navigation }: any) => {
     firebaseDataService
       .setPatient(PatientData, editPatient ? patient.id : null)
       .then((value) => {
-        alert("Dados Salvos");
-
-        if (editPatient) {
-          navigate("AdminCoordPatients");
-        } else {
-          navigate("AdminMenu");
-        }
+        setDialog({
+          open: true,
+          title: "Sucesso!",
+          label: `Dados do paciente foram ${
+            editPatient ? "editados" : "salvos"
+          } com sucesso`,
+          onHide: () => {
+            if (editPatient) {
+              navigate("AdminCoordPatients");
+            } else {
+              navigate("AdminMenu");
+            }
+          },
+        });
       })
       .catch((err) => {
-        alert("Falha ao salvar dados");
+        setDialog({
+          open: true,
+          title: "Erro!",
+          label: `Falha ao ${editPatient ? "editadar" : "salvar"} os dados.`,
+          onHide: () => {
+            setDialog({
+              open: false,
+              title: "",
+              label: "",
+              onHide: () => {},
+            });
+            if (editPatient) {
+              navigate("AdminCoordPatients");
+            } else {
+              navigate("AdminMenu");
+            }
+          },
+        });
       });
   }
 
   return (
     <>
       <View style={styles.containerInputs}>
+        <DialogPrimary
+          show={Dialog.open}
+          title={Dialog.title}
+          paragraph={Dialog.label}
+          button={"Ok"}
+          hide={Dialog.onHide}
+        />
         <View style={styles.imgCompany}>
           <IconButton
             icon="pencil"

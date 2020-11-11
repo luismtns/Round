@@ -160,21 +160,22 @@ export default function Home() {
             </div>
           </div>
           <div className="row">
-            <div className="col-12">
+            <div className="col-12 my-3">
               <ScrollAnimation
                 animateIn="fadeIn"
                 animationInDuration={animationsDuration}
                 delay={200}
                 animateOnce={true}
               >
-                <h2 className="font-weight-light mt-3">
-                  “É melhor sobrar do que faltar.”
+                <h2 className="font-weight-light mt-3 text-center">
+                  “É essencial que o combate ao desperdício seja uma pauta de
+                  grande importância.”
                 </h2>
               </ScrollAnimation>
             </div>
           </div>
-          <div className="row mt-3">
-            <div className="col-12 col-md-6 text-center">
+          <div className="row">
+            <div className="col-12 col-md-6 text-center my-3">
               <ScrollAnimation
                 animateIn="fadeIn"
                 animationInDuration={animationsDuration}
@@ -190,7 +191,7 @@ export default function Home() {
                 </h3>
               </ScrollAnimation>
             </div>
-            <div className="col-12 col-md-6 text-center">
+            <div className="col-12 col-md-6 text-center my-3">
               <ScrollAnimation
                 animateIn="fadeIn"
                 animationInDuration={animationsDuration}
@@ -199,14 +200,14 @@ export default function Home() {
               >
                 <h1 className="text-secondary font-weight-bold">40kg</h1>
                 <h3 className="font-weight-bold">
-                  <span className="h4">é desperdiçado por cada</span>
-                  <br></br>brasileiro por ano
+                  <span className="h4">são desperdiçados por cada</span>
+                  <br></br>brasileiro ao ano
                 </h3>
               </ScrollAnimation>
             </div>
           </div>
           <div className="row mt-3">
-            <div className="col-12">
+            <div className="col-12 text-center my-4">
               <ScrollAnimation
                 animateIn="fadeIn"
                 animationInDuration={animationsDuration}
@@ -239,7 +240,7 @@ export default function Home() {
         </div>
         <div className="container">
           <div className="row">
-            <div className="col-12 mt-3">
+            <div className="col- col-md-10 mt-3">
               <ScrollAnimation
                 animateIn="fadeInUp"
                 animationInDuration={animationsDuration}
@@ -286,7 +287,7 @@ export default function Home() {
         </div>
         <div className="container">
           <div className="row">
-            <div className="col-12 mt-2">
+            <div className="col-12 col-md-10 offset-md-2 mt-2">
               <ScrollAnimation
                 animateIn="fadeInUp"
                 animationInDuration={animationsDuration}
@@ -303,7 +304,7 @@ export default function Home() {
                 delay={400}
                 animateOnce={true}
               >
-                <h5 className="py-3">
+                <h5 className="py-2">
                   Além do benefício financeiro, o projeto espera ter resultados
                   também no âmbito sociocultural, reduzindo o pensamento da
                   cultura da fartura{" "}
@@ -348,9 +349,8 @@ export default function Home() {
               <h5 className="pb-4">
                 Além de ser uma instituição com uma{" "}
                 <strong className="text-primary">causa nobre</strong>, uma
-                estrutura única, eles são um instituto social sem fins
-                lucrativos, <strong>morada perfeita para nossa proposta</strong>
-                .
+                estrutura única, são um instituto social sem fins lucrativos,{" "}
+                <strong>morada perfeita para nossa proposta</strong>.
               </h5>
             </ScrollAnimation>
           </div>
@@ -373,7 +373,9 @@ export default function Home() {
                 delay={200}
                 animateOnce={true}
               >
-                <h1 className="text-center font-weight-bold">Como Funciona?</h1>
+                <h2 className="text-center font-weight-bold my-4">
+                  Como Funciona?
+                </h2>
               </ScrollAnimation>
             </div>
           </div>
@@ -408,7 +410,7 @@ export default function Home() {
                 animateOnce={true}
               >
                 {" "}
-                <p className="h5">
+                <p>
                   Se é importante para você, é importante para o meio ambiente.
                   ROUND te ajuda a diminuir o gasto de papel, reduz o
                   desperdício de alimentos e reafirma seu compromisso com o meio
@@ -443,12 +445,11 @@ export default function Home() {
                 delay={1000}
                 animateOnce={true}
               >
-                <p className="h5">
-                  Reaproximar setores e facilitar a comunicação?
-                  <br />
-                  Sim! ROUND simplifica o fluxo de trabalho, facilitando o
-                  acesso as informações e disponibilizando em tempo real a
-                  atualização de dados e informações.
+                <p>
+                  Reaproximar setores e facilitar a comunicação? Sim! ROUND
+                  simplifica o fluxo de trabalho, facilitando o acesso as
+                  informações e disponibilizando em tempo real a atualização de
+                  dados e informações.
                 </p>
               </ScrollAnimation>
             </div>
@@ -482,8 +483,8 @@ export default function Home() {
                 delay={1600}
                 animateOnce={true}
               >
-                <p className="h5">
-                  Todo o potencial da inteligencia artificial nas suas mãos.
+                <p>
+                  Todo o potencial da inteligência artificial nas suas mãos.
                   ROUND aprende com o que você faz e possibilita a predição de
                   cenários, a análise detalhada de alterações comportamentais e
                   a compilação de dados.

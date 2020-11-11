@@ -46,7 +46,10 @@ const collectiondischargePatients = "dischargePatients";
 
 export const firebaseDataService = {
   // PATIENTS COLLECTION
-  async addPatient(PatientObj: any) {
+  async setPatient(PatientObj: any, uuid?: string) {
+    if (uuid) {
+      return this.collection_patient.doc(uuid).update(PatientObj);
+    }
     return this.collection_patient.add(PatientObj);
   },
   getPatientSnapshot(size: number, observer: any) {

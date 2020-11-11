@@ -38,9 +38,10 @@ const AdminAddPatient: React.FC = ({ route, navigation }: any) => {
 
   const userInfo = route.params.data;
   const patient = route.params.patient;
+  const editPatient = route.params.editPatient;
 
   useEffect(() => {
-    if (route.params.editPatient) {
+    if (editPatient) {
       setName(patient.personal.name);
       setBirthday(patient.personal.birthday);
       setMarital(patient.personal.marital);
@@ -95,11 +96,11 @@ const AdminAddPatient: React.FC = ({ route, navigation }: any) => {
       timestamp: firebaseDataService.timestamp,
     };
     firebaseDataService
-      .addPatient(PatientData)
+      .setPatient(PatientData, editPatient ? patient.id : null)
       .then((value) => {
         alert("Dados Salvos");
 
-        if (route.params.editPatient) {
+        if (editPatient) {
           navigate("AdminCoordPatients");
         } else {
           navigate("AdminMenu");

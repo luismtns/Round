@@ -15,6 +15,7 @@ import {
 import { ScrollView } from "react-native-gesture-handler";
 import AuthService from "./../../services/auth/index";
 import { firebaseDataService } from "./../../services/data/index";
+import DialogPrimary from "../../components/DialogPrimary";
 
 const Account: React.FC = () => {
   const uuid = firebaseDataService.uid;
@@ -24,11 +25,14 @@ const Account: React.FC = () => {
   const [number, setNumber] = useState("");
   const [address, setAddress] = useState("");
 
-  const [visible, setVisible] = useState(false);
-
-  const showDialog = () => setVisible(true);
-
-  const hideDialog = () => setVisible(false);
+  const [Dialog, setDialog] = useState({
+    open: false,
+    title: "",
+    label: "",
+    btnLabel: "",
+    onAction: () => {},
+    buttonAction: "",
+  });
 
   useEffect(() => {
     firebaseDataService.getUser(uuid).then(async (data: any) => {
@@ -47,11 +51,36 @@ const Account: React.FC = () => {
     firebaseDataService
       .updateUser(uuid, data)
       .then((value) => {
-        alert("Dados Salvos");
+        setDialog({
+          open: true,
+          title: "Sucesso!",
+          label: "Dados salvos com sucesso.",
+          btnLabel: "Ok",
+          onAction: () => {},
+          buttonAction: "",
+        });
       })
       .catch((err) => {
-        alert("Falha ao salvar dados");
+        setDialog({
+          open: true,
+          title: "Erro!",
+          label: "Erro ao salvar os dados, aguarde e tente novamente.",
+          btnLabel: "Ok",
+          onAction: () => {},
+          buttonAction: "",
+        });
       });
+  }
+
+  function confirmAcountDelet() {
+    setDialog({
+      open: true,
+      title: "Erro!",
+      label: "Erro ao salvar os dados, aguarde e tente novamente.",
+      btnLabel: "Voltar",
+      onAction: deleteUserAccount,
+      buttonAction: "Deletar",
+    });
   }
 
   function deleteUserAccount() {
@@ -63,16 +92,24 @@ const Account: React.FC = () => {
   return (
     <>
       <Portal>
-        <Dialog visible={visible} onDismiss={hideDialog}>
-          <Dialog.Title>Deletar conta</Dialog.Title>
-          <Dialog.Content>
-            <Paragraph>Deseja mesmo deletar sua conta?</Paragraph>
-          </Dialog.Content>
-          <Dialog.Actions>
-            <Button onPress={hideDialog}>Voltar</Button>
-            <Button onPress={deleteUserAccount}>Deletar</Button>
-          </Dialog.Actions>
-        </Dialog>
+        <DialogPrimary
+          show={Dialog.open}
+          title={Dialog.title}
+          paragraph={Dialog.label}
+          button={Dialog.btnLabel}
+          hide={() => {
+            setDialog({
+              open: false,
+              title: "",
+              label: "",
+              btnLabel: "",
+              onAction: () => {},
+              buttonAction: "",
+            });
+          }}
+          onAction={Dialog.onAction}
+          buttonAction={Dialog.buttonAction}
+        />
       </Portal>
       <View style={styles.containerLogout}>
         <View style={styles.imgCompany}>
@@ -143,7 +180,7 @@ const Account: React.FC = () => {
             <List.Item
               title="Deletar conta"
               titleStyle={styles.textLogout}
-              onPress={showDialog}
+              onPress={confirmAcountDelet}
               style={styles.accountBlock}
             />
           </View>

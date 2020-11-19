@@ -1,4 +1,3 @@
-import { Firebase } from "./../integrations/firebase";
 interface IPersonal {
   name: string;
   birthday: string;

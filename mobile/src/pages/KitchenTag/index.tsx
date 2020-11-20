@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { View, Text } from "react-native";
+import { View, Text, Platform } from "react-native";
 import { IconButton, Surface } from "react-native-paper";
+import * as Print from "expo-print";
+
 import Profile from "../../components/Profile";
 import styles from "./styles";
 import { PatientProfile } from "./../../interfaces/patient.interface";
@@ -16,8 +18,21 @@ const KitchenTag: React.FC = ({ navigation, route }: any) => {
     });
   }, []);
 
+  const htmlContent = `
+`;
+
+  const createPDF = async (_html?: string) => {
+    try {
+      const { uri } = await Print.printToFileAsync({
+        html: _html,
+      });
+      return uri;
+    } catch (err) {
+      console.error(err);
+    }
+  };
   function printTag() {
-    console.log("Pressed");
+    createPDF();
   }
 
   return (
@@ -29,7 +44,7 @@ const KitchenTag: React.FC = ({ navigation, route }: any) => {
           color="#ffffff"
           size={32}
           style={{ backgroundColor: "#163D42" }}
-          onPress={() => printTag}
+          onPress={printTag}
         />
       </View>
 

@@ -18,8 +18,6 @@ const ClinicPatient = (props: any) => {
     });
 
     firebaseDataService.getPatient(patient_uuid).then(async (data: any) => {
-      console.log(data);
-
       setPatientData(data);
     });
   }, []);

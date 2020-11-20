@@ -48,8 +48,8 @@ const Table = ({
     });
   }
 
-  function goToKitchenTag(id: any) {
-    navigate(`KitchenTag`, { professional: id, data: userInfo });
+  function goToKitchenTag(item: any) {
+    navigate(`KitchenTag`, { patient: item, data: userInfo });
   }
 
   function finallyDischargePatient() {

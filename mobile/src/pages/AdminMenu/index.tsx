@@ -121,8 +121,7 @@ const AdminMenu: React.FC = ({ navigation, route }: any) => {
             <Surface style={styles.optionsContainer}>
               <Text style={styles.title}>Desperdício de Alimentos</Text>
               <Text style={styles.subtitle}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
-                convallis.
+                Informações e dados detalhados sobre o desperdício gerado
               </Text>
             </Surface>
           </TouchableOpacity>

@@ -28,10 +28,14 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   contentName: {
+    color: theme.SECONDARY_TEXT_COLOR,
+    fontWeight: "600",
     flex: 1,
+    fontSize: 16,
   },
   contentDetail: {
     flex: 1,
+    fontSize: 16,
   },
 });
 

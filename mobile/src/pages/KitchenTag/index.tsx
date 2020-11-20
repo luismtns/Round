@@ -3,10 +3,12 @@ import { View, Text } from "react-native";
 import { IconButton, Surface } from "react-native-paper";
 import Profile from "../../components/Profile";
 import styles from "./styles";
+import { PatientProfile } from "./../../interfaces/patient.interface";
 
 const KitchenTag: React.FC = ({ navigation, route }: any) => {
-  const [patient_data, setPatientData] = useState({});
   const userInfo = route.params.data;
+  const patientData: PatientProfile = route.params.patient;
+  console.log(route.params);
 
   useEffect(() => {
     navigation.setOptions({
@@ -31,7 +33,7 @@ const KitchenTag: React.FC = ({ navigation, route }: any) => {
         />
       </View>
 
-      <Profile patient_data={patient_data} />
+      <Profile patient_data={patientData} />
       <View style={{ flex: 1, flexDirection: "row" }}>
         <Surface
           style={{
@@ -47,22 +49,37 @@ const KitchenTag: React.FC = ({ navigation, route }: any) => {
               <Text style={styles.title}>Alimentação</Text>
               <View style={styles.content}>
                 <Text style={styles.contentName}>Dieta</Text>
-                <Text style={styles.contentDetail}></Text>
-              </View>
-
-              <View style={styles.content}>
-                <Text style={styles.contentName}>Alergias e Intolerâncias</Text>
-                <Text style={styles.contentDetail}></Text>
+                <Text style={styles.contentDetail}>
+                  {patientData.alimentation?.diet}
+                </Text>
               </View>
 
               <View style={styles.content}>
                 <Text style={styles.contentName}>Restrições</Text>
-                <Text style={styles.contentDetail}></Text>
+                <Text style={styles.contentDetail}>
+                  {patientData.alimentation?.restrictions.geral
+                    ? "Geral, "
+                    : ""}
+                  {patientData.alimentation?.restrictions.halal
+                    ? "Halal, "
+                    : ""}
+                  {patientData.alimentation?.restrictions.kosher
+                    ? "Kosher, "
+                    : ""}
+                  {patientData.alimentation?.restrictions.vegan
+                    ? "Vegan, "
+                    : ""}
+                  {patientData.alimentation?.restrictions.vegetariano
+                    ? "Vegetariano."
+                    : ""}
+                </Text>
               </View>
 
               <View style={styles.content}>
                 <Text style={styles.contentName}>Acompanhante</Text>
-                <Text style={styles.contentDetail}></Text>
+                <Text style={styles.contentDetail}>
+                  {patientData.alimentation?.acompanhante ? "Sim" : "Não"}
+                </Text>
               </View>
             </View>
           </View>
@@ -81,8 +98,9 @@ const KitchenTag: React.FC = ({ navigation, route }: any) => {
             <View>
               <Text style={[styles.title]}>Observações</Text>
               <View style={styles.content}>
-                <Text style={styles.contentName}>E-mail</Text>
-                <Text style={styles.contentDetail}></Text>
+                <Text style={styles.contentDetail}>
+                  {patientData.alimentation?.observations}
+                </Text>
               </View>
             </View>
           </View>

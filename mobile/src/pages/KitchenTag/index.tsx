@@ -4,6 +4,7 @@ import { IconButton, Surface } from "react-native-paper";
 import DialogPrimary from "../../components/DialogPrimary";
 import Profile from "../../components/Profile";
 import styles from "./styles";
+import { PatientProfile } from "./../../interfaces/patient.interface";
 
 const KitchenTag: React.FC = ({ navigation, route }: any) => {
   const patient_data = route.params.professional;
@@ -123,10 +124,9 @@ const KitchenTag: React.FC = ({ navigation, route }: any) => {
               <View>
                 <Text style={[styles.title]}>Observações</Text>
                 <View style={styles.content}>
-                  <Text style={styles.contentName}>
-                    {patient_data.alimentation.observations}
+                  <Text style={styles.contentDetail}>
+                    {patient_data.alimentation?.observations}
                   </Text>
-                  {/* <Text style={styles.contentDetail}></Text> */}
                 </View>
               </View>
             </View>

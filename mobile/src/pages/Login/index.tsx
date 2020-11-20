@@ -85,9 +85,9 @@ function Login() {
 
   function goToContact() {
     if (Platform.OS !== "web") {
-      WebBrowser.openBrowserAsync("https://round-landing-page.vercel.app/");
+      WebBrowser.openBrowserAsync("https://projetoround.com/");
     } else {
-      Linking.openURL("https://round-landing-page.vercel.app/");
+      Linking.openURL("https://projetoround.com/");
     }
   }
 

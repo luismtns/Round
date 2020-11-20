@@ -7,7 +7,7 @@ import styles from "./styles";
 import { PatientProfile } from "./../../interfaces/patient.interface";
 
 const KitchenTag: React.FC = ({ navigation, route }: any) => {
-  const patient_data = route.params.professional;
+  const patient_data = route.params.patient;
   const userInfo = route.params.data;
   const [Dialog, setDialog] = useState({
     title: "",

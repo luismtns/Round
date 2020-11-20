@@ -13,7 +13,6 @@ const Header: React.FC<ProfessionalProps> = (props: any) => {
 
   useLayoutEffect(() => {
     setUserInfo(props?.children);
-    console.log("te");
   }, [props?.children.personal]);
 
   return (

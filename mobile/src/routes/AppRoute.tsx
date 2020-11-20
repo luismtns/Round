@@ -41,6 +41,7 @@ function AppRoute() {
         cardStyle: {
           backgroundColor: "#ffffff",
         },
+        title: "Round",
       }}
     >
       <Screen name="Menu" component={Menu} options={{ headerShown: false }} />

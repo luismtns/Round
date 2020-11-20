@@ -20,6 +20,7 @@ function AuthRoute() {
             headerStyle: { backgroundColor: "transparent" },
             headerTransparent: true,
             headerTintColor: "white",
+            title: "Round",
           }}
         >
           <Screen name="Login" component={Login} />

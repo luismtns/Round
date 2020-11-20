@@ -68,19 +68,6 @@ const Kitchen: React.FC = ({ navigation, route }: any) => {
 
   return (
     <View style={styles.container}>
-      {/* <Picker
-        selectedValue={selectedValue}
-        style={{ width: "100%", height: 40, marginBottom: 12 }}
-        onValueChange={setSelectedValue}
-      >
-        <Picker.Item label="Selecione" value={""} />
-        <Picker.Item label="Lorem" value="lorem" />
-        <Picker.Item label="Lorem" value="lorem" />
-        <Picker.Item label="Lorem" value="lorem" />
-        <Picker.Item label="Lorem" value="lorem" />
-        <Picker.Item label="Lorem" value="lorem" />
-        <Picker.Item label="Lorem" value="lorem" />
-      </Picker> */}
       <Text style={styles.title}>Pacientes</Text>
 
       <SearchSection searchProp={filterData} />

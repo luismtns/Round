@@ -47,8 +47,18 @@ const AdminAddProfessional: React.FC = ({ navigation, route }: any) => {
     open: false,
     title: "",
     label: "",
-    onHide: () => {},
+    onHide: () => {
+      hideDialog;
+    },
   });
+  const hideDialog = () => {
+    setDialog({
+      open: false,
+      title: "",
+      label: "",
+      onHide: () => {},
+    });
+  };
 
   useEffect(() => {
     navigation.setOptions({
@@ -121,7 +131,15 @@ const AdminAddProfessional: React.FC = ({ navigation, route }: any) => {
         });
       })
       .catch((err) => {
-        alert("Falha ao salvar dados");
+        setDialog({
+          open: true,
+          title: "Erro!",
+          label:
+            "Tivemos problemas ao tentar salvar os dados, verifique se preencheu tudo corretamente.",
+          onHide: () => {
+            hideDialog();
+          },
+        });
         console.log(err);
       });
   }

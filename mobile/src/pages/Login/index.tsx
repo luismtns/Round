@@ -16,6 +16,7 @@ import * as WebBrowser from "expo-web-browser";
 
 import { text } from "../../styles/theme.style";
 import AuthService from "./../../services/auth/index";
+import DialogPrimary from "../../components/DialogPrimary";
 
 const imgBackground = require("../../assets/background.png");
 
@@ -27,8 +28,22 @@ function Login() {
   const [password, setPassword] = useState("");
   const [loader, setLoader] = useState(false);
 
-  const [visible, setVisible] = useState(false);
-
+  const [Dialog, setDialog] = useState({
+    open: false,
+    title: "",
+    label: "",
+    onHide: () => {
+      hideDialog();
+    },
+  });
+  const hideDialog = () => {
+    setDialog({
+      open: false,
+      title: "",
+      label: "",
+      onHide: () => {},
+    });
+  };
   function handleLogin(email: any, password: any) {
     setLoader(true);
     AuthService.signInWithEmailAndPassword(email, password)
@@ -38,13 +53,29 @@ function Login() {
       .catch((err) => {
         setLoader(false);
 
-        if (Platform.OS === "web") {
-          alert("Falha ao efetuar o login.");
+        var message = "";
+        const genericMessage =
+          "Verifique as informações de login e tente novamente.";
+        if (err && err.code) {
+          if (err.code == "auth/invalid-email") {
+            message = "E-mail não encontrado ou não informado.";
+          } else if (err.code == "auth/wrong-password") {
+            message = "Senha informada incorreta.";
+          } else {
+            message = genericMessage;
+          }
         } else {
-          Alert.alert("Login", "Falha ao efetuar o login.", [
-            { text: "OK", onPress: () => {} },
-          ]);
+          message = genericMessage;
         }
+
+        setDialog({
+          open: true,
+          title: "Erro!",
+          label: message,
+          onHide: () => {
+            hideDialog();
+          },
+        });
       });
   }
 
@@ -67,23 +98,13 @@ function Login() {
 
   return (
     <View style={styles.container}>
-      <Portal>
-        <Dialog
-          style={{ maxWidth: 300, marginLeft: "auto", marginRight: "auto" }}
-          visible={visible}
-          onDismiss={() => setVisible(false)}
-        >
-          <Dialog.Title>Erro</Dialog.Title>
-          <Dialog.Content>
-            <Paragraph>
-              O e-mail informado "{email}" é inválido ou não existe.
-            </Paragraph>
-          </Dialog.Content>
-          <Dialog.Actions>
-            <Button onPress={() => setVisible(false)}>OK</Button>
-          </Dialog.Actions>
-        </Dialog>
-      </Portal>
+      <DialogPrimary
+        show={Dialog.open}
+        title={Dialog.title}
+        paragraph={Dialog.label}
+        button={"Ok"}
+        hide={Dialog.onHide}
+      />
       <ImageBackground style={styles.containerLogo} source={imgBackground}>
         <View>
           <Image

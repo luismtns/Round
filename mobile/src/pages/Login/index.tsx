@@ -100,7 +100,7 @@ function Login() {
           <TextInput
             value={email}
             label="E-mail"
-            mode="outlined"
+            mode="flat"
             keyboardType="email-address"
             returnKeyType="go"
             style={{ marginBottom: 12 }}
@@ -109,7 +109,7 @@ function Login() {
 
           <TextInput
             value={password}
-            mode="outlined"
+            mode="flat"
             secureTextEntry={showPassword}
             label="Senha"
             right={<TextInput.Icon name={icon} onPress={handlePassword} />}

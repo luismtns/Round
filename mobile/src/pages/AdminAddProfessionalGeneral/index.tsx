@@ -15,6 +15,7 @@ import { ImagePicker } from "expo";
 import { firebaseDataService } from "../../services/data/index";
 import { useNavigation } from "@react-navigation/native";
 import { ProfessionalProfile } from "./../../interfaces/professional.interface";
+import DialogPrimary from "../../components/DialogPrimary";
 
 const AdminAddProfessionalGeneral: React.FC = ({ route, navigation }: any) => {
   const userInfo = route.params.data;
@@ -41,6 +42,23 @@ const AdminAddProfessionalGeneral: React.FC = ({ route, navigation }: any) => {
   const [clinic, setClinic] = useState(false);
 
   const [documents, setDocuments] = useState<string[]>([]);
+
+  const [Dialog, setDialog] = useState({
+    open: false,
+    title: "",
+    label: "",
+    onHide: () => {
+      hideDialog();
+    },
+  });
+  const hideDialog = () => {
+    setDialog({
+      open: false,
+      title: "",
+      label: "",
+      onHide: () => {},
+    });
+  };
 
   useEffect(() => {
     navigation.setOptions({
@@ -103,12 +121,25 @@ const AdminAddProfessionalGeneral: React.FC = ({ route, navigation }: any) => {
     firebaseDataService
       .addProfessional(ProfessionalDataModel)
       .then((value) => {
-        alert("Dados Salvos");
-        navigate("AdminCoordGeneral");
+        setDialog({
+          open: true,
+          title: "Sucesso!",
+          label: "Dados Salvo",
+          onHide: () => {
+            navigate("AdminCoordGeneral");
+          },
+        });
       })
       .catch((err) => {
-        alert("Falha ao salvar dados");
-        console.log(err);
+        setDialog({
+          open: true,
+          title: "Erro!",
+          label:
+            "Falha ao salvar dados, verifique as informações e tente novamente.",
+          onHide: () => {
+            hideDialog();
+          },
+        });
       })
       .finally(() => {
         window.scrollTo({
@@ -146,6 +177,13 @@ const AdminAddProfessionalGeneral: React.FC = ({ route, navigation }: any) => {
   return (
     <>
       <View style={styles.containerInputs}>
+        <DialogPrimary
+          show={Dialog.open}
+          title={Dialog.title}
+          paragraph={Dialog.label}
+          button={"Ok"}
+          hide={Dialog.onHide}
+        />
         <View style={styles.imgCompany}>
           <IconButton
             icon="pencil"

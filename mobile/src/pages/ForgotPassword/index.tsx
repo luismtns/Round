@@ -11,42 +11,57 @@ import styles from "./styles";
 import { Button, IconButton, TextInput } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import AuthService from "../../services/auth/index";
+import DialogPrimary from "../../components/DialogPrimary";
+import { hide } from "expo/build/launch/SplashScreen";
 
 const imgBackground = require("../../assets/background.png");
 
 function ForgotPasswordPage() {
   const { navigate } = useNavigation();
   const [email, setEmail] = useState("");
+  const [Dialog, setDialog] = useState({
+    open: false,
+    title: "",
+    label: "",
+    onHide: () => {
+      hideDialog();
+    },
+  });
+  const hideDialog = () => {
+    setDialog({
+      open: false,
+      title: "",
+      label: "",
+      onHide: () => {},
+    });
+  };
 
   async function handleForgotPassword() {
     await AuthService.sendPasswordResetEmail(email)
-      .then((res: any) => {
-        if (Platform.OS === "web") {
-          alert(
-            "Acesse seu e-mail e siga as instruções para recuperação de senha."
-          );
-        } else {
-          Alert.alert(
-            "Recuperação de senha",
-            "Acesse seu e-mail e siga as instruções para recuperação de senha.",
-            [{ text: "OK", onPress: () => {} }]
-          );
-        }
+      .then(() => {
+        const genericMessage =
+          "Acesse seu e-mail e siga as instruções para recuperação de senha.";
 
-        navigate("Login");
+        setDialog({
+          open: true,
+          title: "Recuperação de senha",
+          label: genericMessage,
+          onHide: () => {
+            navigate("Login");
+          },
+        });
       })
       .catch((err: any) => {
-        if (Platform.OS === "web") {
-          alert(
-            "Ocorreu um problema ao tentar enviar o e-mail de recuperação, confira seu e-mail e tente novamente mais tarde."
-          );
-        } else {
-          Alert.alert(
-            "Recuperação de senha",
-            "Ocorreu um problema ao tentar enviar o e-mail de recuperação, confira seu e-mail e tente novamente mais tarde.",
-            [{ text: "OK", onPress: () => {} }]
-          );
-        }
+        const genericMessage =
+          "Ocorreu um problema ao tentar enviar o e-mail de recuperação, confira seu e-mail e tente novamente.";
+        setDialog({
+          open: true,
+          title: "Erro!",
+          label: genericMessage,
+          onHide: () => {
+            hideDialog();
+          },
+        });
       })
       .finally(() => {});
   }
@@ -57,6 +72,13 @@ function ForgotPasswordPage() {
 
   return (
     <View style={styles.container}>
+      <DialogPrimary
+        show={Dialog.open}
+        title={Dialog.title}
+        paragraph={Dialog.label}
+        button={"Ok"}
+        hide={Dialog.onHide}
+      />
       <ImageBackground style={styles.containerLogo} source={imgBackground}>
         <View>
           <Image

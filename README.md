@@ -1,14 +1,14 @@
-# Round
-Trabalho de Conclusão de Curso em Design Digital - Anhembi Morumbi 2020.
-
 <div align="center">
   <div>
      <img alt="Round" src="mobile/.github/logo.svg" width="200px"  />
   </div>
 </div>
 
+# Round
+Trabalho de Conclusão de Curso em Design Digital - Anhembi Morumbi 2020.
+
 <p align="center">
-  <img alt="Round" src="mobile/.github/mockup.png" width="100%">
+  <img alt="Round" src="mobile/.github/mockup.png" width="60%">
 </p>
 
 ## Requisitos

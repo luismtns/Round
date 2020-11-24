@@ -1,37 +1,39 @@
-import React, { useState } from "react";
-import { View } from "react-native";
-import { Button, Menu, Provider, Searchbar } from "react-native-paper";
-import styles from "./styles";
+import React, { useState } from 'react';
+import { View } from 'react-native';
+import { Button, Menu, Provider, Searchbar } from 'react-native-paper';
+import styles from './styles';
 
 const SearchSection = (props: any) => {
-  const [search, setSearch] = useState("");
+  const [patient, setPatient] = useState('');
   const [visible, setVisible] = useState(false);
+  const [filter, setFilter] = useState('Recentes');
 
   const openMenu = () => setVisible(true);
   const closeMenu = () => setVisible(false);
 
   function handleSearch() {
-    props.searchProp(search);
+    console.log(patient, filter);
+    props.searchProp({ patient, filter });
   }
 
   return (
     <View style={styles.filter}>
       <Searchbar
         placeholder="Pesquisar"
-        onChangeText={setSearch}
-        value={search}
+        onChangeText={setPatient}
+        value={patient}
         style={[
           styles.searchBar,
-          { backgroundColor: "#EEEEEE", shadowColor: "transparent" },
+          { backgroundColor: '#EEEEEE', shadowColor: 'transparent' },
         ]}
-        inputStyle={{ color: "#AEAEAE" }}
+        inputStyle={{ color: '#AEAEAE' }}
         onIconPress={handleSearch}
       />
       <Provider>
         <View
           style={{
-            flexDirection: "row",
-            justifyContent: "center",
+            flexDirection: 'row',
+            justifyContent: 'center',
           }}
         >
           <Menu
@@ -40,14 +42,25 @@ const SearchSection = (props: any) => {
             onDismiss={closeMenu}
             anchor={
               <Button onPress={openMenu} color="#AEAEAE" icon="filter-variant">
-                Recentes
+                {filter}
               </Button>
             }
           >
             <View>
-              <Menu.Item onPress={() => {}} title="Item 1" />
-              <Menu.Item onPress={() => {}} title="Item 2" />
-              <Menu.Item onPress={() => {}} title="Item 3" />
+              <Menu.Item
+                onPress={() => {
+                  setFilter('Recentes');
+                  setVisible(false);
+                }}
+                title="Recentes"
+              />
+              <Menu.Item
+                onPress={() => {
+                  setFilter('a-z');
+                  setVisible(false);
+                }}
+                title="a-z"
+              />
             </View>
           </Menu>
         </View>

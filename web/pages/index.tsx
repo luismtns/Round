@@ -1,35 +1,35 @@
-import { useState } from "react";
-import ScrollAnimation from "react-animate-on-scroll";
+import { useState } from 'react';
+import ScrollAnimation from 'react-animate-on-scroll';
 
 export default function Home() {
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState('');
 
   const animationsDuration: number = 1800;
   const [feedback, setFeedback] = useState(false);
   const [warning, setWarning] = useState(false);
-  const [response, setResponse] = useState("");
+  const [response, setResponse] = useState('');
 
   const subscribe = async (e) => {
     e.preventDefault();
 
-    const res = await fetch("/api/subscribe", {
+    const res = await fetch('/api/subscribe', {
       body: JSON.stringify({
         email: email,
       }),
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
-      method: "POST",
+      method: 'POST',
     })
       .then((res: any) => {
         console.log(res);
         setFeedback(true);
-        setResponse("Obrigado por nos apoiar, logo entraremos em contato!");
-        setEmail("");
+        setResponse('Obrigado por nos apoiar, logo entraremos em contato!');
+        setEmail('');
 
         if (res.status === 400) {
           setResponse(
-            "Tivemos um problema no envio do seu e-mail, confira se ele está correto."
+            'Tivemos um problema no envio do seu e-mail, confira se ele está correto.'
           );
         }
       })
@@ -38,9 +38,9 @@ export default function Home() {
         setWarning(true);
         setFeedback(false);
         setResponse(
-          "Tivemos um problema no envio do seu e-mail, confira se ele está correto."
+          'Tivemos um problema no envio do seu e-mail, confira se ele está correto.'
         );
-        setEmail("");
+        setEmail('');
       });
   };
   return (
@@ -215,12 +215,12 @@ export default function Home() {
                 animateOnce={true}
               >
                 <h3 className="font-weight-light">
-                  Hoje, <strong className="text-secondary">821 milhões</strong>{" "}
+                  Hoje, <strong className="text-secondary">821 milhões</strong>{' '}
                   vivem em condição de fome,
                   <br />
                   sendo <strong className="text-secondary">
                     5,2 milhões
-                  </strong>{" "}
+                  </strong>{' '}
                   no Brasil.
                 </h3>
               </ScrollAnimation>
@@ -257,14 +257,14 @@ export default function Home() {
                 animateOnce={true}
               >
                 <h5 className="mt-3">
-                  Propomos então a criação de{" "}
+                  Propomos então a criação de{' '}
                   <strong>
                     um aplicativo que facilitaria a comunicação entre setores de
                     um hospital
                   </strong>
                   . Possibilitando o controle e a manutenção das informações por
                   meio da <strong>inteligência artificial</strong>, que aprende
-                  com o tempo e ajuda a{" "}
+                  com o tempo e ajuda a{' '}
                   <strong className="text-primary">
                     reduzir o desperdício de alimentos
                   </strong>
@@ -295,7 +295,7 @@ export default function Home() {
                 animateOnce={true}
               >
                 <h2 className="font-weight-bold ">
-                  O Round visa impactar a sociedade.{" "}
+                  O Round visa impactar a sociedade.{' '}
                 </h2>
               </ScrollAnimation>
               <ScrollAnimation
@@ -307,10 +307,10 @@ export default function Home() {
                 <h5 className="py-2">
                   Além do benefício financeiro, o projeto espera ter resultados
                   também no âmbito sociocultural, reduzindo o pensamento da
-                  cultura da fartura{" "}
+                  cultura da fartura{' '}
                   <strong className="text-primary">
                     (“melhor sobrar do que faltar”)
-                  </strong>{" "}
+                  </strong>{' '}
                   e alcançar um desenvolvimento mais sustentável.
                 </h5>
               </ScrollAnimation>
@@ -347,9 +347,9 @@ export default function Home() {
               animateOnce={true}
             >
               <h5 className="pb-4">
-                Além de ser uma instituição com uma{" "}
+                Além de ser uma instituição com uma{' '}
                 <strong className="text-primary">causa nobre</strong>, uma
-                estrutura única, são um instituto social sem fins lucrativos,{" "}
+                estrutura única, são um instituto social sem fins lucrativos,{' '}
                 <strong>morada perfeita para nossa proposta</strong>.
               </h5>
             </ScrollAnimation>
@@ -409,7 +409,7 @@ export default function Home() {
                 delay={800}
                 animateOnce={true}
               >
-                {" "}
+                {' '}
                 <p>
                   Se é importante para você, é importante para o meio ambiente.
                   ROUND te ajuda a diminuir o gasto de papel, reduz o
@@ -536,7 +536,7 @@ export default function Home() {
               delay={1200}
               animateOnce={true}
             >
-              <form className="w-100 mt-1">
+              <form className="w-100 mt-1" onSubmit={subscribe}>
                 <div className="input-group mb-3">
                   <input
                     type="text"
@@ -544,13 +544,18 @@ export default function Home() {
                     placeholder="Seu e-mail"
                     aria-label="Seu e-mail"
                     aria-describedby="basic-addon2"
+                    value={email}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                    }}
                   />
                   <div className="input-group-append">
-                    <button className="btn btn-primary btn-lg" type="button">
+                    <button className="btn btn-primary btn-lg" type="submit">
                       APOIAR
                     </button>
                   </div>
                 </div>
+                {feedback && <p>{response}</p>}
               </form>
             </ScrollAnimation>
           </div>

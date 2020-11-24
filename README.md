@@ -11,6 +11,11 @@ Trabalho de Conclusão de Curso em Design Digital - Anhembi Morumbi 2020.
   <img alt="Round" src="mobile/.github/mockup.png" width="60%">
 </p>
 
+## Sobre
+O Round se trata de um aplicativo que facilitaria a comunicação entre setores de um hospital. Possibilitando o controle e a manutenção das informações por meio da inteligência artificial, que aprende com o tempo e ajuda a reduzir o desperdício de alimentos. Você pode acessá-lo em:
+- [Round](https://projetoround.com/)
+- [APP](https://app.projetoround.com/)
+
 ## Requisitos
 * [Node.js](https://nodejs.org/en/)
 * [Ambiente React Native](https://react-native.rocketseat.dev/)

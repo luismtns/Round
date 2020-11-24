@@ -26,10 +26,10 @@ Trabalho de Conclusão de Curso em Design Digital - Anhembi Morumbi 2020.
 
 ###### Web B2C
 * [React](https://pt-br.reactjs.org/).
-* [React Static](https://github.com/react-static/react-static)
+* [Next.js](https://nextjs.org/)
 
-###### API
-* [Express](https://expressjs.com/pt-br/)
+###### BACKEND
+* [Firebase](https://firebase.google.com/)
 
 ## Padrões
 ###### CSS/Estilização

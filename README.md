@@ -1,11 +1,23 @@
 # Round
-Trabalho de Conclusão de Curso em Design Digital - Anhembi Morumbi.
+Trabalho de Conclusão de Curso em Design Digital - Anhembi Morumbi 2020.
+
+<div align="center">
+  <div>
+     <img alt="Round" src=".github/logo.svg" width="200px"  />
+  </div>
+</div>
+
+<p align="center">
+  <img alt="Round" src=".github/mockup.png" width="100%">
+</p>
 
 ## Requisitos
 * [Node.js](https://nodejs.org/en/)
+* [Ambiente React Native](https://react-native.rocketseat.dev/)
 
 ## Começando
--
+- Para iniciar o projeto é preciso primeiramente instalar o Node na sua máquina e seguir os passos para preparação do ambiente local, para isso sugiro seguir os passos no link [Ambiente React Native](https://react-native.rocketseat.dev/).
+- Ao finalizar a preparação do ambiente clone o repositório para a sua máquina e inicie o projeto com `expo start --web`.
 
 ## Tecnologias
 ###### Mobile

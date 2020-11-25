@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import styles from "./styles";
-import { View, Text, Picker } from "react-native";
-import { useEffect } from "react";
-import SearchSection from "../../components/SearchSection";
-import { firebaseDataService } from "./../../services/data/index";
-import moment from "moment";
-import { PatientProfile } from "./../../interfaces/patient.interface";
-import Table from "./../../components/Table/index";
-import EmptyAlert from "../../components/EmptyAlert";
+import React, { useState } from 'react';
+import styles from './styles';
+import { View, Text, Picker } from 'react-native';
+import { useEffect } from 'react';
+import SearchSection from '../../components/SearchSection';
+import { firebaseDataService } from './../../services/data/index';
+import moment from 'moment';
+import { PatientProfile } from './../../interfaces/patient.interface';
+import Table from './../../components/Table/index';
+import EmptyAlert from '../../components/EmptyAlert';
 
 const Kitchen: React.FC = ({ navigation, route }: any) => {
   const [selectedValue, setSelectedValue] = useState();
@@ -17,14 +17,34 @@ const Kitchen: React.FC = ({ navigation, route }: any) => {
 
   var userInfo = route.params.data;
 
-  function filterData(childData: string) {
+  function filterData({ patient, filter }: any) {
+    console.log(patient, filter, search);
     setDataTable(
-      search?.filter(function (data: PatientProfile) {
-        return (
-          data.personal.name.toLowerCase().indexOf(childData.toLowerCase()) >
-            -1 || data.hospitalization.rh == childData.toLowerCase().trim()
-        );
-      })
+      search
+        ?.filter((data: PatientProfile) => {
+          return (
+            data.personal.name.toLowerCase().indexOf(patient.toLowerCase()) >
+              -1 || data.hospitalization.rh == patient.toLowerCase().trim()
+          );
+        })
+        .sort((a: any, b: any) => {
+          switch (filter) {
+            case 'Recentes':
+              let fixDateA = a.hospitalization.entryDate.replace(
+                /(.{3})(.{3})(.{4})/,
+                '$2$1$3'
+              );
+
+              let fixDateB = b.hospitalization.entryDate.replace(
+                /(.{3})(.{3})(.{4})/,
+                '$2$1$3'
+              );
+
+              return new Date(fixDateB) < new Date(fixDateA) ? -1 : 1;
+            case 'a-z':
+              return a.personal.name.localeCompare(b.personal.name);
+          }
+        })
     );
   }
 

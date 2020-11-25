@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import styles from "./styles";
-import { View, Text } from "react-native";
-import { FAB } from "react-native-paper";
-import { useIsFocused, useNavigation } from "@react-navigation/native";
-import Table from "../../components/Table";
-import SearchSection from "../../components/SearchSection";
-import { firebaseDataService } from "./../../services/data/index";
-import TableProfessionals from "./../../components/TableProfessionals/index";
-import { ProfessionalProfile } from "./../../interfaces/professional.interface";
+import React, { useEffect, useState } from 'react';
+import styles from './styles';
+import { View, Text } from 'react-native';
+import { FAB } from 'react-native-paper';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
+import Table from '../../components/Table';
+import SearchSection from '../../components/SearchSection';
+import { firebaseDataService } from './../../services/data/index';
+import TableProfessionals from './../../components/TableProfessionals/index';
+import { ProfessionalProfile } from './../../interfaces/professional.interface';
 
 const AdminCoordMedic: React.FC = ({ route, navigation }: any) => {
   const { navigate } = useNavigation();
@@ -21,16 +21,25 @@ const AdminCoordMedic: React.FC = ({ route, navigation }: any) => {
     // navigate(`Patient`, { patient: id });
   }
 
-  function filterData(childData: string) {
+  function filterData({ patient, filter }: any) {
     setDataTable(
-      search?.filter(function (data: ProfessionalProfile) {
-        return (
-          data.personal.name.toLowerCase().indexOf(childData.toLowerCase()) >
-            -1 ||
-          data.professional.code == childData.toLowerCase().trim() ||
-          data.professional.crm == childData.toLowerCase().trim()
-        );
-      })
+      search
+        ?.filter(function (data: ProfessionalProfile) {
+          return (
+            data.personal.name.toLowerCase().indexOf(patient.toLowerCase()) >
+              -1 ||
+            data.professional.code == patient.toLowerCase().trim() ||
+            data.professional.crm == patient.toLowerCase().trim()
+          );
+        })
+        .sort((a: any, b: any) => {
+          switch (filter) {
+            case 'Recentes':
+              return a.timestamp.toDate() > b.timestamp.toDate() ? -1 : 1;
+            case 'A-Z':
+              return a.personal.name.localeCompare(b.personal.name);
+          }
+        })
     );
   }
   useEffect(() => {
@@ -40,7 +49,7 @@ const AdminCoordMedic: React.FC = ({ route, navigation }: any) => {
     // Table Data Observable
     const unsubscribe = firebaseDataService.getProfessionalSnapshot(
       30,
-      "medic",
+      'medic',
       {
         next: (querySnapshot: any) => {
           var arrayQuery = querySnapshot.docs.map((doc: any) => doc.data());
@@ -59,7 +68,7 @@ const AdminCoordMedic: React.FC = ({ route, navigation }: any) => {
 
   return (
     <>
-      <div style={{ position: "fixed", bottom: "1em", right: "1em" }}>
+      <div style={{ position: 'fixed', bottom: '1em', right: '1em' }}>
         <FAB
           style={styles.fab}
           small
@@ -70,8 +79,8 @@ const AdminCoordMedic: React.FC = ({ route, navigation }: any) => {
       </div>
       <View style={styles.container}>
         <Text style={styles.title}>Equipe médica</Text>
-
         <SearchSection searchProp={filterData} />
+        {console.log(dataTable)}
         {dataTable && (
           <TableProfessionals TableData={dataTable} userInfo={userInfo} />
         )}

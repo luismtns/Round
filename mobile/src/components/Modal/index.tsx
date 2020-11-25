@@ -8,8 +8,6 @@ import Button from "../Button";
 
 const MainModal: React.FC<any> = ({ handleClose, show, children }) => {
   const showHideClassName = show ? true : false;
-  console.log("handleClose: ", handleClose);
-  console.log("show: ", show);
   return (
     <Modal
       animationType="fade"

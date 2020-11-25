@@ -18,7 +18,6 @@ const Kitchen: React.FC = ({ navigation, route }: any) => {
   var userInfo = route.params.data;
 
   function filterData({ patient, filter }: any) {
-    // console.log(patient, filter, search);
     setDataTable(
       search
         ?.filter((data: PatientProfile) => {

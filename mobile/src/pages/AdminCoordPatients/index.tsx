@@ -15,7 +15,6 @@ const AdminCoordPatients: React.FC = ({ navigation, route }: any) => {
   const userInfo = route.params.data;
 
   function filterData({ patient, filter }: any) {
-    console.log(patient, filter);
     setDataTable(
       search
         ?.filter((data: PatientProfile) => {

@@ -165,7 +165,7 @@ const AdminAddPatient: React.FC = ({ route, navigation }: any) => {
             color="#EDEDED"
             size={20}
             style={{ zIndex: 50 }}
-            onPress={() => console.log("Pressed")}
+            onPress={() => {}}
           />
           <Avatar.Icon
             size={120}
@@ -375,13 +375,13 @@ const AdminAddPatient: React.FC = ({ route, navigation }: any) => {
                         icon="download"
                         color="black"
                         size={20}
-                        onPress={() => console.log("Pressed")}
+                        onPress={() => {}}
                       />
                       <IconButton
                         icon="delete"
                         color="red"
                         size={20}
-                        onPress={() => console.log("Pressed")}
+                        onPress={() => {}}
                       />
                     </>
                   )}

@@ -14,7 +14,6 @@ const Clinic = ({ navigation, route }: any) => {
   const isVisible = useIsFocused();
 
   function filterData({ patient, filter }: any) {
-    console.log(patient, filter);
     setDataTable(
       search
         ?.filter((data: PatientProfile) => {
@@ -70,7 +69,6 @@ const Clinic = ({ navigation, route }: any) => {
         <Text style={styles.title}>Pacientes</Text>
 
         <SearchSection searchProp={filterData} />
-        {console.log(dataTable)}
         {dataTable && <Table dataTable={dataTable} userInfo={userInfo} />}
       </View>
     </>

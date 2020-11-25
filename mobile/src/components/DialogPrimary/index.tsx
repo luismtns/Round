@@ -18,7 +18,7 @@ const DialogPrimary = ({
 
   return (
     <Portal>
-      <Dialog onDismiss={hide} visible={visible}>
+      <Dialog onDismiss={onAction ? onAction : hide} visible={visible}>
         <Dialog.Title>{title}</Dialog.Title>
         <Dialog.Content>
           <Paragraph>{paragraph}</Paragraph>

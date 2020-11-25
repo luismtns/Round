@@ -12,7 +12,7 @@ const SearchSection = (props: any) => {
   const closeMenu = () => setVisible(false);
 
   function handleSearch() {
-    console.log(patient, filter);
+    // console.log(patient, filter);
     props.searchProp({ patient, filter });
   }
 

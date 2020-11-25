@@ -10,7 +10,6 @@ import DialogPrimary from "./../DialogPrimary/index";
 const Historic = ({ patientData, uuid }: any) => {
   const [patientHistoric, setPatientHistoric] = useState<Array<any>>();
   const [open, setOpen] = useState(false);
-  console.log(patientData, uuid);
 
   if (patientData) {
     if (patientData.personal && patientData.personal.observation) {
@@ -28,7 +27,6 @@ const Historic = ({ patientData, uuid }: any) => {
         var arrayQuery = querySnapshot.docs.map((doc: any) => doc.data());
         setPatientHistoric(arrayQuery);
       },
-      error: (err: any) => console.log(err),
     });
     return unsubscribe;
   }, []);

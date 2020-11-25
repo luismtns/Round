@@ -140,7 +140,6 @@ const AdminAddProfessional: React.FC = ({ navigation, route }: any) => {
             hideDialog();
           },
         });
-        console.log(err);
       });
   }
 
@@ -151,7 +150,7 @@ const AdminAddProfessional: React.FC = ({ navigation, route }: any) => {
       const { status } = await ImagePicker.requestCameraRollPermissionsAsync();
 
       if (status !== "granted") {
-        alert("Eita, precisamos de acesso às suas fotos...");
+        alert("Precisamos de acesso às suas fotos...");
         return;
       }
 
@@ -187,7 +186,7 @@ const AdminAddProfessional: React.FC = ({ navigation, route }: any) => {
             color="#EDEDED"
             size={20}
             style={{ zIndex: 50 }}
-            onPress={() => console.log("Pressed")}
+            onPress={() => {}}
           />
           <Avatar.Icon
             size={120}

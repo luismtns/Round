@@ -331,7 +331,7 @@ export default function Home() {
             >
               <h2 className="font-weight-bold ">
                 O GRAACC foi nossa escolha para <wbr />a primeira aplicação, mas
-                porque?
+                por quê?
               </h2>
             </ScrollAnimation>
           </div>

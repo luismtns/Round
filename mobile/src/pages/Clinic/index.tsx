@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text } from 'react-native';
-import styles from './styles';
-import SearchSection from '../../components/SearchSection';
-import Table from '../../components/Table';
-import { firebaseDataService } from './../../services/data/index';
-import { useIsFocused } from '@react-navigation/native';
-import { PatientProfile } from './../../interfaces/patient.interface';
+import React, { useEffect, useState } from "react";
+import { View, Text } from "react-native";
+import styles from "./styles";
+import SearchSection from "../../components/SearchSection";
+import Table from "../../components/Table";
+import { firebaseDataService } from "./../../services/data/index";
+import { useIsFocused } from "@react-navigation/native";
+import { PatientProfile } from "./../../interfaces/patient.interface";
 
 const Clinic = ({ navigation, route }: any) => {
   const [dataTable, setDataTable] = useState();
@@ -25,19 +25,19 @@ const Clinic = ({ navigation, route }: any) => {
         })
         .sort((a: any, b: any) => {
           switch (filter) {
-            case 'Recentes':
+            case "Recentes":
               let fixDateA = a.hospitalization.entryDate.replace(
                 /(.{3})(.{3})(.{4})/,
-                '$2$1$3'
+                "$2$1$3"
               );
 
               let fixDateB = b.hospitalization.entryDate.replace(
                 /(.{3})(.{3})(.{4})/,
-                '$2$1$3'
+                "$2$1$3"
               );
 
               return new Date(fixDateB) < new Date(fixDateA) ? -1 : 1;
-            case 'a-z':
+            case "A-Z":
               return a.personal.name.localeCompare(b.personal.name);
           }
         })
@@ -53,7 +53,7 @@ const Clinic = ({ navigation, route }: any) => {
       next: (querySnapshot: any) => {
         var arrayQuery = querySnapshot.docs.map((doc: any) => {
           var data = doc.data();
-          data['id'] = doc.id;
+          data["id"] = doc.id;
           return data;
         });
         setDataTable(arrayQuery);

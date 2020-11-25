@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { View } from 'react-native';
-import { Button, Menu, Provider, Searchbar } from 'react-native-paper';
-import styles from './styles';
+import React, { useState } from "react";
+import { View } from "react-native";
+import { Button, Menu, Provider, Searchbar } from "react-native-paper";
+import styles from "./styles";
 
 const SearchSection = (props: any) => {
-  const [patient, setPatient] = useState('');
+  const [patient, setPatient] = useState("");
   const [visible, setVisible] = useState(false);
-  const [filter, setFilter] = useState('Recentes');
+  const [filter, setFilter] = useState("Recentes");
 
   const openMenu = () => setVisible(true);
   const closeMenu = () => setVisible(false);
@@ -24,16 +24,16 @@ const SearchSection = (props: any) => {
         value={patient}
         style={[
           styles.searchBar,
-          { backgroundColor: '#EEEEEE', shadowColor: 'transparent' },
+          { backgroundColor: "#EEEEEE", shadowColor: "transparent" },
         ]}
-        inputStyle={{ color: '#AEAEAE' }}
+        inputStyle={{ color: "#AEAEAE" }}
         onIconPress={handleSearch}
       />
       <Provider>
         <View
           style={{
-            flexDirection: 'row',
-            justifyContent: 'center',
+            flexDirection: "row",
+            justifyContent: "center",
           }}
         >
           <Menu
@@ -49,17 +49,17 @@ const SearchSection = (props: any) => {
             <View>
               <Menu.Item
                 onPress={() => {
-                  setFilter('Recentes');
+                  setFilter("Recentes");
                   setVisible(false);
                 }}
                 title="Recentes"
               />
               <Menu.Item
                 onPress={() => {
-                  setFilter('a-z');
+                  setFilter("A-Z");
                   setVisible(false);
                 }}
-                title="a-z"
+                title="A-Z"
               />
             </View>
           </Menu>

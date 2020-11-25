@@ -15,7 +15,6 @@ const AdminDischargePatients: React.FC = ({ navigation, route }: any) => {
   const userInfo = route.params.data;
 
   function filterData({ patient, filter }: any) {
-    console.log(patient, filter);
     setDataTable(
       search
         ?.filter((data: PatientProfile) => {
@@ -60,7 +59,7 @@ const AdminDischargePatients: React.FC = ({ navigation, route }: any) => {
         setDataTable(arrayQuery);
         setSearch(arrayQuery);
       },
-      error: (err: any) => console.log(err),
+      error: (err: any) => {},
     });
     return unsubscribe;
   }, []);
@@ -72,11 +71,7 @@ const AdminDischargePatients: React.FC = ({ navigation, route }: any) => {
 
         <SearchSection searchProp={filterData} />
         {dataTable && (
-          <Table
-            dataTable={dataTable}
-            userInfo={userInfo}
-            dischargePatient={(val: any) => console.log(val)}
-          />
+          <Table dataTable={dataTable} userInfo={userInfo} dischargePatient />
         )}
       </View>
     </>

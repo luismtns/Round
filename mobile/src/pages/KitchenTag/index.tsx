@@ -32,9 +32,7 @@ const KitchenTag: React.FC = ({ navigation, route }: any) => {
         html: _html,
       });
       return uri;
-    } catch (err) {
-      console.error(err);
-    }
+    } catch (err) {}
   };
   function printTag() {
     createPDF(htmlContent);

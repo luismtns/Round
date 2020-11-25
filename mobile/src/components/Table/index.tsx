@@ -132,7 +132,7 @@ const Table = ({
                       icon="ticket-confirmation"
                       color="#376C71"
                       size={20}
-                      onPress={() => console.log("Pressed")}
+                      onPress={() => goToKitchenTag(_patient)}
                     />
                   </DataTable.Cell>
                 )}

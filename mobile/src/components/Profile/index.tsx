@@ -12,7 +12,7 @@ const Profile = ({ patient_data }: any) => {
           color="#EDEDED"
           size={20}
           style={{ zIndex: 50 }}
-          onPress={() => console.log("Pressed")}
+          onPress={() => {}}
         />
         <Avatar.Icon
           size={120}

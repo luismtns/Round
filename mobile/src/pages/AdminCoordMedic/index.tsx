@@ -80,7 +80,6 @@ const AdminCoordMedic: React.FC = ({ route, navigation }: any) => {
       <View style={styles.container}>
         <Text style={styles.title}>Equipe médica</Text>
         <SearchSection searchProp={filterData} />
-        {console.log(dataTable)}
         {dataTable && (
           <TableProfessionals TableData={dataTable} userInfo={userInfo} />
         )}

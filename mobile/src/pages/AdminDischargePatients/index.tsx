@@ -14,14 +14,34 @@ const AdminDischargePatients: React.FC = ({ navigation, route }: any) => {
   const [search, setSearch] = useState<any>();
   const userInfo = route.params.data;
 
-  function filterData(childData: string) {
+  function filterData({ patient, filter }: any) {
+    console.log(patient, filter);
     setDataTable(
-      search?.filter(function (data: PatientProfile) {
-        return (
-          data.personal.name.toLowerCase().indexOf(childData.toLowerCase()) >
-            -1 || data.hospitalization.rh == childData.toLowerCase().trim()
-        );
-      })
+      search
+        ?.filter((data: PatientProfile) => {
+          return (
+            data.personal.name.toLowerCase().indexOf(patient.toLowerCase()) >
+              -1 || data.hospitalization.rh == patient.toLowerCase().trim()
+          );
+        })
+        .sort((a: any, b: any) => {
+          switch (filter) {
+            case "Recentes":
+              let fixDateA = a.hospitalization.entryDate.replace(
+                /(.{3})(.{3})(.{4})/,
+                "$2$1$3"
+              );
+
+              let fixDateB = b.hospitalization.entryDate.replace(
+                /(.{3})(.{3})(.{4})/,
+                "$2$1$3"
+              );
+
+              return new Date(fixDateB) < new Date(fixDateA) ? -1 : 1;
+            case "A-Z":
+              return a.personal.name.localeCompare(b.personal.name);
+          }
+        })
     );
   }
 
